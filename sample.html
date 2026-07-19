@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="format-detection" content="telephone=no">
+<title>L0 主体暴露面报告 · 演示样张｜SWAGENT</title>
+<meta name="description" content="SWAGENT L0《主体暴露面报告》公开演示样张。数据为示意、主体标识已脱敏、不指向任何真实主体。展示报告的证据链格式、置信度分级与交付边界。">
+<meta name="robots" content="index,follow">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ══════════ 设计令牌（与首页同源，勿改） ══════════ */
+:root {
+  color-scheme: light;
+
+  --bg-page:      #F5F7F9;
+  --bg-card:      #FFFFFF;
+  --ink-900:      #0C1A26;
+  --ink-700:      #33424F;
+  --ink-500:      #66757F;
+  --line:         #E3E9EE;
+
+  --dark-bg:      #0C1A26;
+  --dark-card:    #142838;
+  --dark-text:    #F2F6F9;
+  --dark-sub:     #A8B8C4;
+  --dark-faint:   #7E93A3;
+  --dark-line:    rgba(255,255,255,0.08);
+
+  --accent-bright: #27D3A2;
+  --accent-deep:   #0B7A5A;
+  --accent-press:  #1FBF92;
+
+  --amber-text:   #FFC266;
+  --amber-bg:     rgba(255,194,102,0.12);
+  --amber-ink:    #8A5A00;
+  --amber-face:   #FFF6E6;
+  --amber-line:   #F0C67A;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC",
+               "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC",
+               "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
+               "Liberation Mono", "Courier New", monospace;
+
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-7: 32px; --sp-8: 40px;
+  --sp-9: 48px; --sp-10: 56px;
+
+  --r-card: 16px; --r-btn: 12px; --r-sm: 12px; --r-pill: 999px;
+
+  --shadow-card:  0 1px 2px rgba(12,26,38,0.04);
+  --shadow-float: 0 8px 24px rgba(12,26,38,0.18);
+
+  --z-sticky: 40;
+}
+
+/* ══════════ 基础 ══════════ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 26px;
+  color: var(--ink-700);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+[hidden] { display: none !important; }
+
+:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 2px; }
+.section-dark :focus-visible { outline-color: var(--accent-bright); }
+
+.wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.sec { padding-top: 48px; padding-bottom: 48px; background: var(--bg-page); }
+
+.section-dark {
+  background-color: var(--dark-bg);
+  background-image:
+    repeating-linear-gradient(0deg,  rgba(255,255,255,0.035) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 24px);
+}
+/* 嵌套在深色区块内的 .sec 不得用浅底覆盖父级深底（同 index.html 的处理） */
+.section-dark .sec { background: transparent; }
+
+.sec-title {
+  font-size: 22px; line-height: 30px; font-weight: 700;
+  color: var(--ink-900);
+}
+.section-dark .sec-title { color: var(--dark-text); }
+.sec-kicker {
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  color: var(--accent-deep);
+}
+.section-dark .sec-kicker { color: var(--accent-bright); }
+.sec-lead { margin-top: 12px; font-size: 14px; line-height: 24px; color: var(--ink-700); }
+.section-dark .sec-lead { color: var(--dark-sub); }
+
+.mono { font-family: var(--font-mono); letter-spacing: 0.05em; }
+
+/* 通用锚点偏移（顶部有 sticky 目录条） */
+.anchor { display: block; height: 1px; margin-top: -56px; padding-top: 56px; visibility: hidden; }
+
+/* ══════════ 按钮（沿用首页 A/B/C/D） ══════════ */
+.btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  border: 0; border-radius: var(--r-btn);
+  font-family: var(--font-sans); font-size: 16px; font-weight: 600;
+  cursor: pointer;
+  transition: transform 80ms ease, background-color 80ms ease;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.btn-a { height: 52px; background: var(--ink-900); color: #FFFFFF; }
+.btn-a:active { transform: scale(0.98); background: #16283A; }
+.btn-b { height: 52px; background: var(--accent-bright); color: var(--ink-900); font-weight: 700; }
+.btn-b:active { transform: scale(0.98); background: var(--accent-press); }
+.btn-c {
+  height: 48px; background: transparent;
+  border: 1.5px solid var(--ink-900); color: var(--ink-900);
+}
+.btn-c:active { transform: scale(0.98); background: rgba(12,26,38,0.06); }
+.btn-xl { height: 56px; font-size: 17px; }
+
+/* ══════════ 白卡 ══════════ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 20px 18px;
+}
+.card + .card { margin-top: 14px; }
+
+/* ══════════ 页头 ══════════ */
+.pghead { padding-top: 28px; padding-bottom: 32px; }
+.pghead-top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+}
+.pghead-brand { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--dark-sub); }
+.pghead-brand .mono { font-weight: 700; color: var(--dark-text); }
+.backlink {
+  flex: 0 0 auto;
+  font-size: 13px; line-height: 20px; font-weight: 600;
+  color: var(--accent-bright);
+  border: 1px solid rgba(39,211,162,0.4);
+  border-radius: var(--r-pill);
+  padding: 4px 12px;
+}
+.backlink:active { background: rgba(39,211,162,0.12); }
+.pghead-tag {
+  display: inline-block; margin-top: 24px;
+  background: var(--accent-bright); color: var(--ink-900);
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 4px 10px; border-radius: var(--r-pill);
+}
+.pghead-title {
+  margin-top: 12px;
+  font-size: 26px; line-height: 36px; font-weight: 700;
+  color: var(--dark-text);
+}
+.pghead-title .em { color: var(--accent-bright); }
+.pghead-sub { margin-top: 12px; font-size: 14px; line-height: 24px; color: var(--dark-sub); }
+
+/* ══════════ 演示声明（醒目警示块） ══════════ */
+.demo-note {
+  margin-top: 24px;
+  background: var(--amber-face);
+  border: 2px solid var(--amber-line);
+  border-radius: var(--r-card);
+  padding: 16px 16px 18px;
+}
+.demo-note-head {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 16px; line-height: 24px; font-weight: 700;
+  color: var(--amber-ink);
+}
+.demo-mark {
+  flex: 0 0 auto;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--amber-ink); color: var(--amber-face);
+  font-size: 14px; line-height: 22px; font-weight: 700;
+  text-align: center;
+}
+.demo-note p { margin-top: 10px; font-size: 13px; line-height: 22px; color: #6B4A0E; }
+.demo-note b { font-weight: 700; color: var(--amber-ink); }
+.demo-note .mono { font-weight: 700; }
+
+/* 页尾再次提示（深底版） */
+.demo-note-dark {
+  background: var(--amber-bg);
+  border: 1px solid rgba(255,194,102,0.5);
+}
+.demo-note-dark .demo-note-head { color: var(--amber-text); }
+.demo-note-dark p { color: var(--dark-sub); }
+.demo-note-dark b { color: var(--amber-text); }
+.demo-note-dark .mask,
+.demo-note-dark .mono { color: var(--amber-text); }
+.demo-note-dark .demo-mark { background: var(--amber-text); color: var(--dark-bg); }
+
+/* ══════════ 目录 ══════════ */
+.toc-bar {
+  position: sticky; top: 0; z-index: var(--z-sticky);
+  background: rgba(245,247,249,0.94);
+  border-bottom: 1px solid var(--line);
+}
+.toc-scroll {
+  display: flex; gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.toc-scroll a {
+  flex: 0 0 auto;
+  font-size: 13px; line-height: 20px; font-weight: 600;
+  color: var(--ink-700);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+.toc-scroll a:active { background: var(--bg-page); }
+
+/* ══════════ 抬头元信息 ══════════ */
+.meta-card { margin-top: 0; }
+.meta-row { display: flex; gap: 12px; }
+.meta-row + .meta-row { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+.meta-k {
+  flex: 0 0 84px;
+  font-size: 13px; line-height: 22px; color: var(--ink-500);
+}
+.meta-v { flex: 1 1 auto; font-size: 13px; line-height: 22px; color: var(--ink-900); font-weight: 600; }
+.meta-v .mono { font-weight: 700; }
+
+/* ══════════ 等级卡 ══════════ */
+.level-card {
+  margin-top: 20px;
+  background: var(--dark-bg);
+  border: 1.5px solid var(--accent-bright);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-float);
+  padding: 22px 18px;
+}
+.level-no {
+  font-family: var(--font-mono);
+  font-size: 34px; line-height: 40px; font-weight: 700;
+  color: var(--accent-bright);
+}
+.level-name { margin-top: 4px; font-size: 18px; line-height: 26px; font-weight: 700; color: var(--dark-text); }
+.level-desc { margin-top: 10px; font-size: 14px; line-height: 24px; color: var(--dark-sub); }
+.level-desc b { color: var(--dark-text); font-weight: 600; }
+.level-stats { display: flex; gap: 12px; margin-top: 18px; }
+.stat {
+  flex: 1 1 0;
+  background: var(--dark-card);
+  border-radius: 12px;
+  padding: 12px 10px;
+  text-align: center;
+}
+.stat-n {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 20px; line-height: 28px; font-weight: 700;
+  color: var(--accent-bright);
+}
+.stat-l { margin-top: 2px; font-size: 12px; line-height: 18px; color: var(--dark-sub); }
+
+/* 判据清单 */
+.crit { margin-top: 20px; }
+.crit li {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 14px; line-height: 24px; color: var(--ink-700);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.crit li + li { margin-top: 10px; }
+.crit-mark {
+  flex: 0 0 auto;
+  width: 20px; height: 20px; margin-top: 2px;
+  border-radius: 50%;
+  background: var(--accent-deep); color: #FFFFFF;
+  font-size: 12px; line-height: 20px; font-weight: 700;
+  text-align: center;
+}
+.crit-txt { flex: 1 1 auto; }
+.crit-ref {
+  display: block; margin-top: 2px;
+  font-size: 12px; line-height: 18px; color: var(--ink-500);
+}
+
+/* ══════════ 旁注引用块 ══════════ */
+.note {
+  margin-top: 16px;
+  border-left: 3px solid var(--accent-deep);
+  background: rgba(11,122,90,0.05);
+  border-radius: 0 12px 12px 0;
+  padding: 12px 14px;
+  font-size: 13px; line-height: 22px; color: var(--ink-700);
+}
+.note + .note { margin-top: 12px; }
+.note b { color: var(--ink-900); font-weight: 700; }
+.note-t {
+  display: block; margin-bottom: 4px;
+  font-size: 13px; line-height: 20px; font-weight: 700; color: var(--ink-900);
+}
+.section-dark .note {
+  border-left-color: var(--accent-bright);
+  background: rgba(255,255,255,0.04);
+  color: var(--dark-sub);
+}
+.section-dark .note b, .section-dark .note-t { color: var(--dark-text); }
+
+/* ══════════ 置信度标签 ══════════ */
+.tag {
+  display: inline-block;
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 2px 10px; border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+.tag-ok    { background: var(--accent-bright); color: var(--ink-900); }
+.tag-one   { background: var(--amber-face); color: var(--amber-ink); border: 1px solid var(--amber-line); }
+.tag-none  { background: #EDF1F4; color: var(--ink-500); border: 1px solid var(--line); }
+.section-dark .tag-one { background: var(--amber-bg); color: var(--amber-text); border-color: rgba(255,194,102,0.45); }
+.section-dark .tag-none { background: rgba(255,255,255,0.06); color: var(--dark-sub); border-color: var(--dark-line); }
+
+/* 图例 */
+.legend { margin-top: 16px; }
+.legend li {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 13px; line-height: 22px; color: var(--ink-700);
+}
+.legend li + li { margin-top: 8px; }
+.legend .tag { flex: 0 0 auto; margin-top: 1px; }
+
+/* ══════════ 证据条目卡 ══════════ */
+.ev-group { margin-top: 24px; }
+.ev-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 10px;
+}
+.ev-h {
+  font-size: 17px; line-height: 26px; font-weight: 700; color: var(--ink-900);
+}
+.ev-time {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 12px; line-height: 18px; color: var(--ink-500);
+}
+.ev-list { margin-top: 12px; }
+.ev {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  padding: 14px 14px 12px;
+}
+.ev + .ev { margin-top: 12px; }
+.ev-ok  { border-left-color: var(--accent-bright); }
+.ev-one { border-left-color: var(--amber-line); }
+.ev-top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px;
+}
+.ev-no {
+  font-family: var(--font-mono);
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  color: var(--ink-500);
+}
+.ev-fact { margin-top: 8px; font-size: 14px; line-height: 24px; color: var(--ink-900); }
+.ev-fact b { font-weight: 700; }
+.ev-fact .mask {
+  font-family: var(--font-mono); letter-spacing: 0.03em;
+  background: #EDF1F4; border-radius: 4px; padding: 0 4px;
+  color: var(--ink-700);
+}
+.ev-meta {
+  margin-top: 10px; padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  display: flex; flex-wrap: wrap; gap: 4px 14px;
+  font-size: 12px; line-height: 20px; color: var(--ink-500);
+}
+.ev-meta span b { color: var(--ink-700); font-weight: 600; }
+.ev-src {
+  display: inline-block;
+  font-family: var(--font-mono);
+  color: var(--ink-500);
+  border-bottom: 1px dotted var(--ink-500);
+}
+
+/* ══════════ 「没能挖到」区块 ══════════ */
+.nf-badge {
+  display: inline-block;
+  background: var(--accent-bright); color: var(--ink-900);
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 4px 10px; border-radius: var(--r-pill);
+}
+.nf-list { margin-top: 20px; }
+.nf {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-line);
+  border-radius: 12px;
+  padding: 14px;
+}
+.nf + .nf { margin-top: 12px; }
+.nf-q { font-size: 14px; line-height: 22px; font-weight: 600; color: var(--dark-text); }
+.nf-r { margin-top: 8px; font-size: 13px; line-height: 22px; color: var(--dark-sub); }
+.nf-r b { color: var(--accent-bright); font-weight: 700; }
+.nf-m {
+  margin-top: 8px; padding-top: 8px;
+  border-top: 1px dashed var(--dark-line);
+  font-size: 13px; line-height: 22px; color: var(--dark-sub);
+}
+.nf-m span { color: var(--accent-bright); font-weight: 600; }
+.nf-close {
+  margin-top: 20px;
+  border: 1px solid var(--accent-bright);
+  border-radius: 12px;
+  padding: 16px 14px;
+  font-size: 14px; line-height: 24px; color: var(--dark-text);
+}
+.nf-close b { color: var(--accent-bright); font-weight: 700; }
+.blind {
+  margin-top: 14px;
+  font-size: 13px; line-height: 22px; color: var(--dark-faint);
+}
+.blind b { color: var(--dark-sub); font-weight: 600; }
+
+/* ══════════ 通用列表 ══════════ */
+.feat { margin-top: 12px; }
+.feat li {
+  position: relative; padding-left: 16px;
+  font-size: 14px; line-height: 24px; color: var(--ink-700);
+}
+.feat li + li { margin-top: 10px; }
+.feat li::before {
+  content: ""; position: absolute; left: 0; top: 9px;
+  width: 6px; height: 6px; border-radius: 1px;
+  background: var(--accent-deep);
+}
+.section-dark .feat li { color: var(--dark-sub); }
+.section-dark .feat li::before { background: var(--accent-bright); }
+
+/* ══════════ 表格（横向可滚动） ══════════ */
+.tbl-scroll {
+  margin-top: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-card);
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 460px;
+}
+th, td {
+  text-align: left;
+  font-size: 13px; line-height: 20px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+th { font-weight: 700; color: var(--ink-900); background: #EFF3F6; white-space: nowrap; }
+td { color: var(--ink-700); }
+td b { color: var(--ink-900); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+
+/* ══════════ 档位 ══════════ */
+.tier {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 18px;
+}
+.tier + .tier { margin-top: 14px; }
+.tier-free { border: 1.5px solid var(--accent-deep); }
+.tier-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.tier-n { font-size: 16px; line-height: 24px; font-weight: 700; color: var(--ink-900); }
+.tier-p {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 22px; line-height: 30px; font-weight: 700;
+  color: var(--ink-900);
+}
+.tier-free .tier-p { color: var(--accent-deep); }
+.tier-b { margin-top: 8px; font-size: 13px; line-height: 22px; color: var(--ink-700); }
+.tier-t { margin-top: 8px; font-size: 12px; line-height: 20px; color: var(--ink-500); }
+
+/* ══════════ 终 CTA ══════════ */
+.cta-lead { margin-top: 14px; font-size: 15px; line-height: 26px; color: var(--dark-sub); }
+.cta-lead b { color: var(--dark-text); font-weight: 700; }
+.wx-box {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  background: var(--dark-card);
+  border: 1px dashed rgba(255,255,255,0.25);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+.wx-label { font-size: 18px; line-height: 26px; font-weight: 700; color: var(--dark-text); }
+.wx-num {
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 18px; line-height: 26px; font-weight: 700;
+  color: var(--dark-text);
+  -webkit-user-select: all; user-select: all;
+}
+.wx-hint { display: block; margin-top: 2px; font-size: 12px; line-height: 18px; color: var(--dark-faint); }
+.wx-hint.ok { color: var(--accent-bright); }
+.cta .btn { margin-top: 16px; }
+.cta-aux {
+  margin-top: 12px;
+  font-size: 12px; line-height: 20px; color: var(--dark-faint);
+  text-align: center;
+}
+
+/* ══════════ 页脚 ══════════ */
+.footer {
+  border-top: 1px solid var(--dark-line);
+  padding: 24px 20px 24px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  text-align: center;
+  font-size: 12px; line-height: 20px; color: var(--dark-faint);
+}
+.footer p + p { margin-top: 6px; }
+.footer .mono { font-size: 12px; }
+.footer a { color: var(--accent-bright); font-weight: 600; }
+
+/* ══════════ 动效 ══════════ */
+.js .reveal { opacity: 0; transform: translateY(16px); }
+.js .reveal.is-visible {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+@media (min-width: 420px) {
+  .pghead-title { font-size: 28px; line-height: 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ 页头（深） ══════════ -->
+<header class="section-dark pghead">
+  <div class="wrap">
+    <div class="pghead-top">
+      <p class="pghead-brand"><span class="mono">SWAGENT</span> ｜ 跨境实体层情报</p>
+      <a class="backlink" href="/">← 回主页</a>
+    </div>
+
+    <p class="pghead-tag">L0 · 免费档 · 公开样张</p>
+    <h1 class="pghead-title">
+      主体暴露面报告<br><span class="em">演示样张</span>
+    </h1>
+    <p class="pghead-sub">这是免费档 L0《主体暴露面报告》的完整结构。你看到的每一处格式、每一条置信度标注、每一句「没查到」，都和真实交付件一致——唯独数据不是真的。</p>
+
+    <!-- 醒目演示声明 -->
+    <div class="demo-note demo-note-dark">
+      <p class="demo-note-head"><span class="demo-mark">!</span>本页为演示样张，非真实档案</p>
+      <p><b>数据为示意，主体标识已做脱敏处理，不指向任何真实主体。</b>店铺名、卖家 ID、公司名、统一社会信用代码、商标注册号、地址、链接<b>全部为虚构或掩码</b>（形如 <span class="mono">A1B2****XYZ9</span>、<span class="mono">91440300MA5X****</span>）。</p>
+      <p>样张展示的是<b>格式的严谨度、证据链的完整度、以及我们挖到哪一层就停手</b>，不展示任何一家真实公司的底细。页内所有来源链接均已改写为纯文本掩码，<b>不可点击、不指向任何页面</b>——掩码一旦还原成真链接，脱敏即告失效。</p>
+      <p>你收到的正式报告里，每一处掩码都是真实值，每一条来源都是可点开的原始链接。</p>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ 目录 ══════════ -->
+<nav class="toc-bar" aria-label="页内目录">
+  <div class="toc-scroll">
+    <a href="#level">① 暴露面等级</a>
+    <a href="#evidence">② 外人能挖到什么</a>
+    <a href="#notfound">③ 没能挖到什么</a>
+    <a href="#risk">④ 风险提示</a>
+    <a href="#sources">⑤ 信息来源</a>
+    <a href="#tiers">⑥ 更深一层</a>
+    <a href="#standard">附：证据标准</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ══════════ 抬头 + 一级：等级 ══════════ -->
+  <section class="sec">
+    <span class="anchor" id="level"></span>
+    <div class="wrap reveal">
+
+      <div class="card meta-card">
+        <div class="meta-row">
+          <div class="meta-k">店铺名</div>
+          <div class="meta-v"><span class="mono">HOMVEA-US</span>（虚构演示标的）</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">主要站点</div>
+          <div class="meta-v">US（美国站）</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">品类</div>
+          <div class="meta-v">家居收纳 / 家居布艺</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">核查日期</div>
+          <div class="meta-v">2026 年 7 月 19 日</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">提交人身份</div>
+          <div class="meta-v">店铺所有方本人（已确认；本样张中为虚构）</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">出具方</div>
+          <div class="meta-v">SWAGENT ｜ 跨境实体层情报</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">报告编号</div>
+          <div class="meta-v"><span class="mono">SWG-L0-DEMO-001</span></div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:20px">
+        <span class="note-t">这份报告只回答一个问题</span>
+        从你这一个英文店铺名出发，一个外人用完全公开的信息，能挖到你哪一层。<br>
+        全文只陈述公开记录事实，不含法律意见。所用信息来源均为公开可访问渠道，每条结论后附可点开的原始链接与抓取日期，你可以逐条自己复核。
+      </div>
+
+      <p class="sec-kicker" style="margin-top:40px">SECTION 01</p>
+      <h2 class="sec-title" style="margin-top:6px">你的暴露面等级</h2>
+
+      <div class="level-card">
+        <p class="level-no">3 级</p>
+        <p class="level-name">深暴露</p>
+        <p class="level-desc">公开渠道能把你<b>锁定</b>到一家中国工商实体，且有 ≥2 条互相独立的公开证据互相印证。一个懂行的人，从店铺名到公司全名与统一社会信用代码，约需 20 分钟。</p>
+        <div class="level-stats">
+          <div class="stat"><p class="stat-n">17</p><p class="stat-l">本次人工耗时（分钟）</p></div>
+          <div class="stat"><p class="stat-n">6</p><p class="stat-l">动用数据源（全部免费）</p></div>
+          <div class="stat"><p class="stat-n">4 / 15</p><p class="stat-l">已交叉验证条目</p></div>
+        </div>
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">判定依据</h3>
+      <p class="sec-lead">判据表见作业指导 S5，逐条对照，不凭感觉。每行的来源即第二节对应条目。</p>
+
+      <ul class="crit">
+        <li>
+          <span class="crit-mark">✓</span>
+          <span class="crit-txt">能从店铺名拿到卖家 ID —— 3 分钟内拿到
+            <span class="crit-ref">对应证据：第 1 条</span></span>
+        </li>
+        <li>
+          <span class="crit-mark">✓</span>
+          <span class="crit-txt">卖家页公示了 INFORM 商业名称与地址 —— 字段完整
+            <span class="crit-ref">对应证据：第 4–7 条</span></span>
+        </li>
+        <li>
+          <span class="crit-mark">✓</span>
+          <span class="crit-txt">INFORM 主体能落到一家中国工商实体 —— 名称逐字对得上
+            <span class="crit-ref">对应证据：第 8–12 条</span></span>
+        </li>
+        <li>
+          <span class="crit-mark">✓</span>
+          <span class="crit-txt">存在 ≥1 条独立于 INFORM 的公开旁证指向同一主体 —— 有（美国商标申请人）
+            <span class="crit-ref">对应证据：第 13 条</span></span>
+        </li>
+      </ul>
+
+      <div class="note">
+        <span class="note-t">第四条是 2 级与 3 级的分界线</span>
+        只有 INFORM 一条时，外人可以怀疑自己搞错了；拿到独立旁证之后，他敢下判断。<br>
+        本次的情况是：商标申请人与 INFORM 商业名称<b>逐字一致</b>（来源见第 4 条与第 13 条），两条记录来自互不相通的两套官方登记体系。<b>这一步把「推测」变成了「结论」。</b>
+      </div>
+
+      <div class="note">
+        <span class="note-t">等级只描述「公开信息的可达性」</span>
+        它不评价你的经营，不涉及合规判断。3 级不等于「你做错了什么」——绝大多数正常经营、正常缴税、正常注册商标的卖家都是 3 级，<b>因为把品牌做起来的动作，本身就在留痕。</b>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ 二级：证据 ══════════ -->
+  <section class="sec" style="background:#EEF2F5">
+    <span class="anchor" id="evidence"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 02</p>
+      <h2 class="sec-title" style="margin-top:6px">外人能挖到什么</h2>
+      <p class="sec-lead">逐条列出，每条都附来源与抓取日期。<b>置信度</b>是我们对自己结论的分级——只有标注「已交叉验证」的条目，我们才承担责任。</p>
+
+      <ul class="legend">
+        <li><span class="tag tag-ok">已交叉验证</span><span>≥2 个相互独立的公开信源指向同一结论，且来源均可点开复核。这一级进入责任范围。</span></li>
+        <li><span class="tag tag-one">单源推定</span><span>仅一个公开信源支持，或多个信源实为同一来源的重复。作线索用，不作结论用。</span></li>
+        <li><span class="tag tag-none">未证实</span><span>有线索但无法回源。不写进结论段，只列入盲区章节。</span></li>
+      </ul>
+
+      <div class="demo-note" style="margin-top:20px">
+        <p class="demo-note-head"><span class="demo-mark">!</span>样张链接说明</p>
+        <p>本页全部来源均以<b>纯文本掩码</b>呈现（如 <span class="mono">amazon.com/sp?seller=A1B2****XYZ9</span>），<b>不是可点击链接</b>。真实报告中此处为可点开的原始来源链接与截图存证。</p>
+      </div>
+
+      <!-- 2.1 -->
+      <div class="ev-group">
+        <div class="ev-head">
+          <h3 class="ev-h">2.1　店铺 → 卖家身份</h3>
+          <span class="ev-time">耗时 3 分钟</span>
+        </div>
+        <div class="ev-list">
+
+          <div class="ev ev-ok">
+            <div class="ev-top">
+              <span class="ev-no">条目 01</span>
+              <span class="tag tag-ok">已交叉验证</span>
+            </div>
+            <p class="ev-fact">店铺 <b>HOMVEA-US</b> 的卖家 ID 为 <span class="mask">A1B2****XYZ9</span></p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　平台公开页</span>
+              <span><b>来源</b>　<span class="ev-src">卖家页 · amazon.com/sp?seller=A1B2****XYZ9</span></span>
+              <span><b>抓取</b>　2026-07-19</span>
+            </div>
+          </div>
+
+          <div class="ev ev-ok">
+            <div class="ev-top">
+              <span class="ev-no">条目 02</span>
+              <span class="tag tag-ok">已交叉验证</span>
+            </div>
+            <p class="ev-fact">该店铺当前销售形态为<b>第三方卖家（3P）</b>：商品页 Buybox 显示 <span class="mask">Sold by HOMVEA-US</span>，并挂有上述 A 开头卖家 ID</p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　平台公开页</span>
+              <span><b>来源</b>　<span class="ev-src">商品页 · amazon.com/dp/B0C1****K7</span></span>
+              <span><b>抓取</b>　2026-07-19</span>
+            </div>
+          </div>
+
+          <div class="ev ev-one">
+            <div class="ev-top">
+              <span class="ev-no">条目 03</span>
+              <span class="tag tag-one">单源推定</span>
+            </div>
+            <p class="ev-fact">该卖家页累计评价量级为<b>万级</b>，近 12 个月评价占比约 <span class="mask">3X%</span>（脱敏），据此可<b>推断</b>账号并非新号</p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　平台公开页</span>
+              <span><b>来源</b>　<span class="ev-src">卖家页评价区</span></span>
+              <span><b>抓取</b>　2026-07-19</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="note">
+          <span class="note-t">第 3 条为什么只给「单源推定」</span>
+          评价总数可以推断账号大致存续时间，但亚马逊不公示开店日期，账号也可能经历过转让或类目切换。<b>能推断 ≠ 已验证。</b> 我们把它写出来，但不把它当结论用——这类分寸正是置信度分级存在的意义。
+        </div>
+
+        <div class="note">
+          <span class="note-t">3P / 1P 这一条为什么重要</span>
+          如果已经从 Seller Central 转入 Vendor Central，第三方卖家页会显示异常甚至 404，但商品仍在正常销售。很多人据此以为「我的店铺查不到了」——实际上主体信息仍然通过其他路径公开可得。<b>本次核查确认该店铺目前是 3P，卖家页正常可访问，这条路径对外人是通的。</b>
+        </div>
+      </div>
+
+      <!-- 2.2 -->
+      <div class="ev-group">
+        <div class="ev-head">
+          <h3 class="ev-h">2.2　卖家身份 → 备案主体</h3>
+          <span class="ev-time">耗时 4 分钟</span>
+        </div>
+        <p class="sec-lead">亚马逊依据美国 INFORM Consumers Act，在卖家页强制公示部分卖家的商业名称与地址。这是全链条中<b>最难隐藏的一环</b>，也是外人的主要入口：不需要工具、不需要登录、不需要付费，把卖家页地址贴进浏览器就能看到。</p>
+        <div class="ev-list">
+
+          <div class="ev ev-ok">
+            <div class="ev-top">
+              <span class="ev-no">条目 04</span>
+              <span class="tag tag-ok">已交叉验证</span>
+            </div>
+            <p class="ev-fact">INFORM 板块披露的商业名称为 <b>Shenzhen XX Technology Co., Ltd.</b>（原文照抄，未翻译）</p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　平台强制公示</span>
+              <span><b>来源</b>　<span class="ev-src">卖家页 INFORM 板块</span></span>
+              <span><b>抓取</b>　2026-07-19</span>
+            </div>
+          </div>
+
+          <div class="ev ev-one">
+            <div class="ev-top">
+              <span class="ev-no">条目 05</span>
+              <span class="tag tag-one">单源推定</span>
+            </div>
+            <p class="ev-fact">披露的营业地址为 <b>Floor XX, XX Building, XX Street, Nanshan District, Shenzhen, Guangdong, CN 518000</b>（原文照抄）</p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　平台强制公示</span>
+              <span><b>来源</b>　<span class="ev-src">同第 4 条</span></span>
+              <span><b>抓取</b>　2026-07-19</span>
+            </div>
+          </div>
+
+          <div class="ev ev-one">
+            <div class="ev-top">
+              <span class="ev-no">条目 06</span>
+              <span class="tag tag-one">单源推定</span>
+            </div>
+            <p class="ev-fact">披露的对外联系邮箱域名为 <span class="mask">@homvea****.com</span>，与官网主域<b>同根</b></p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　平台强制公示</span>
+              <span><b>来源</b>　<span class="ev-src">同第 4 条</span></span>
+              <span><b>抓取</b>　2026-07-19</span>
+            </div>
+          </div>
+
+          <div class="ev ev-one">
+            <div class="ev-top">
+              <span class="ev-no">条目 07</span>
+              <span class="tag tag-one">单源推定</span>
+            </div>
+            <p class="ev-fact">卖家页 Storefront 显示名为 <span class="mask">HOMVEA-US</span>，与提交给我们的名称一致；但与 INFORM 商业名称<b>不同源</b>——前者是品牌名，后者是公司名</p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　平台公开页</span>
+              <span><b>来源</b>　<span class="ev-src">同第 4 条</span></span>
+              <span><b>抓取</b>　2026-07-19</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="note">
+          <span class="note-t">同一张页面上的四个字段，只升级其中一个</span>
+          第 4 条（商业名称）之所以升级，是因为第 13 条的美国商标申请人与它逐字一致，两条记录来自互不相通的两套官方体系。<br>
+          第 5 条（营业地址）<b>没有</b>第二个独立来源印证——工商登记的注册地址与它是同一栋楼的不同楼层（见第 11 条），<b>那是差异，不是印证</b>。第 6、7 条同理：邮箱域名与 Storefront 名都只出现在卖家页这一个页面上。<br>
+          这一栏直接决定赔付范围，不是修辞。
+        </div>
+
+        <div class="note">
+          <span class="note-t">第 6 条是很多人忽略的一根线</span>
+          联系邮箱本身只是一个企业客服邮箱（我们不采集、也不呈现任何自然人的联系方式）。但它的<b>域名</b>把三样东西缝在了一起：<b>平台备案主体 → 官网 → 商标图样上的品牌名</b>（来源分别见第 4、15、13 条）。<br>
+          换句话说，外人不需要先猜官网是哪个，卖家页已经把域名递给他了。<b>这是本次链条中成本最低的一跳，10 秒钟。</b>
+        </div>
+
+        <div class="note">
+          <span class="note-t">一处差异，我们如实写出来</span>
+          INFORM 披露的是<b>营业地址</b>（写字楼楼层），工商登记的是<b>注册地址</b>（同一栋楼、不同楼层；来源分别见第 5 条与第 11 条）。<br>
+          两者不一致<b>不代表有问题</b>——同一主体在不同系统登记不同用途的地址是常态。我们的处理方式是：<b>逐字比对到门牌级，把差异写进报告，而不是替你抹平。</b> 抹平差异的报告读起来更顺，但它把「我们没验」伪装成了「我们验过」。
+        </div>
+      </div>
+
+      <!-- 2.3 -->
+      <div class="ev-group">
+        <div class="ev-head">
+          <h3 class="ev-h">2.3　备案主体 → 中国工商实体</h3>
+          <span class="ev-time">耗时 4 分钟</span>
+        </div>
+        <div class="ev-list">
+
+          <div class="ev ev-one">
+            <div class="ev-top">
+              <span class="ev-no">条目 08</span>
+              <span class="tag tag-one">单源推定</span>
+            </div>
+            <p class="ev-fact">上述英文名称对应工商实体 <b>深圳XX科技有限公司</b></p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　官方登记系统</span>
+              <span><b>来源</b>　<span class="ev-src">国家企业信用信息公示系统</span></span>
+              <span><b>抓取</b>　2026-07-18</span>
+            </div>
+          </div>
+
+          <div class="ev ev-one">
+            <div class="ev-top">
+              <span class="ev-no">条目 09</span>
+              <span class="tag tag-one">单源推定</span>
+            </div>
+            <p class="ev-fact">统一社会信用代码 <span class="mask">91440300MA5X****</span></p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　官方登记系统</span>
+              <span><b>来源</b>　<span class="ev-src">同第 8 条</span></span>
+              <span><b>抓取</b>　2026-07-18</span>
+            </div>
+          </div>
+
+          <div class="ev ev-one">
+            <div class="ev-top">
+              <span class="ev-no">条目 10</span>
+              <span class="tag tag-one">单源推定</span>
+            </div>
+            <p class="ev-fact">法定代表人 <b>X 某</b>（工商公示信息，本样张已脱敏）；企业状态 <b>存续（在营）</b>；成立日期 <b>2018 年</b>（月日脱敏）；注册资本 <b>XXX 万元人民币</b>（脱敏）</p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　官方登记系统</span>
+              <span><b>来源</b>　<span class="ev-src">同第 8 条</span></span>
+              <span><b>抓取</b>　2026-07-18</span>
+            </div>
+          </div>
+
+          <div class="ev ev-one">
+            <div class="ev-top">
+              <span class="ev-no">条目 11</span>
+              <span class="tag tag-one">单源推定</span>
+            </div>
+            <p class="ev-fact">注册地址 <b>深圳市南山区XX街道XX大厦XX层</b>；与第 5 条 INFORM 地址为<b>同一栋建筑、不同楼层</b></p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　官方登记系统</span>
+              <span><b>来源</b>　<span class="ev-src">同第 8 条</span></span>
+              <span><b>抓取</b>　2026-07-18</span>
+            </div>
+          </div>
+
+          <div class="ev ev-one">
+            <div class="ev-top">
+              <span class="ev-no">条目 12</span>
+              <span class="tag tag-one">单源推定</span>
+            </div>
+            <p class="ev-fact">经营范围含 <b>家居用品、日用百货、纺织品销售；货物进出口；技术服务</b>（摘录，非全文）</p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　官方登记系统</span>
+              <span><b>来源</b>　<span class="ev-src">同第 8 条</span></span>
+              <span><b>抓取</b>　2026-07-18</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="note">
+          <span class="note-t">为什么整节都标「单源推定」</span>
+          第 8–12 条<b>全部出自同一个信源</b>（工商公示系统的同一张页面）。一张页面上有五个字段，那也只是<b>一个信源</b>，不是五个。<br>
+          把同一页面的多个字段拆成多条来充「交叉验证」，是这一行最常见、也最难被外行发现的注水手法。本节要升级，唯一条件是拿到独立于工商系统之外的旁证——本次确实拿到了（见 2.4）。
+        </div>
+
+        <div class="note">
+          <span class="note-t">我们没做的一件事</span>
+          没有点开工商页面上的「股东信息」「对外投资」「变更记录」。那三个入口通向关联企业网络与股权穿透，属于深度穿透档的固定章节（本次未点开，因而无来源可挂，也不写任何结论）。<b>L0 到主体层为止，这是产品边界，不是能力边界。</b>
+        </div>
+      </div>
+
+      <!-- 2.4 -->
+      <div class="ev-group">
+        <div class="ev-head">
+          <h3 class="ev-h">2.4　交叉印证：独立证据</h3>
+          <span class="ev-time">耗时 3 分钟</span>
+        </div>
+        <p class="sec-lead">只有一条证据时，外人可以怀疑自己搞错了；有两条独立证据互相印证时，他就敢下判断。本次找到的独立旁证：</p>
+        <div class="ev-list">
+
+          <div class="ev ev-ok">
+            <div class="ev-top">
+              <span class="ev-no">条目 13</span>
+              <span class="tag tag-ok">已交叉验证</span>
+            </div>
+            <p class="ev-fact">品牌 <b>HOMVEA</b> 的美国商标申请人为 <b>Shenzhen XX Technology Co., Ltd.</b>，与第 4 条 INFORM 商业名称<b>逐字一致</b>；注册号 <span class="mask">9876****</span>，状态 <b>REGISTERED</b>，类别 <b>第 20 / 24 类</b>（家具 / 织物）</p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　官方商标登记</span>
+              <span><b>来源</b>　<span class="ev-src">USPTO TSDR</span></span>
+              <span><b>抓取</b>　2026-07-19</span>
+            </div>
+          </div>
+
+          <div class="ev ev-one">
+            <div class="ev-top">
+              <span class="ev-no">条目 14</span>
+              <span class="tag tag-one">单源推定</span>
+            </div>
+            <p class="ev-fact">中国商标库中「HOMVEA」注册人亦为同一主体的中文全名，注册号 <span class="mask">6543****</span></p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　官方商标登记</span>
+              <span><b>来源</b>　<span class="ev-src">CNIPA 中国商标网</span></span>
+              <span><b>抓取</b>　2026-07-19</span>
+            </div>
+          </div>
+
+          <div class="ev ev-one">
+            <div class="ev-top">
+              <span class="ev-no">条目 15</span>
+              <span class="tag tag-one">单源推定</span>
+            </div>
+            <p class="ev-fact">官网 <span class="mask">homvea****.com</span> 页脚版权行标注公司英文全名，与第 4 条一致</p>
+            <div class="ev-meta">
+              <span><b>来源类型</b>　主体自述</span>
+              <span><b>来源</b>　<span class="ev-src">官网页脚</span></span>
+              <span><b>抓取</b>　2026-07-19</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="note">
+          <span class="note-t">为什么第 14 条（中国商标）不算第二条交叉验证</span>
+          USPTO 与 CNIPA 虽是两个国家的官方系统，但两处的注册人信息<b>都来自同一主体自己提交的申报</b>，属于同一主体的自我陈述在两个窗口的重复，不构成相互独立。<br>
+          独立性标准逐条可查：工商公示 + INFORM = 独立；USPTO + 裁判文书 = 独立；天眼查 + 企查查 = <b>不独立</b>（同源二次分发）；官网自述 + 招聘平台自述 = <b>不独立</b>（同一主体自述）。<br>
+          <b>我们宁可少报一条交叉验证，也不把两个窗口的同一句话数成两次。</b> 赔付条款只认「已交叉验证」，多标一条就是凭空扩大自己的赔付敞口——这条纪律首先约束的是我们自己。
+        </div>
+
+        <div class="note">
+          <span class="note-t">第 15 条（官网页脚）同理只算「单源推定」</span>
+          它是主体自述，不是第三方登记。它能印证，但不能定案。
+        </div>
+      </div>
+
+      <!-- 2.5 -->
+      <div class="ev-group">
+        <div class="ev-head">
+          <h3 class="ev-h">2.5　本次停手的三个线头</h3>
+          <span class="ev-time">只报告存在</span>
+        </div>
+        <p class="sec-lead">调查中会出现一些「再点一下就能往下拉」的入口。按 L0 的产品边界，我们<b>看到即停手，不展开、不呈现结果</b>。如实列出，是为了让你知道外人手里还有什么牌。</p>
+
+        <div class="tbl-scroll">
+          <table>
+            <thead>
+              <tr><th>#</th><th>线头</th><th>它通向哪里</th><th>本次处理</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>A</b></td>
+                <td>商标数据库中同一申请人名下还有其他商标记录</td>
+                <td>品牌矩阵 → 其余店铺与站点</td>
+                <td><b>未展开</b>（深度穿透档「多品牌映射」）</td>
+              </tr>
+              <tr>
+                <td><b>B</b></td>
+                <td>工商页面上的股东信息 / 对外投资 / 历史变更入口</td>
+                <td>关联企业网络、已注销与迁移主体、股权穿透</td>
+                <td><b>未展开</b>（深度穿透 · 加档章节）</td>
+              </tr>
+              <tr>
+                <td><b>C</b></td>
+                <td>INFORM 地址所在写字楼可反查同址主体</td>
+                <td>同址企业聚类</td>
+                <td><b>未展开</b>（深度穿透档「关联证据」）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note">
+          <span class="note-t">这三条不是吊胃口，是交付边界的如实披露</span>
+          L0 免费档的设计是「回答一个问题：你能不能被落到一家公司」。上面三个线头回答的是另外三个问题。<br>
+          <b>需要知道的是：一个懂行的外人，手上拿的是同样这三个线头，而他不会在这里停。</b>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ 三级：没能挖到什么（深底强调） ══════════ -->
+  <section class="section-dark sec">
+    <span class="anchor" id="notfound"></span>
+    <div class="wrap reveal">
+      <p class="nf-badge">这一节最值得读</p>
+      <h2 class="sec-title" style="margin-top:14px">我们没能挖到什么</h2>
+      <p class="sec-lead">这一节不是省略，是交付内容。我们如实列出<b style="color:var(--dark-text)">尝试过但没走通</b>的路径——它们是现有隔离措施真正起作用的地方。<br>一份只写「查到了什么」的报告，是在卖恐惧；写清楚「没查到什么」，才说得清这条链条到底有多硬。</p>
+
+      <div class="nf-list">
+
+        <div class="nf">
+          <p class="nf-q">01　其他站点（CA / UK / DE）是否存在同名 Storefront</p>
+          <p class="nf-r">抽查三站，<b>未发现同名店铺</b>；仅确认存在与否，未做全量映射</p>
+          <p class="nf-m"><span>对你的含义</span>　多站点身份至少在这三站没有被串联。这是和大多数同类目卖家不一样的地方。</p>
+        </div>
+
+        <div class="nf">
+          <p class="nf-q">02　官网是否直接标注「我们是 XX 品牌的运营方」</p>
+          <p class="nf-r">官网<b>通篇未出现公司中文名</b>，仅在页脚出现英文名一次</p>
+          <p class="nf-m"><span>对你的含义</span>　中文名这条路径被堵住了。外人若不懂英文名与中文工商名的对应习惯，会卡在这里。</p>
+        </div>
+
+        <div class="nf">
+          <p class="nf-q">03　公开招聘信息是否带品牌名或店铺名</p>
+          <p class="nf-r">抽查两个公开招聘页，<b>JD 中回避了品牌名</b>，只写品类</p>
+          <p class="nf-m"><span>对你的含义</span>　这是行业里最高频的泄露口之一，这里没漏。很多卖家在这里一句话把品牌矩阵全交代了。</p>
+        </div>
+
+        <div class="nf">
+          <p class="nf-q">04　官网是否可用公开追踪标识做聚类（GA / GTM / Pixel 等）</p>
+          <p class="nf-r"><b>未发现可用于跨站关联的公开追踪标识</b></p>
+          <p class="nf-m"><span>对你的含义</span>　基础设施层未暴露。外人无法用「同一个追踪 ID」把多个站点缝到一起。</p>
+        </div>
+
+        <div class="nf">
+          <p class="nf-q">05　产品主图 / 包装图是否带可反查的品牌 Logo 或厂址</p>
+          <p class="nf-r">抽查 5 张主图，<b>未见可用于反查的厂址或第三方标识</b></p>
+          <p class="nf-m"><span>对你的含义</span>　商品层这条路径本次没走通。</p>
+        </div>
+
+        <div class="nf">
+          <p class="nf-q">06　是否存在公开裁判文书或公开案卷中的同名主体记录</p>
+          <p class="nf-r"><b>本次公开检索未命中</b>（仅代表本次未检索到，不代表不存在）</p>
+          <p class="nf-m"><span>对你的含义</span>　这条路径本次未提供额外线索。</p>
+        </div>
+
+        <div class="nf">
+          <p class="nf-q">07　香港 / 新加坡等离岸实体是否为中间层</p>
+          <p class="nf-r">INFORM 主体直接为<b>中国境内实体</b>，未见离岸中间层</p>
+          <p class="nf-m"><span>对你的含义</span>　没有离岸夹层——这既降低了外人的成本，也说明结构简单直接。</p>
+        </div>
+
+        <div class="nf">
+          <p class="nf-q">08　是否可从公开渠道获得更深层信息</p>
+          <p class="nf-r">需付费工商数据库 / 登录墙，<b>本次未使用任何付费数据源</b></p>
+          <p class="nf-m"><span>对你的含义</span>　免费层到此为止。付费数据库能看到的东西，我们这次一个字都没看。</p>
+        </div>
+
+      </div>
+
+      <div class="nf-close">
+        <b>一句实话：</b>第 1、3、4 条做得比同类目里大多数卖家好。<br>
+        真正的暴露不是来自疏忽，而是来自<b>两个必须做的合规动作</b>——平台的 INFORM 公示，和自己去注册的商标。这两样都不是漏洞，是经营的必需品。<br>
+        <b>所以 3 级不是提醒你去补漏，而是让你知道底牌在别人手里是什么样子。</b>
+      </div>
+
+      <p class="blind"><b>盲区声明：</b>以下内容本次<b>未做</b>，因此不代表「查不到」，只代表「本次没查」——关联企业网络、股权结构、已注销或迁移主体、多站点全量映射、商品层（ASIN）关联、历史快照回溯、反情报特征完整评估、已排除卖家清单。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 四级：风险提示 ══════════ -->
+  <section class="sec">
+    <span class="anchor" id="risk"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 04</p>
+      <h2 class="sec-title" style="margin-top:6px">风险提示（中性陈述）</h2>
+      <p class="sec-lead">以下为基于公开记录的事实性提示，<b>不构成法律意见、合规意见或任何行动建议</b>。如需判断法律后果，请咨询执业律师。</p>
+
+      <ul class="feat">
+        <li>本次核查所用的全部渠道，任何人都可以在不接触主体、不联系平台的情况下完成，且不需要付费数据库、不需要登录账号（来源清单见第五节）。全程 17 分钟。</li>
+        <li>INFORM Consumers Act 的公示是平台的合规动作，其内容由卖家在后台提交的注册信息决定。信息本身如何呈现、是否与其他公开记录一致，是可以自查的。</li>
+        <li>暴露面等级会随时间变化：新增商标、新站点开店、官网改版、招聘发布、公开司法记录变动，都可能新增一条可交叉验证的路径。</li>
+        <li>标注为「单源推定」的条目（第 3、5、6、7、8–12、14、15 条）<b>不在我们的责任范围内</b>，请把它们当作「值得再查的方向」，不要当作结论使用。本次进入「已交叉验证」的只有 4 条：第 1、2、4、13 条。</li>
+        <li>第 2.5 节列出的三个线头，本次<b>未展开</b>。它们的存在本身是事实，展开后会得到什么，本报告不作任何预测。</li>
+        <li>本报告仅反映 2026 年 7 月 19 日当天的公开记录状态，不对此后的变化负责。</li>
+        <li>本报告不含任何自然人的证件信息、私人联络方式或居住地信息，我们不采集此类信息。第 10 条的法定代表人姓名属工商公示信息，我们未围绕该姓名做任何延伸检索。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════ 五级：来源 ══════════ -->
+  <section class="sec" style="background:#EEF2F5">
+    <span class="anchor" id="sources"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 05</p>
+      <h2 class="sec-title" style="margin-top:6px">本次使用的信息来源</h2>
+      <p class="sec-lead">共 6 个，全部公开、全部免费。各条的具体查询入口在真实报告中为可点开的原始链接。</p>
+
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>#</th><th>来源</th><th>用途</th><th>对应条目</th><th>付费</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><b>Amazon 卖家页</b>（INFORM 板块）</td><td>商业名称、营业地址、企业联系邮箱域名</td><td>4–7</td><td>否</td></tr>
+            <tr><td>2</td><td><b>Amazon 商品页 / Buybox</b></td><td>卖家 ID、3P / 1P 判定</td><td>1–3</td><td>否</td></tr>
+            <tr><td>3</td><td><b>国家企业信用信息公示系统</b></td><td>工商实体、统一社会信用代码、法定代表人、状态、注册地址、经营范围</td><td>8–12</td><td>否</td></tr>
+            <tr><td>4</td><td><b>USPTO</b>（美国专利商标局 TSDR）</td><td>美国商标申请人反查</td><td>13</td><td>否</td></tr>
+            <tr><td>5</td><td><b>CNIPA</b>（中国商标网）</td><td>中国商标注册人反查</td><td>14</td><td>否</td></tr>
+            <tr><td>6</td><td><b>公司官网 / 公开招聘页</b></td><td>印证与反向排查</td><td>15、第三节 2–4</td><td>否</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        本次<b>未使用任何付费数据库、任何非公开渠道、任何内部关系</b>。<br>
+        本次<b>未做接触式调查</b>：未联系、未试探、未以任何身份接触该主体及其员工。
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 六级：更深一层 ══════════ -->
+  <section class="sec">
+    <span class="anchor" id="tiers"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 06</p>
+      <h2 class="sec-title" style="margin-top:6px">如果想看更深一层</h2>
+      <p class="sec-lead">这份免费自查只做了<b>第一层：主体识别</b>——也就是「你能不能被落到一家公司」。它没有回答下面这些问题：</p>
+
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>没回答的问题</th><th>在哪一档</th><th>对应本报告哪一处停手</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>每条结论的完整来源台账，可直接给律师或买方看的那一份</td><td><b>速查版</b></td><td>全文</td></tr>
+            <tr><td>有多少家「看起来像你」的卖家会被误认成你？（已排除清单）</td><td><b>速查版</b></td><td>第三节盲区声明</td></tr>
+            <tr><td>从这家公司出发，还能牵出哪些关联企业？</td><td><b>深度穿透</b></td><td>线头 B</td></tr>
+            <tr><td>哪些站点、哪些品牌被串在了一起？</td><td><b>深度穿透</b></td><td>线头 A</td></tr>
+            <tr><td>同址企业、已注销与迁移主体、股权穿透</td><td><b>深度穿透 · 加档</b></td><td>线头 B、C</td></tr>
+            <tr><td>反情报特征目前有几条真正生效（本次只抽查了 5 条中的 4 条）</td><td><b>深度穿透</b></td><td>第三节第 2–5 条</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">档位一览</h3>
+      <div style="margin-top:14px">
+        <div class="tier tier-free">
+          <div class="tier-top">
+            <p class="tier-n">主体暴露面自查（L0）</p>
+            <p class="tier-p">¥0</p>
+          </div>
+          <p class="tier-b">就是你正在看的这一份。</p>
+          <p class="tier-t">工期：24 小时内</p>
+        </div>
+        <div class="tier">
+          <div class="tier-top">
+            <p class="tier-n">速查版</p>
+            <p class="tier-p">¥299</p>
+          </div>
+          <p class="tier-b">单主体识别（公司全名 / 统一社会信用代码 / 注册地址 / 法定代表人）＋ 完整数据源台账（每条结论附可点开来源与抓取日期）＋ 已排除卖家清单。</p>
+          <p class="tier-t">工期：1–2 个工作日｜责任边界：卖的是线索与来源台账，不承担你的决策责任</p>
+        </div>
+        <div class="tier">
+          <div class="tier-top">
+            <p class="tier-n">深度穿透</p>
+            <p class="tier-p">¥3,800</p>
+          </div>
+          <p class="tier-b">Vendor(1P) 与 Seller(3P) 区分、多站点映射、INFORM 交叉验证、商标 USPTO / EUIPO / CNIPA 三局反查、反情报特征、已排除清单。</p>
+          <p class="tier-t">工期：5 个工作日</p>
+        </div>
+        <div class="tier">
+          <div class="tier-top">
+            <p class="tier-n">深度穿透 · 加档</p>
+            <p class="tier-p">¥7,800</p>
+          </div>
+          <p class="tier-b">上一档全部内容 ＋ 关联企业网络（≤8 家）＋ 已注销与迁移主体 ＋ 股权穿透。</p>
+          <p class="tier-t">工期：7 个工作日</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <span class="note-t">深度穿透的责任条款</span>
+        关键主体识别错误 → 全额退款 ＋ 赔付合同额 1 倍，赔付上限 ¥40,000。<b>仅对标注「已交叉验证」的结论适用</b>——也就是本报告里第 1、2、4、13 那一类，全文 15 条中的 4 条。
+      </div>
+
+      <div class="note">
+        <span class="note-t">关于付款</span>
+        目前收款方式为微信转账（收款码随报价一并发出），付款后开工，含 2 轮改稿（第 3 轮起 ¥1,500/轮）。<b>目前暂不能开具发票</b>——这一条我们在下单前如实说明，不在事后解释。
+      </div>
+
+      <p class="sec-lead" style="margin-top:20px">不需要现在决定。免费这一份本身已经完整，可以就当一次体检。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 附：证据标准 ══════════ -->
+  <section class="sec" style="background:#EEF2F5">
+    <span class="anchor" id="standard"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">APPENDIX</p>
+      <h2 class="sec-title" style="margin-top:6px">证据标准声明（简版）</h2>
+      <p class="sec-lead">我们对每条结论的可靠性做分级，并且只对其中「已交叉验证」一级承担责任。</p>
+
+      <div class="card" style="margin-top:20px">
+        <p><span class="tag tag-ok">已交叉验证</span></p>
+        <p style="margin-top:8px;font-size:13px;line-height:22px">≥2 个相互独立的公开信源指向同一结论，且来源均可点开复核。<br><b style="color:var(--ink-900)">本报告中：第 1、2、4、13 条（共 4 条）</b><br>我们的责任：<b style="color:var(--ink-900)">承担责任</b>。付费档如出现关键主体识别错误，按合同全额退款并赔付合同额 1 倍，上限 ¥40,000。</p>
+      </div>
+      <div class="card">
+        <p><span class="tag tag-one">单源推定</span></p>
+        <p style="margin-top:8px;font-size:13px;line-height:22px">仅一个公开信源支持，或多个信源实为同一来源的重复。<br><b style="color:var(--ink-900)">本报告中：第 3、5、6、7、8–12、14、15 条（共 11 条）</b><br>我们的责任：仅作线索提供，不承担决策责任。</p>
+      </div>
+      <div class="card">
+        <p><span class="tag tag-none">未证实</span></p>
+        <p style="margin-top:8px;font-size:13px;line-height:22px">有线索但无法回源。<br><b style="color:var(--ink-900)">本报告中：无此类条目进入结论段</b><br>我们的责任：不写进结论，仅列入盲区章节。</p>
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">六条固定做法</h3>
+      <ul class="feat">
+        <li>每条事实性断言均绑定原始来源 URL，<b>无来源的句子不出现在报告里</b>。</li>
+        <li>所有链接在交付前批量检测有效性，<b>存在死链的报告不交付</b>。</li>
+        <li>INFORM 等时效性数据一律标注抓取日期，抓取入口列在来源表。</li>
+        <li>明确区分第三方卖家（3P）与亚马逊自营（1P Vendor），不把「卖家页 404」写成「已下架」。</li>
+        <li>全文不出具法律意见，不评价任何主体是否违法、是否侵权。法律判断交由执业律师。</li>
+        <li><b>只到企业主体层</b>：公司名、统一社会信用代码、注册地址、经营范围、店铺名、公开客服联络方式，来源限于来源表所列公开渠道。不采集自然人证件信息、私人联络方式与居住地信息。法定代表人姓名属工商公示信息，予以保留。</li>
+      </ul>
+
+      <h3 class="ev-h" style="margin-top:32px">拿到报告后，推荐花 5 分钟做的两件事</h3>
+      <ul class="feat">
+        <li>从标注「已交叉验证」的条目里<b>随机挑 1 条</b>，点开来源链接，看结论和原始页面对不对得上。</li>
+        <li>读「我们没能挖到什么」那一节。<b>如果这一节是空的，请怀疑那份报告</b>——真实的调查必然存在查不到的部分。</li>
+      </ul>
+
+      <div class="note">
+        <span class="note-t">你的信息如何被处理</span>
+        本次核查的工作底稿保留 30 天后销毁；我们签署《单方保密承诺书》——<b>不复用、不脱敏引用、交付后 30 天销毁工作底稿</b>。我们对外发布的所有内容，标的全部为自选的公开对象，<b>从不来自客户委托</b>。
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 终 CTA + 页脚 ══════════ -->
+  <div class="section-dark">
+    <section class="sec cta">
+      <div class="wrap reveal">
+        <h2 class="sec-title">想看你自己的那一份？</h2>
+        <p class="cta-lead">同样的格式、同样的置信度分级、同样把「没查到」写出来。<b>免费，24 小时内出件。</b>不要求你回报什么。</p>
+
+        <ul class="feat">
+          <li>加微信，发一句「自查」+ 你自己的店铺名（或卖家页链接）</li>
+          <li>不用填表、不用注册账号、不用留手机号</li>
+          <li>只接受店铺所有方本人提交自查；我们会先确认这一点</li>
+        </ul>
+
+        <div class="wx-box" id="wxBox" role="button" tabindex="0" aria-label="复制微信号">
+          <p class="wx-label">微信：<span class="wx-num" id="wxNum">S_6999_S</span></p>
+          <span class="wx-hint" id="wxHint">（长按或点击复制）</span>
+        </div>
+
+        <a class="btn btn-b btn-xl" href="/#check">回主页提交免费自查 →</a>
+        <a class="btn btn-c" href="/" style="margin-top:12px;color:var(--dark-text);border-color:rgba(255,255,255,0.35)">返回 SWAGENT 主页</a>
+        <p class="cta-aux">L0 是免费档，交付内容与本样张一致；付费档的责任条款见第六节。</p>
+
+        <div class="demo-note demo-note-dark" style="margin-top:28px">
+          <p class="demo-note-head"><span class="demo-mark">!</span>再次提示</p>
+          <p>本页为<b>演示样张</b>，数据为示意，主体标识已做脱敏处理，<b>不指向任何真实主体</b>。本样张由 SWAGENT 出具，仅用于展示 L0《主体暴露面报告》的结构、深度与证据链格式。</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div class="wrap">
+          <p><span class="mono">SWAGENT</span> ｜ 跨境实体层情报 ｜ 微信：<span class="mono">S_6999_S</span></p>
+          <p>主体穿透 · INFORM 交叉验证 · 商标反查 · 关联企业网络 · 数字资产交付</p>
+          <p>本站及所有交付物的结论均来自公开记录，不构成法律意见，不可作为诉讼证据独立使用。</p>
+          <p><a href="/">← 返回主页</a></p>
+        </div>
+      </footer>
+    </section>
+  </div>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var d = document;
+
+  /* ── 微信号点击复制 ── */
+  var WX = 'S_6999_S';
+  var box = d.getElementById('wxBox');
+  var hint = d.getElementById('wxHint');
+  var timer = null;
+
+  function flash() {
+    hint.textContent = '已复制，去微信添加';
+    hint.className = 'wx-hint ok';
+    if (timer) { clearTimeout(timer); }
+    timer = setTimeout(function () {
+      hint.textContent = '（长按或点击复制）';
+      hint.className = 'wx-hint';
+    }, 2000);
+  }
+
+  function copy() {
+    var done = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(WX).then(flash, fallback);
+        return;
+      }
+    } catch (e) { /* 落到 fallback */ }
+    fallback();
+
+    function fallback() {
+      if (done) { return; }
+      done = true;
+      try {
+        var ta = d.createElement('textarea');
+        ta.value = WX;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        d.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, WX.length);
+        d.execCommand('copy');
+        d.body.removeChild(ta);
+        flash();
+      } catch (e2) {
+        hint.textContent = '请长按上方微信号手动复制';
+      }
+    }
+  }
+
+  if (box) {
+    box.addEventListener('click', copy);
+    box.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copy(); }
+    });
+  }
+
+  /* ── 区块入场 fade-up ── */
+  var reveals = d.querySelectorAll('.reveal');
+  var i;
+  if ('IntersectionObserver' in window) {
+    var ro = new IntersectionObserver(function (entries) {
+      for (var j = 0; j < entries.length; j++) {
+        if (entries[j].isIntersecting) {
+          entries[j].target.classList.add('is-visible');
+          ro.unobserve(entries[j].target);
+        }
+      }
+    }, { threshold: 0.08 });
+    for (i = 0; i < reveals.length; i++) { ro.observe(reveals[i]); }
+  } else {
+    for (i = 0; i < reveals.length; i++) { reveals[i].classList.add('is-visible'); }
+  }
+})();
+</script>
+
+</body>
+</html>

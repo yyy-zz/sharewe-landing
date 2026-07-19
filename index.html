@@ -345,6 +345,19 @@ ul, ol { list-style: none; }
 .wx-hint { display: block; margin-top: 2px; font-size: 12px; line-height: 18px; color: var(--dark-faint); }
 .wx-hint.ok { color: var(--accent-bright); }
 
+/* 公开文件入口 */
+.doclinks { margin: 28px 0 24px; text-align: left; }
+.doclinks-lead { font-size: 14px; opacity: .8; margin-bottom: 12px; }
+.doclink {
+  display: block; padding: 14px 16px; margin-bottom: 10px;
+  border: 1px solid var(--line, rgba(255,255,255,.16));
+  border-radius: var(--r-card, 16px); text-decoration: none;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.doclink:hover, .doclink:focus { border-color: var(--accent, #27D3A2); transform: translateY(-1px); }
+.doclink-t { display: block; font-weight: 600; margin-bottom: 4px; color: var(--accent, #27D3A2); }
+.doclink-d { display: block; font-size: 13px; opacity: .78; line-height: 1.5; }
+
 /* 真实二维码 */
 .qr-fig { margin: 20px auto 0; text-align: center; }
 .qr-img { display: block; margin: 0 auto 8px; width: 150px; height: 150px; border-radius: 12px; background: #fff; padding: 8px; box-sizing: content-box; }
@@ -623,11 +636,28 @@ ul, ol { list-style: none; }
         <article class="tcard">
           <p class="tcard-no">04</p>
           <h3 class="tcard-title">你的单子不会变成我的内容</h3>
-          <p class="tcard-body">接单即签《单方保密承诺书》，三条：不复用、不脱敏引用、交付后 30 天销毁工作底稿。我对外发的所有调查实录，标的都是我自己挑的公开对象——公开判例当事人、已被平台公开点名的卖家。<b>做尽调的人最怕的就是自己在被人尽调，这条我写进合同。</b></p>
+          <p class="tcard-body">接单即出具《单方保密承诺书》（我方单方承诺，你付款即生效，不用签字回传），三条：不复用、不脱敏引用、交付后 30 天销毁工作底稿。我对外发的所有调查实录，标的都是我自己挑的公开对象——公开判例当事人、已被平台公开点名的卖家。<b>做尽调的人最怕的就是自己在被人尽调，这条我写进合同。</b></p>
         </article>
       </div>
 
       <p class="trust-close">一个人，一套可核验的流程，出错我赔。就这三句，没有第四句。</p>
+
+      <div class="doclinks">
+        <p class="doclinks-lead">这三件事我都写成了明文，公开可查，不用加微信才给看：</p>
+        <a class="doclink" href="/standard">
+          <span class="doclink-t">《证据标准声明》</span>
+          <span class="doclink-d">置信度怎么分级、赔付条款原文、你怎么自己复核每一条</span>
+        </a>
+        <a class="doclink" href="/privacy">
+          <span class="doclink-t">《单方保密承诺书》</span>
+          <span class="doclink-d">你的单子不会变成我的素材——单方承诺，不用你签字</span>
+        </a>
+        <a class="doclink" href="/sample">
+          <span class="doclink-t">L0 报告演示样张</span>
+          <span class="doclink-d">免费自查交付出来长什么样，数据已脱敏</span>
+        </a>
+      </div>
+
       <a class="btn btn-b js-cta" href="#weixin">拿一份免费自查，先验货</a>
     </div>
   </section>

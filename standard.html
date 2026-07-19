@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="format-detection" content="telephone=no">
+<title>证据标准声明｜SWAGENT — 我凭什么让你信一份查出来的报告</title>
+<meta name="description" content="SWAGENT 证据标准声明 v1.0：置信度三级分级、公开数据源清单、交叉验证流程、能力边界、赔付条款（关键主体识别错误全额退款并赔付 1 倍，上限 4 万元），以及你如何自己复核这份报告。">
+<style>
+/* ══════════ 设计令牌（与首页同一套，勿改） ══════════ */
+:root {
+  color-scheme: light;
+
+  --bg-page:      #F5F7F9;
+  --bg-card:      #FFFFFF;
+  --ink-900:      #0C1A26;
+  --ink-700:      #33424F;
+  --ink-500:      #66757F;
+  --line:         #E3E9EE;
+
+  --dark-bg:      #0C1A26;
+  --dark-card:    #142838;
+  --dark-text:    #F2F6F9;
+  --dark-sub:     #A8B8C4;
+  --dark-faint:   #7E93A3;
+  --dark-line:    rgba(255,255,255,0.08);
+
+  --accent-bright: #27D3A2;
+  --accent-deep:   #0B7A5A;
+  --accent-press:  #1FBF92;
+
+  --amber-text:   #FFC266;
+  --amber-bg:     rgba(255,194,102,0.12);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC",
+               "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC",
+               "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
+               "Liberation Mono", "Courier New", monospace;
+
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-7: 32px; --sp-8: 40px;
+  --sp-9: 48px; --sp-10: 56px;
+
+  --r-card: 16px; --r-btn: 12px; --r-sm: 12px; --r-pill: 999px;
+
+  --shadow-card:  0 1px 2px rgba(12,26,38,0.04);
+  --shadow-float: 0 8px 24px rgba(12,26,38,0.18);
+}
+
+/* ══════════ 基础 ══════════ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 26px;
+  color: var(--ink-700);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+
+:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 2px; }
+.section-dark :focus-visible { outline-color: var(--accent-bright); }
+
+.wrap { max-width: 600px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+.sec { padding-top: 56px; padding-bottom: 56px; background: var(--bg-page); }
+
+.section-dark {
+  background-color: var(--dark-bg);
+  background-image:
+    repeating-linear-gradient(0deg,  rgba(255,255,255,0.035) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 24px);
+}
+
+.sec-no {
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 13px; line-height: 18px; font-weight: 700;
+  color: var(--accent-deep); text-align: center;
+}
+.section-dark .sec-no { color: var(--accent-bright); }
+.sec-title {
+  margin-top: 6px;
+  font-size: 22px; line-height: 30px; font-weight: 700;
+  color: var(--ink-900); text-align: center;
+}
+.section-dark .sec-title { color: var(--dark-text); }
+.sec-lead {
+  margin-top: 12px; font-size: 14px; line-height: 24px;
+  color: var(--ink-700); text-align: center;
+}
+.section-dark .sec-lead { color: var(--dark-sub); }
+.sec-lead strong { font-weight: 700; color: var(--ink-900); }
+.section-dark .sec-lead strong { color: var(--dark-text); }
+
+.mono { font-family: var(--font-mono); letter-spacing: 0.05em; }
+
+/* ══════════ 按钮（与首页同规格） ══════════ */
+.btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  border: 0; border-radius: var(--r-btn);
+  font-family: var(--font-sans); font-size: 16px; font-weight: 600;
+  cursor: pointer;
+  transition: transform 80ms ease, background-color 80ms ease;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.btn-b { height: 52px; background: var(--accent-bright); color: var(--ink-900); font-weight: 700; }
+.btn-b:active { transform: scale(0.98); background: var(--accent-press); }
+.btn-c { height: 48px; background: transparent; border: 1.5px solid var(--ink-900); color: var(--ink-900); }
+.btn-c:active { transform: scale(0.98); background: rgba(12,26,38,0.06); }
+.btn-xl { height: 56px; font-size: 17px; }
+
+/* ══════════ 白卡通用 ══════════ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 24px 20px;
+}
+.cards { margin-top: 24px; }
+.cards .card + .card { margin-top: 16px; }
+
+.feat li {
+  position: relative; padding-left: 16px;
+  font-size: 14px; line-height: 24px; color: var(--ink-700);
+}
+.feat li + li { margin-top: 8px; }
+.feat li::before {
+  content: ""; position: absolute; left: 0; top: 9px;
+  width: 6px; height: 6px; border-radius: 1px;
+  background: var(--accent-deep);
+}
+
+/* ══════════ 页头 ══════════ */
+.pagehead { padding-top: 24px; padding-bottom: 40px; }
+.head-nav {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 12px;
+}
+.head-brand { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--dark-sub); }
+.head-brand .mono { font-weight: 700; color: var(--dark-text); }
+.head-back {
+  flex: 0 0 auto;
+  font-size: 13px; line-height: 20px; color: var(--accent-bright);
+  padding: 4px 0;
+}
+.head-kicker {
+  margin-top: 28px;
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  color: var(--accent-bright);
+}
+.head-title {
+  margin-top: 10px;
+  font-size: 28px; line-height: 40px; font-weight: 700;
+  color: var(--dark-text);
+}
+.head-sub {
+  margin-top: 12px;
+  font-size: 17px; line-height: 28px; font-weight: 600;
+  color: var(--accent-bright);
+}
+.head-meta {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--dark-line);
+  font-size: 12px; line-height: 20px; color: var(--dark-faint);
+}
+
+/* ══════════ 开篇：报告是怎么做出来的 ══════════ */
+.open-body { margin-top: 20px; font-size: 15px; line-height: 26px; color: var(--ink-700); }
+.open-body + .open-body { margin-top: 12px; }
+.open-body strong { font-weight: 700; color: var(--ink-900); }
+.pull {
+  margin-top: 24px;
+  background: var(--dark-bg);
+  border-left: 4px solid var(--accent-bright);
+  border-radius: var(--r-sm);
+  padding: 20px 18px;
+  box-shadow: var(--shadow-float);
+}
+.pull-lead { font-size: 18px; line-height: 28px; font-weight: 700; color: var(--dark-text); }
+.pull-body { margin-top: 10px; font-size: 14px; line-height: 24px; color: var(--dark-sub); }
+.pull-kick { margin-top: 12px; font-size: 16px; line-height: 26px; font-weight: 700; color: var(--accent-bright); }
+.open-do {
+  margin-top: 20px;
+  background: var(--amber-bg);
+  border-radius: var(--r-sm);
+  padding: 14px 16px;
+  font-size: 14px; line-height: 24px;
+  color: var(--ink-900);
+}
+.open-do b { font-weight: 700; }
+
+/* ══════════ 置信度三级：醒目视觉块 ══════════ */
+.grades { margin-top: 24px; }
+.grade {
+  position: relative;
+  background: var(--dark-card);
+  border-radius: var(--r-card);
+  border: 1px solid var(--dark-line);
+  padding: 20px 18px;
+}
+.grade + .grade { margin-top: 14px; }
+.grade-g1 { border-color: var(--accent-bright); box-shadow: var(--shadow-float); }
+.grade-head { display: flex; align-items: center; }
+.dot { flex: 0 0 auto; width: 14px; height: 14px; border-radius: 50%; margin-right: 10px; }
+.grade-g1 .dot { background: var(--accent-bright); }
+.grade-g2 .dot { background: var(--amber-text); }
+.grade-g3 .dot { background: var(--dark-faint); }
+.grade-name { font-size: 19px; line-height: 28px; font-weight: 700; color: var(--dark-text); }
+.grade-pay {
+  margin-left: auto; flex: 0 0 auto;
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 3px 10px; border-radius: var(--r-pill);
+}
+.pay-yes { background: var(--accent-bright); color: var(--ink-900); }
+.pay-no  { background: rgba(255,255,255,0.06); color: var(--dark-faint); border: 1px solid var(--dark-line); }
+.grade-rows { margin-top: 14px; }
+.grade-row + .grade-row { margin-top: 12px; }
+.grade-row dt {
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 11px; line-height: 18px; font-weight: 700;
+  color: var(--dark-faint);
+}
+.grade-g1 .grade-row dt { color: var(--accent-bright); }
+.grade-row dd { margin-top: 3px; font-size: 14px; line-height: 24px; color: var(--dark-sub); }
+.grade-row dd b { color: var(--dark-text); font-weight: 600; }
+
+/* 独立性判定：两列小表 */
+.indep { margin-top: 24px; }
+.indep-title { font-size: 15px; line-height: 26px; font-weight: 700; color: var(--dark-text); }
+.indep-list { margin-top: 12px; }
+.indep-row {
+  display: flex; align-items: flex-start;
+  background: var(--dark-card);
+  border-radius: var(--r-sm);
+  padding: 12px 14px;
+}
+.indep-row + .indep-row { margin-top: 8px; }
+.mark {
+  flex: 0 0 auto; width: 22px;
+  font-size: 15px; line-height: 22px; font-weight: 700;
+  margin-right: 10px;
+}
+.mark-y { color: var(--accent-bright); }
+.mark-n { color: var(--dark-faint); }
+.indep-txt { font-size: 13px; line-height: 22px; color: var(--dark-text); }
+.indep-txt .why { display: block; margin-top: 2px; color: var(--dark-faint); }
+
+/* ══════════ 数据源清单 ══════════ */
+.src-list { margin-top: 20px; }
+.src-row {
+  display: flex; align-items: flex-start;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.src-row:first-child { border-top: 0; padding-top: 0; }
+.src-main { flex: 1 1 auto; min-width: 0; }
+.src-name { font-size: 14px; line-height: 22px; font-weight: 600; color: var(--ink-900); }
+.src-use { margin-top: 2px; font-size: 13px; line-height: 21px; color: var(--ink-500); }
+.src-ok {
+  flex: 0 0 auto; margin-left: 12px;
+  font-size: 11px; line-height: 18px; font-weight: 700;
+  color: var(--accent-deep);
+  background: rgba(39,211,162,0.12);
+  padding: 2px 8px; border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+.note {
+  margin-top: 16px;
+  font-size: 13px; line-height: 22px; color: var(--ink-500);
+}
+.note strong { color: var(--ink-900); font-weight: 700; }
+
+/* ══════════ 不做什么：清单块 ══════════ */
+.nots { margin-top: 24px; }
+.not {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 24px 20px;
+}
+.not + .not { margin-top: 16px; }
+.not-no {
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 13px; line-height: 18px; font-weight: 700; color: var(--accent-deep);
+}
+.not-title {
+  margin-top: 6px;
+  font-size: 17px; line-height: 24px; font-weight: 600; color: var(--ink-900);
+}
+.not-body { margin-top: 8px; font-size: 14px; line-height: 24px; color: var(--ink-700); }
+.not-body + .not-body { margin-top: 8px; }
+.not-body strong { font-weight: 700; color: var(--ink-900); }
+.quote-block {
+  margin-top: 10px;
+  background: var(--bg-page);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13px; line-height: 22px; color: var(--ink-500);
+}
+.tagset { margin-top: 10px; }
+.tagset dt {
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 11px; line-height: 18px; font-weight: 700; color: var(--accent-deep);
+}
+.tagset dd { margin-top: 3px; font-size: 13px; line-height: 22px; color: var(--ink-700); }
+.tagset .no dt { color: var(--ink-900); }
+
+/* ══════════ 赔付条款高亮 ══════════ */
+.pay-hero {
+  margin-top: 24px;
+  background: var(--dark-card);
+  border: 1.5px solid var(--accent-bright);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-float);
+  padding: 24px 20px;
+}
+.pay-badge {
+  display: inline-block;
+  background: var(--accent-bright); color: var(--ink-900);
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 4px 10px; border-radius: var(--r-pill);
+}
+.pay-line { margin-top: 14px; font-size: 17px; line-height: 28px; font-weight: 700; color: var(--dark-text); }
+.pay-line em { font-style: normal; color: var(--accent-bright); }
+.pay-figs { margin-top: 18px; display: flex; }
+.pay-fig { flex: 1 1 0; min-width: 0; margin-left: 10px; }
+.pay-fig:first-child { margin-left: 0; }
+.pay-fig + .pay-fig { border-left: 1px solid var(--dark-line); padding-left: 10px; }
+.pay-fig .n {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 18px; line-height: 28px; font-weight: 700;
+  color: var(--accent-bright);
+  white-space: nowrap;
+}
+.pay-fig .k { margin-top: 2px; font-size: 12px; line-height: 18px; color: var(--dark-sub); }
+.pay-terms { margin-top: 20px; }
+.pay-term { padding: 12px 0; border-top: 1px solid var(--dark-line); }
+.pay-term dt {
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 11px; line-height: 18px; font-weight: 700; color: var(--accent-bright);
+}
+.pay-term dd { margin-top: 3px; font-size: 14px; line-height: 24px; color: var(--dark-sub); }
+.pay-term dd b { color: var(--dark-text); font-weight: 600; }
+.pay-why {
+  margin-top: 20px; font-size: 14px; line-height: 24px; color: var(--dark-text);
+}
+.pay-why b { color: var(--accent-bright); font-weight: 700; }
+.pay-caution {
+  margin-top: 16px;
+  background: var(--amber-bg); color: var(--amber-text);
+  border-radius: var(--r-sm); padding: 14px 16px;
+  font-size: 13px; line-height: 22px;
+}
+.pay-caution b { font-weight: 700; }
+
+/* ══════════ 自行复核四步 ══════════ */
+.steps { margin-top: 24px; counter-reset: step; }
+.step {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 20px 18px 20px 56px;
+}
+.step + .step { margin-top: 14px; }
+.step::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute; left: 18px; top: 20px;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--accent-deep); color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 13px; line-height: 26px; font-weight: 700;
+  text-align: center;
+}
+.step-title { font-size: 16px; line-height: 24px; font-weight: 700; color: var(--ink-900); }
+.step-body { margin-top: 6px; font-size: 14px; line-height: 24px; color: var(--ink-700); }
+.step-body strong { font-weight: 700; color: var(--ink-900); }
+.recheck-close {
+  margin-top: 20px;
+  background: var(--dark-bg);
+  border-radius: var(--r-sm);
+  padding: 16px 18px;
+  font-size: 15px; line-height: 26px; font-weight: 600; color: var(--dark-text);
+}
+.recheck-close b { color: var(--accent-bright); }
+
+/* ══════════ 用途限制 ══════════ */
+.use-block + .use-block { margin-top: 16px; }
+.use-label { font-size: 14px; line-height: 24px; font-weight: 700; color: var(--ink-900); }
+.deny li::before { background: var(--ink-500); }
+.disclaim {
+  margin-top: 24px;
+  font-size: 14px; line-height: 24px; font-weight: 700;
+  color: var(--ink-900); text-align: center;
+}
+.signoff {
+  margin-top: 20px;
+  font-size: 12px; line-height: 20px; color: var(--ink-500); text-align: center;
+}
+
+/* ══════════ 底部 CTA ══════════ */
+.endcta { padding-top: 48px; padding-bottom: 40px; }
+.endcta .sec-title { margin-top: 0; }
+.endcta-lead { margin-top: 16px; font-size: 15px; line-height: 26px; color: var(--dark-sub); }
+.endcta .btn { margin-top: 24px; }
+.endcta-aux {
+  margin-top: 12px; font-size: 12px; line-height: 18px;
+  color: var(--dark-faint); text-align: center;
+}
+
+/* ══════════ 页脚（与首页一致） ══════════ */
+.footer {
+  border-top: 1px solid var(--dark-line);
+  padding: 24px 20px 24px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  text-align: center;
+  font-size: 12px; line-height: 20px; color: var(--dark-faint);
+}
+.footer p + p { margin-top: 6px; }
+.footer .mono { font-size: 12px; }
+.footer a { color: var(--dark-sub); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ 页头（深） ══════════ -->
+<header class="section-dark pagehead">
+  <div class="wrap">
+    <div class="head-nav">
+      <p class="head-brand"><span class="mono">SWAGENT</span> ｜ 跨境实体层情报</p>
+      <a class="head-back" href="/">← 返回首页</a>
+    </div>
+    <p class="head-kicker">证据标准声明 · v1.0</p>
+    <h1 class="head-title">我凭什么让你信一份查出来的报告</h1>
+    <p class="head-sub">每条结论都带置信度标签、都绑着一个你能自己点开的公开来源。</p>
+    <p class="head-meta">本页随每一份付费报告首页附上，与报告同版本生效。适用版本：v1.0</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══════════ 开篇：这份报告是怎么做出来的（浅） ══════════ -->
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="sec-title">写在最前面：这份报告是怎么做出来的</h2>
+      <p class="open-body">这份报告由<strong>一个人 + 一套固定流程 + 一组 AI 工具</strong>完成，最终由人逐条核验后签发。</p>
+      <p class="open-body">我们不回避「用了 AI」这件事，因为在这门生意里它恰好指向相反的结论：</p>
+
+      <div class="pull">
+        <p class="pull-lead">人做不到给每一条结论都留痕，机器能。</p>
+        <p class="pull-body">这份报告里的每一条事实性陈述，都绑定了一个你可以自己点开的公开来源链接，并标注了抓取日期和置信度级别。</p>
+        <p class="pull-kick">你不需要相信我们。你只需要抽查。</p>
+      </div>
+
+      <p class="open-do">拿到报告后，请<b>随机挑 3 条结论，自己点开链接核对一遍</b>。这是我们每份报告出门前必做的动作，也希望你做一遍。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 一、置信度分级（深，全页最重视觉块） ══════════ -->
+  <section class="sec section-dark" id="confidence">
+    <div class="wrap">
+      <p class="sec-no">01</p>
+      <h2 class="sec-title">置信度分级：每条结论都带标签</h2>
+      <p class="sec-lead">报告中每一条结论，都会标注下列三级之一。<strong>这不是修辞，是我们承担责任的边界线。</strong></p>
+
+      <div class="grades">
+
+        <article class="grade grade-g1">
+          <div class="grade-head">
+            <span class="dot" aria-hidden="true"></span>
+            <h3 class="grade-name">已交叉验证</h3>
+            <span class="grade-pay pay-yes">赔付范围内</span>
+          </div>
+          <dl class="grade-rows">
+            <div class="grade-row">
+              <dt>含义</dt>
+              <dd>至少两个<b>相互独立</b>的公开信源同时指向同一结论。</dd>
+            </div>
+            <div class="grade-row">
+              <dt>判定标准</dt>
+              <dd>两个信源必须来自不同体系（如：工商公示 + Amazon INFORM 备案），且每条链接在交付当日回访有效。</dd>
+            </div>
+            <div class="grade-row">
+              <dt>出现位置</dt>
+              <dd>结论段。</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="grade grade-g2">
+          <div class="grade-head">
+            <span class="dot" aria-hidden="true"></span>
+            <h3 class="grade-name">单源推定</h3>
+            <span class="grade-pay pay-no">不赔付</span>
+          </div>
+          <dl class="grade-rows">
+            <div class="grade-row">
+              <dt>含义</dt>
+              <dd>只有一个公开信源，或多个信源实为同一来源的二次分发。</dd>
+            </div>
+            <div class="grade-row">
+              <dt>判定标准</dt>
+              <dd>例：仅工商登记一处可查；或天眼查与企查查同时显示（二者同源，不构成交叉）。</dd>
+            </div>
+            <div class="grade-row">
+              <dt>出现位置</dt>
+              <dd>结论段，但<b>明确标注</b>。</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="grade grade-g3">
+          <div class="grade-head">
+            <span class="dot" aria-hidden="true"></span>
+            <h3 class="grade-name">未证实</h3>
+            <span class="grade-pay pay-no">不赔付</span>
+          </div>
+          <dl class="grade-rows">
+            <div class="grade-row">
+              <dt>含义</dt>
+              <dd>无可点开的原始来源，仅为逻辑推断或经验判断。</dd>
+            </div>
+            <div class="grade-row">
+              <dt>出现位置</dt>
+              <dd><b>不进结论段</b>，统一放在《盲区与未证实线索》章节。</dd>
+            </div>
+          </dl>
+        </article>
+
+      </div>
+
+      <div class="indep">
+        <p class="indep-title">关于「相互独立」的判定，我们的标准是：</p>
+        <div class="indep-list">
+
+          <div class="indep-row">
+            <span class="mark mark-y" aria-hidden="true">✓</span>
+            <p class="indep-txt">国家企业信用信息公示系统 + Amazon INFORM 备案
+              <span class="why">算交叉验证 —— 两套互不相通的登记体系</span></p>
+          </div>
+
+          <div class="indep-row">
+            <span class="mark mark-y" aria-hidden="true">✓</span>
+            <p class="indep-txt">USPTO 商标注册人 + 公开裁判文书当事人
+              <span class="why">算交叉验证 —— 两个独立的官方记录系统</span></p>
+          </div>
+
+          <div class="indep-row">
+            <span class="mark mark-n" aria-hidden="true">✕</span>
+            <p class="indep-txt">天眼查 + 企查查
+              <span class="why">不算 —— 均转载自同一份工商登记数据</span></p>
+          </div>
+
+          <div class="indep-row">
+            <span class="mark mark-n" aria-hidden="true">✕</span>
+            <p class="indep-txt">公司官网自述 + 招聘平台公司介绍
+              <span class="why">不算 —— 均为同一主体的自我陈述</span></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 二、数据源（浅） ══════════ -->
+  <section class="sec" id="sources">
+    <div class="wrap">
+      <p class="sec-no">02</p>
+      <h2 class="sec-title">我们用哪些数据源</h2>
+      <p class="sec-lead"><strong>全部为公开可访问来源。</strong>我们不使用任何需要突破登录墙、爬库、社工库或内部渠道取得的数据。</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="src-list">
+
+            <div class="src-row">
+              <div class="src-main">
+                <p class="src-name">国家企业信用信息公示系统</p>
+                <p class="src-use">公司全名、统一社会信用代码、法定代表人、注册资本、成立日期、企业状态、注册地址、经营范围</p>
+              </div>
+              <span class="src-ok">可自查</span>
+            </div>
+
+            <div class="src-row">
+              <div class="src-main">
+                <p class="src-name">Amazon 卖家页 INFORM 板块</p>
+                <p class="src-use">店铺对应的备案企业名称与备案地址</p>
+              </div>
+              <span class="src-ok">可自查</span>
+            </div>
+
+            <div class="src-row">
+              <div class="src-main">
+                <p class="src-name">Amazon 商品页 / 品牌店页</p>
+                <p class="src-use">店铺名、卖家 ID、在售 ASIN、1P/3P 判读</p>
+              </div>
+              <span class="src-ok">可自查</span>
+            </div>
+
+            <div class="src-row">
+              <div class="src-main">
+                <p class="src-name">USPTO（美国专利商标局）</p>
+                <p class="src-use">美国商标注册号、申请人、类别、状态</p>
+              </div>
+              <span class="src-ok">可自查</span>
+            </div>
+
+            <div class="src-row">
+              <div class="src-main">
+                <p class="src-name">EUIPO / TMview</p>
+                <p class="src-use">欧盟商标持有人</p>
+              </div>
+              <span class="src-ok">可自查</span>
+            </div>
+
+            <div class="src-row">
+              <div class="src-main">
+                <p class="src-name">CNIPA（中国商标网）</p>
+                <p class="src-use">中国商标注册人</p>
+              </div>
+              <span class="src-ok">可自查</span>
+            </div>
+
+            <div class="src-row">
+              <div class="src-main">
+                <p class="src-name">中国裁判文书网 / 公开案卷</p>
+                <p class="src-use">案号、当事人主体名称、案由</p>
+              </div>
+              <span class="src-ok">可自查</span>
+            </div>
+
+            <div class="src-row">
+              <div class="src-main">
+                <p class="src-name">香港公司注册处</p>
+                <p class="src-use">香港离岸实体登记信息</p>
+              </div>
+              <span class="src-ok">可自查 · 按次收费</span>
+            </div>
+
+            <div class="src-row">
+              <div class="src-main">
+                <p class="src-name">公司官网 / 招聘平台公开页</p>
+                <p class="src-use">业务定位、品类、公开联系邮箱</p>
+              </div>
+              <span class="src-ok">可自查</span>
+            </div>
+
+            <div class="src-row">
+              <div class="src-main">
+                <p class="src-name">Wayback Machine</p>
+                <p class="src-use">官网历史快照（用于验证曾用品牌名、已删除内容）</p>
+              </div>
+              <span class="src-ok">可自查</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <p class="note">所有链接在报告交付前经过一次全量可访问性检查（curl 批量验证）。若某条来源在交付时已失效，该条结论会被降级并移入盲区章节，<strong>不会以「曾经查到过」的形式留在结论里。</strong></p>
+      <p class="note"><strong>逐条回源的通过标准是全部条目无一例外</strong>——只要有一条断言回访不到原始来源，这份报告就不出门。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 三、交叉验证（浅） ══════════ -->
+  <section class="sec" id="checks">
+    <div class="wrap">
+      <p class="sec-no">03</p>
+      <h2 class="sec-title">我们做了哪些交叉验证</h2>
+      <p class="sec-lead">报告出门前经过以下固定检查，每一项都不可跳过。</p>
+
+      <div class="cards">
+        <div class="card">
+          <ul class="feat">
+            <li><b>来源逐条回访</b> —— 报告中每一条事实性断言均回访其绑定的原始 URL，无一条例外。无源或死链的句子被自动移除。</li>
+            <li><b>INFORM 交叉验证</b> —— 店铺备案主体与工商登记主体逐字比对（含曾用名、英文名、简称差异）。</li>
+            <li><b>Vendor(1P) / Seller(3P) 明确区分</b> —— 不把「第三方卖家页 404」误判为「已全面下架」。会继续验证商品是否仍可购买：可购买但无第三方卖家 = 已转为亚马逊自营（1P），意味着主体仍在销售，只是身份变了。</li>
+            <li><b>多站点逐站核查</b> —— 不只看美国站。逐站列出在售状态，避免「美国站没了 = 退出了」的误判。</li>
+            <li><b>商标反查</b> —— 从 USPTO / EUIPO / CNIPA 反向推导品牌的真实注册人，与店铺备案主体比对。</li>
+            <li><b>已排除卖家清单</b> —— 我们把「看起来像但被排除的卖家」逐条列出并写明排除原因。这一节和结论一样重要：它让你能判断我们排除得对不对，而不是只能选择相信我们找对了。</li>
+            <li><b>人工随机抽检</b> —— 交付前由人从证据包中随机抽取 3 条主体断言，亲手点开原始来源核对。任一条不符，整份打回重做。</li>
+            <li><b>禁用措辞全文扫描</b> —— 全文机器扫描法律意见类与承诺类措辞，命中一次整份重写（见第四节）。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 四、我们明确不做什么（浅，清单块） ══════════ -->
+  <section class="sec" id="limits">
+    <div class="wrap">
+      <p class="sec-no">04</p>
+      <h2 class="sec-title">我们明确不做什么</h2>
+      <p class="sec-lead">这一节比上一节更重要。<strong>明确的能力边界，是这份报告可信的前提。</strong></p>
+
+      <div class="nots">
+
+        <article class="not">
+          <p class="not-no">01</p>
+          <h3 class="not-title">我们不出法律意见</h3>
+          <p class="not-body">我们不是律师事务所，不具备法律执业资质。报告中<strong>不会出现</strong>、<strong>也请不要期待出现</strong>下列内容：</p>
+          <!-- 门禁:忽略开始 -->
+          <p class="quote-block">是否构成侵权 · 是否违法 · 建议起诉 / 建议应诉 / 建议和解 · 胜诉概率 · 能否解冻 · 你应该怎么做</p>
+          <!-- 门禁:忽略结束 -->
+          <p class="not-body">我们只陈述公开记录中的事实。所有法律判断，请交由执业律师处理——这份报告的正确用法，恰恰是把它交给律师，让他知道该去调取什么。</p>
+        </article>
+
+        <article class="not">
+          <p class="not-no">02</p>
+          <h3 class="not-title">我们不提供自然人隐私信息</h3>
+          <p class="not-body">报告只到<strong>企业主体层</strong>。</p>
+          <dl class="tagset">
+            <dt>会包含</dt>
+            <dd>公司全名、统一社会信用代码、法定代表人姓名（属工商公示信息）、注册资本、注册地址、经营范围、企业股东、店铺名、卖家 ID、INFORM 备案信息、商标注册号、公开客服邮箱与电话。</dd>
+          </dl>
+          <!-- 门禁:忽略开始 -->
+          <dl class="tagset no">
+            <dt>绝不包含</dt>
+            <dd>自然人的证件信息、私人联系方式（手机、私人微信、私人邮箱）、居住地址、家庭情况、社交账号、行踪、名下账户。</dd>
+          </dl>
+          <!-- 门禁:忽略结束 -->
+          <p class="not-body">即使你明确要求，我们也不提供。这不是价格问题，是边界问题。</p>
+        </article>
+
+        <article class="not">
+          <p class="not-no">03</p>
+          <h3 class="not-title">我们不做接触式调查</h3>
+          <p class="not-body">我们不联系、不试探、不接触被调查对象及其员工，不使用伪装身份询价、应聘或洽谈。全部信息来自公开记录检索。</p>
+        </article>
+
+        <article class="not">
+          <p class="not-no">04</p>
+          <h3 class="not-title">这份报告不能作为诉讼证据独立使用</h3>
+          <p class="not-body">我们交付的是<strong>线索与公开来源台账</strong>。证据需经法定取证程序取得。请不要将本报告直接作为证据提交。</p>
+        </article>
+
+        <article class="not">
+          <p class="not-no">05</p>
+          <h3 class="not-title">我们不承接的委托</h3>
+          <p class="not-body">和解 / 解封类服务商的批量采购 · 职业打假人的批量需求 · 追债与施压用途 · 针对自然人的背景调查 · 批量被告名单的转售。</p>
+        </article>
+
+        <article class="not">
+          <p class="not-no">06</p>
+          <h3 class="not-title">你的案子永远不会出现在我们的内容里</h3>
+          <p class="not-body">我们出具《单方保密承诺书》（单方承诺，你付款即生效，无需签字回传）：<strong>不复用、不脱敏引用、交付后 30 天销毁工作底稿。</strong></p>
+          <p class="not-body">我们对外发布的所有调查内容，标的全部为我们自选的公开对象（公开案卷当事人、平台已公开点名的卖家），<strong>从不来自客户委托</strong>。在一个同行普遍拿客户案例做营销素材的市场里，这一条写进合同、可以追责。</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 五、赔付条款（深，单独成块高亮） ══════════ -->
+  <section class="sec section-dark" id="warranty">
+    <div class="wrap">
+      <p class="sec-no">05</p>
+      <h2 class="sec-title">赔付条款</h2>
+      <p class="sec-lead">适用于 L2 深度穿透产品。</p>
+
+      <div class="pay-hero">
+        <p class="pay-badge">赔付承诺</p>
+        <p class="pay-line">若本报告中标注为<em>「已交叉验证」</em>的<em>关键主体识别</em>结论出现错误，我们全额退款，并额外赔付合同金额的 1 倍。</p>
+
+        <div class="pay-figs">
+          <div class="pay-fig">
+            <p class="n">1 倍</p>
+            <p class="k">退款外额外赔付</p>
+          </div>
+          <div class="pay-fig">
+            <p class="n">¥40,000</p>
+            <p class="k">赔付上限</p>
+          </div>
+          <div class="pay-fig">
+            <p class="n">90 天</p>
+            <p class="k">主张期限</p>
+          </div>
+        </div>
+
+        <dl class="pay-terms">
+          <div class="pay-term">
+            <dt>适用范围</dt>
+            <dd>仅适用于标注为<b>「已交叉验证」</b>的<b>关键主体识别</b>结论（即：某店铺 / 某品牌对应哪一家企业主体）。</dd>
+          </div>
+          <div class="pay-term">
+            <dt>不适用</dt>
+            <dd>单源推定项 · 未证实项 · 盲区章节全部内容 · 关系研判与推测性表述 · 客户基于本报告作出的商业决策本身。</dd>
+          </div>
+          <div class="pay-term">
+            <dt>「错误」的判定</dt>
+            <dd>以公开记录为准：若能出示公开可查的记录，证明我们指认的主体与实际备案 / 登记主体不一致，即认定为错误。</dd>
+          </div>
+          <div class="pay-term">
+            <dt>主张期限</dt>
+            <dd>自交付之日起 <b>90 天</b>内。</dd>
+          </div>
+          <div class="pay-term">
+            <dt>赔付方式</dt>
+            <dd>确认后 <b>7 个工作日</b>内原路退款 + 赔付款一次性支付。</dd>
+          </div>
+          <div class="pay-term">
+            <dt>上限</dt>
+            <dd><b>¥40,000</b></dd>
+          </div>
+        </dl>
+
+        <p class="pay-why">我们为什么敢写这一条：因为置信度分级把责任范围收窄到了我们真正验证过的部分。我们不为「所有内容」负责，我们为「我们说已经验证过的那部分」负责——<b>而这部分，你可以逐条自己复核。</b></p>
+
+        <p class="pay-caution"><b>同时请你注意：</b>本条款的赔付上限是 ¥40,000。如果你的决策风险敞口显著超过这个量级（例如大额店铺收购），请不要把本报告作为唯一依据——那种情况下我们会主动说明：本报告应作为线索层输入使用，最终尽调结论另行委托专业尽调机构出具。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 六、你如何自行复核（浅，四步） ══════════ -->
+  <section class="sec" id="verify">
+    <div class="wrap">
+      <p class="sec-no">06</p>
+      <h2 class="sec-title">你如何自行复核这份报告</h2>
+      <p class="sec-lead">推荐按下面四步走一遍，<strong>全程不超过 20 分钟</strong>。</p>
+
+      <div class="steps">
+
+        <article class="step">
+          <h3 class="step-title">随机抽 3 条</h3>
+          <p class="step-body">从结论段里随便挑 3 条标注为「已交叉验证」的结论，点开它后面的来源链接，看结论和原始页面对不对得上。</p>
+        </article>
+
+        <article class="step">
+          <h3 class="step-title">看「已排除卖家」那一节</h3>
+          <p class="step-body">这一节写了我们排除了哪些看起来像的卖家、为什么排除。<strong>如果你觉得某条排除得不对，直接告诉我们</strong>，这是最容易发现问题的地方。</p>
+        </article>
+
+        <article class="step">
+          <h3 class="step-title">看「盲区与未证实线索」那一节</h3>
+          <p class="step-body">这一节写的是我们查了但没查实的东西。<strong>如果这一节是空的，请怀疑这份报告</strong>——真实的调查必然存在查不到的部分。</p>
+        </article>
+
+        <article class="step">
+          <h3 class="step-title">对照置信度标签读结论</h3>
+          <p class="step-body">只有「已交叉验证」的部分在赔付范围内。看到「单源推定」和「未证实」，请把它当作「值得再查的方向」，不要当作结论使用。</p>
+        </article>
+
+      </div>
+
+      <p class="recheck-close"><b>发现任何一条对不上，直接告诉我们。</b> 我们的处置是整份重做，不是解释。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 七、用途限制（浅） ══════════ -->
+  <section class="sec" id="usage">
+    <div class="wrap">
+      <p class="sec-no">07</p>
+      <h2 class="sec-title">报告的用途限制</h2>
+      <p class="sec-lead">本报告为公开记录整理与主体映射分析。</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="use-block">
+            <p class="use-label">用途限于</p>
+            <ul class="feat" style="margin-top:8px">
+              <li>核实交易对手 / 合作方 / 供应商的真实企业主体</li>
+              <li>为你的律师或尽调团队提供检索线索与来源索引</li>
+              <li>了解你自身或竞品在公开渠道的主体暴露情况</li>
+            </ul>
+          </div>
+          <div class="use-block">
+            <p class="use-label">不得用于</p>
+            <ul class="feat deny" style="margin-top:8px">
+              <li>诉讼证据的独立提交</li>
+              <li>向被调查对象施压或骚扰</li>
+              <li>转售或批量分发</li>
+              <li>针对自然人的调查</li>
+              <li>任何违反当地法律法规的用途</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="disclaim">本报告不构成法律意见、投资建议或商业决策建议。</p>
+      <p class="signoff">签发：SWAGENT ｜ 报告编号与交付日期以交付件首页为准<br>对本页任何一条有疑问，请在交付会上直接提出。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 底部 CTA + 页脚（深） ══════════ -->
+  <div class="section-dark">
+    <section class="endcta">
+      <div class="wrap">
+        <h2 class="sec-title">与其读标准，不如先看一份按这个标准做出来的东西</h2>
+        <p class="endcta-lead">回首页填你自己的店铺名，24 小时内我给你一份《主体暴露面报告》，免费。上面这套置信度标签和来源链接，你可以在那份报告上直接验一遍。</p>
+        <a class="btn btn-b btn-xl" href="/#check">回首页，做免费自查</a>
+        <p class="endcta-aux">或直接 <a href="/">返回首页</a> 看四档报价与常见问题</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="wrap">
+        <p><span class="mono">SWAGENT</span> ｜ 跨境实体层情报 ｜ 微信：<span class="mono">S_6999_S</span></p>
+        <p>主体穿透 · INFORM 交叉验证 · 商标反查 · 关联企业网络 · 数字资产交付</p>
+        <p>本站及所有交付物的结论均来自公开记录，不构成法律意见，不可作为诉讼证据独立使用。</p>
+      </div>
+    </footer>
+  </div>
+
+</main>
+
+</body>
+</html>

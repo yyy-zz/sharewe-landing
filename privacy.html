@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="format-detection" content="telephone=no">
+<title>SWAGENT｜单方保密承诺书 — 你的单子不会变成我的素材</title>
+<meta name="description" content="SWAGENT 单方保密承诺书 v1.0：客户付款即生效，不需签字回传。三条核心承诺——不复用、不脱敏引用、交付后 30 天销毁工作底稿。一人公司，仅本人接触资料，不外包不转委托。例外情形与你可行使的权利如实写明。">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ══════════ 设计令牌（与首页同源，勿改） ══════════ */
+:root {
+  color-scheme: light;
+
+  --bg-page:      #F5F7F9;
+  --bg-card:      #FFFFFF;
+  --ink-900:      #0C1A26;
+  --ink-700:      #33424F;
+  --ink-500:      #66757F;
+  --line:         #E3E9EE;
+
+  --dark-bg:      #0C1A26;
+  --dark-card:    #142838;
+  --dark-text:    #F2F6F9;
+  --dark-sub:     #A8B8C4;
+  --dark-faint:   #7E93A3;
+  --dark-line:    rgba(255,255,255,0.08);
+
+  --accent-bright: #27D3A2;
+  --accent-deep:   #0B7A5A;
+  --accent-press:  #1FBF92;
+
+  --amber-text:   #FFC266;
+  --amber-bg:     rgba(255,194,102,0.12);
+  --amber-deep:   #8A5A00;
+  --amber-tint:   rgba(255,194,102,0.16);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC",
+               "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC",
+               "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
+               "Liberation Mono", "Courier New", monospace;
+
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-7: 32px; --sp-8: 40px;
+  --sp-9: 48px; --sp-10: 56px;
+
+  --r-card: 16px; --r-btn: 12px; --r-sm: 12px; --r-pill: 999px;
+
+  --shadow-card:  0 1px 2px rgba(12,26,38,0.04);
+  --shadow-float: 0 8px 24px rgba(12,26,38,0.18);
+}
+
+/* ══════════ 基础 ══════════ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 26px;
+  color: var(--ink-700);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+
+:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 2px; }
+.section-dark :focus-visible { outline-color: var(--accent-bright); }
+
+.wrap { max-width: 600px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+.sec { padding-top: 56px; padding-bottom: 56px; background: var(--bg-page); }
+
+.section-dark {
+  background-color: var(--dark-bg);
+  background-image:
+    repeating-linear-gradient(0deg,  rgba(255,255,255,0.035) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 24px);
+}
+
+.sec-title {
+  font-size: 22px; line-height: 30px; font-weight: 700;
+  color: var(--ink-900); text-align: center;
+}
+.section-dark .sec-title { color: var(--dark-text); }
+.sec-lead { margin-top: 12px; font-size: 14px; line-height: 24px; color: var(--ink-700); text-align: center; }
+.section-dark .sec-lead { color: var(--dark-sub); }
+
+.mono { font-family: var(--font-mono); letter-spacing: 0.05em; }
+
+/* ══════════ 按钮 ══════════ */
+.btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  border: 0; border-radius: var(--r-btn);
+  font-family: var(--font-sans); font-size: 16px; font-weight: 600;
+  cursor: pointer;
+  transition: transform 80ms ease, background-color 80ms ease;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.btn-b { height: 52px; background: var(--accent-bright); color: var(--ink-900); font-weight: 700; }
+.btn-b:active { transform: scale(0.98); background: var(--accent-press); }
+.btn-c { height: 48px; background: transparent; border: 1.5px solid var(--ink-900); color: var(--ink-900); }
+.btn-c:active { transform: scale(0.98); background: rgba(12,26,38,0.06); }
+.btn-ghost-dark {
+  height: 48px; background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.28); color: var(--dark-text);
+}
+.btn-ghost-dark:active { transform: scale(0.98); background: rgba(255,255,255,0.06); }
+
+/* ══════════ 白卡 ══════════ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 24px 20px;
+}
+.card + .card { margin-top: 16px; }
+
+.feat li {
+  position: relative; padding-left: 16px;
+  font-size: 14px; line-height: 24px; color: var(--ink-700);
+}
+.feat li + li { margin-top: 8px; }
+.feat li::before {
+  content: ""; position: absolute; left: 0; top: 9px;
+  width: 6px; height: 6px; border-radius: 1px;
+  background: var(--accent-deep);
+}
+.feat-dark li { color: var(--dark-sub); }
+.feat-dark li::before { background: var(--accent-bright); }
+.feat-dark li b { color: var(--dark-text); font-weight: 600; }
+
+/* ══════════ 页头 ══════════ */
+.page-head { padding-top: 24px; padding-bottom: 44px; }
+.head-nav { display: flex; align-items: center; justify-content: space-between; }
+.head-brand { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--dark-sub); }
+.head-brand .mono { font-weight: 700; color: var(--dark-text); }
+.back-link {
+  flex: 0 0 auto; margin-left: 12px;
+  font-size: 13px; line-height: 20px; color: var(--dark-sub);
+  border: 1px solid var(--dark-line); border-radius: var(--r-pill);
+  padding: 4px 12px;
+}
+.back-link:active { background: rgba(255,255,255,0.06); }
+.doc-kicker {
+  display: inline-block; margin-top: 28px;
+  background: var(--accent-bright); color: var(--ink-900);
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 4px 10px; border-radius: var(--r-pill);
+}
+.doc-title { margin-top: 14px; font-size: 26px; line-height: 38px; font-weight: 700; color: var(--dark-text); }
+.doc-sub { margin-top: 14px; font-size: 16px; line-height: 26px; font-weight: 600; color: var(--accent-bright); }
+.doc-meta { margin-top: 18px; font-size: 13px; line-height: 22px; color: var(--dark-faint); }
+.doc-meta span { color: var(--dark-sub); }
+
+/* ══════════ 开篇：单方承诺声明 ══════════ */
+.opening-card {
+  margin-top: 24px;
+  background: var(--dark-bg);
+  border: 1.5px solid var(--accent-bright);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-float);
+  padding: 24px 20px;
+}
+.opening-head { font-size: 20px; line-height: 30px; font-weight: 700; color: var(--dark-text); }
+.opening-head em { font-style: normal; color: var(--accent-bright); }
+.opening-body { margin-top: 14px; font-size: 14px; line-height: 24px; color: var(--dark-sub); }
+.opening-body + .opening-body { margin-top: 12px; }
+.opening-body b { color: var(--dark-text); font-weight: 600; }
+.opening-why {
+  margin-top: 18px; border-top: 1px solid var(--dark-line); padding-top: 16px;
+  font-size: 14px; line-height: 24px; color: var(--dark-sub);
+}
+.opening-why b { color: var(--accent-bright); font-weight: 700; }
+.opening-foot { margin-top: 18px; font-size: 13px; line-height: 22px; color: var(--ink-500); }
+
+/* 键值行（承诺人 / 适用范围等） ══════════ */
+.kv { margin-top: 4px; }
+.kv-row + .kv-row { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.kv-row dt {
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 12px; line-height: 18px; font-weight: 700; color: var(--accent-deep);
+}
+.kv-row dd { margin-top: 5px; font-size: 14px; line-height: 24px; color: var(--ink-700); }
+.kv-row dd b { color: var(--ink-900); font-weight: 600; }
+
+/* ══════════ 三条核心承诺（醒目三卡） ══════════ */
+.vows { margin-top: 24px; }
+.vow {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-line);
+  border-left: 3px solid var(--accent-bright);
+  border-radius: 12px;
+  padding: 20px 18px;
+}
+.vow + .vow { margin-top: 16px; }
+.vow-no {
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 12px; line-height: 18px; font-weight: 700; color: var(--accent-bright);
+}
+.vow-title { margin-top: 6px; font-size: 20px; line-height: 28px; font-weight: 700; color: var(--dark-text); }
+.vow-line { margin-top: 10px; font-size: 14px; line-height: 24px; color: var(--dark-sub); }
+.vow-line b { color: var(--dark-text); font-weight: 600; }
+.vow-line em { font-style: normal; color: var(--accent-bright); font-weight: 700; }
+.vow-sublabel {
+  margin-top: 16px; font-size: 12px; line-height: 18px; font-weight: 700;
+  color: var(--dark-faint); font-family: var(--font-mono); letter-spacing: 0.05em;
+}
+.vow ul { margin-top: 8px; }
+.vow-note {
+  margin-top: 16px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px; padding: 12px 14px;
+  font-size: 13px; line-height: 22px; color: var(--dark-sub);
+}
+.vow-note b { color: var(--dark-text); font-weight: 600; }
+
+/* 保留项小表 */
+.keep { margin-top: 10px; }
+.keep-item {
+  border: 1px solid var(--dark-line); border-radius: 10px;
+  padding: 12px 14px;
+}
+.keep-item + .keep-item { margin-top: 10px; }
+.keep-top { display: flex; align-items: baseline; justify-content: space-between; }
+.keep-name { font-size: 14px; line-height: 22px; font-weight: 600; color: var(--dark-text); }
+.keep-term {
+  flex: 0 0 auto; margin-left: 12px;
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+  font-size: 13px; line-height: 22px; font-weight: 700; color: var(--accent-bright);
+}
+.keep-why { margin-top: 6px; font-size: 13px; line-height: 22px; color: var(--dark-sub); }
+
+/* ══════════ 一人公司条款 ══════════ */
+.solo-badge {
+  display: inline-block;
+  background: rgba(39,211,162,0.12); color: var(--accent-deep);
+  border: 1px solid rgba(11,122,90,0.28);
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 4px 10px; border-radius: var(--r-pill);
+}
+.solo-quote {
+  margin-top: 24px;
+  background: var(--bg-card);
+  border: 1.5px solid var(--accent-deep);
+  border-radius: var(--r-card);
+  padding: 20px;
+  font-size: 17px; line-height: 28px; font-weight: 700; color: var(--ink-900);
+  text-align: center;
+}
+.solo-quote span { display: block; margin-top: 8px; font-size: 13px; line-height: 22px; font-weight: 400; color: var(--ink-500); }
+
+/* ══════════ 例外情形 ══════════ */
+.exc-pill {
+  display: inline-block;
+  background: var(--amber-tint); color: var(--amber-deep);
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 4px 10px; border-radius: var(--r-pill);
+}
+.exc-title { margin-top: 8px; font-size: 17px; line-height: 24px; font-weight: 600; color: var(--ink-900); }
+.exc-body { margin-top: 8px; font-size: 14px; line-height: 24px; color: var(--ink-700); }
+.exc-body b { color: var(--ink-900); font-weight: 600; }
+.exc-close {
+  margin-top: 20px; text-align: center;
+  font-size: 15px; line-height: 26px; font-weight: 600; color: var(--ink-900);
+}
+
+/* ══════════ 权利清单 ══════════ */
+.rights { margin-top: 24px; }
+.right-item {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  padding: 18px 16px;
+}
+.right-item + .right-item { margin-top: 12px; }
+.right-name {
+  position: relative; padding-left: 22px;
+  font-size: 16px; line-height: 24px; font-weight: 700; color: var(--ink-900);
+}
+.right-name::before {
+  content: ""; position: absolute; left: 0; top: 6px;
+  width: 12px; height: 12px; border-radius: 3px;
+  border: 2px solid var(--accent-deep);
+}
+.right-how { margin-top: 8px; font-size: 14px; line-height: 24px; color: var(--ink-700); }
+.right-how b { color: var(--ink-900); font-weight: 600; }
+.right-sla {
+  margin-top: 10px; display: inline-block;
+  background: rgba(39,211,162,0.12); color: var(--accent-deep);
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 3px 10px; border-radius: var(--r-pill);
+}
+.rights-foot { margin-top: 20px; font-size: 14px; line-height: 24px; color: var(--ink-900); font-weight: 600; text-align: center; }
+
+/* ══════════ 期限 / 违反 ══════════ */
+.two-col { margin-top: 24px; }
+.mini-title { font-size: 17px; line-height: 24px; font-weight: 700; color: var(--ink-900); }
+.card .feat { margin-top: 12px; }
+.ord { margin-top: 12px; counter-reset: ord; }
+.ord li {
+  position: relative; padding-left: 30px; counter-increment: ord;
+  font-size: 14px; line-height: 24px; color: var(--ink-700);
+}
+.ord li + li { margin-top: 10px; }
+.ord li::before {
+  content: counter(ord);
+  position: absolute; left: 0; top: 2px;
+  width: 20px; height: 20px; border-radius: 5px;
+  background: var(--ink-900); color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 12px; line-height: 20px; font-weight: 700; text-align: center;
+}
+.ord li b { color: var(--ink-900); font-weight: 600; }
+.after-note { margin-top: 14px; font-size: 13px; line-height: 22px; color: var(--ink-500); }
+
+/* ══════════ 大白话 ══════════ */
+.plain-quote {
+  margin-top: 24px;
+  border-left: 3px solid var(--accent-bright);
+  padding: 4px 0 4px 16px;
+  font-size: 18px; line-height: 30px; font-weight: 700; color: var(--dark-text);
+}
+.plain-body { margin-top: 20px; font-size: 14px; line-height: 24px; color: var(--dark-sub); }
+.plain-body b { color: var(--dark-text); font-weight: 600; }
+
+/* ══════════ 终 CTA ══════════ */
+.cta-lead { margin-top: 16px; font-size: 15px; line-height: 26px; color: var(--dark-sub); }
+.cta .btn { margin-top: 20px; }
+.cta .btn + .btn { margin-top: 12px; }
+.cta-aux { margin-top: 14px; font-size: 12px; line-height: 18px; color: var(--dark-faint); text-align: center; }
+
+/* ══════════ 页脚 ══════════ */
+.footer {
+  border-top: 1px solid var(--dark-line);
+  padding: 24px 20px 24px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  text-align: center;
+  font-size: 12px; line-height: 20px; color: var(--dark-faint);
+}
+.footer p + p { margin-top: 6px; }
+.footer .mono { font-size: 12px; }
+.footer a { color: var(--dark-sub); text-decoration: underline; }
+
+/* ══════════ 入场动效 ══════════ */
+.js .reveal { opacity: 0; transform: translateY(16px); }
+.js .reveal.is-visible {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ 页头（深） ══════════ -->
+<header class="section-dark page-head">
+  <div class="wrap">
+    <div class="head-nav">
+      <p class="head-brand"><span class="mono">SWAGENT</span> ｜ 跨境实体层情报</p>
+      <a class="back-link" href="/">← 返回主页</a>
+    </div>
+    <p class="doc-kicker">单方承诺 · v1.0</p>
+    <h1 class="doc-title">《单方保密承诺书》</h1>
+    <p class="doc-sub">你的单子不会变成我的素材。</p>
+    <p class="doc-meta">出具方：<span>SWAGENT（以下称「我方」）</span>｜随报价单或首次交付一并发送｜适用 L0 自查与一切付费委托</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══════════ 一、写在最前面 ══════════ -->
+  <section class="sec">
+    <div class="wrap reveal">
+      <h2 class="sec-title">写在最前面</h2>
+      <p class="sec-lead">先说清楚这份文件的性质，再说条款。</p>
+
+      <div class="opening-card">
+        <p class="opening-head">不需要你签字，<em>也不需要你回传。</em></p>
+        <p class="opening-body"><b>这是我方单方面向你作出的承诺，你付款即对我方生效。</b>我方不因你未签署而免除其中任何一条。</p>
+        <p class="opening-body">免费的 L0 主体暴露面自查同样适用本承诺，自你提交店铺名之时生效。</p>
+        <p class="opening-why">之所以做成单方承诺而不是双向协议，理由很直接：调查类服务的买方最在意的是隐秘，而把「请你先签一份保密协议」当作开工条件，等于把负担转给了本来就该被保护的一方。<b>该守口的是我方，那就由我方单方立字据。</b></p>
+      </div>
+
+      <p class="opening-foot">下面全文照录条款，不做删减。哪一条你想改得更严，可以直接提。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 二、承诺人与适用范围 ══════════ -->
+  <section class="sec">
+    <div class="wrap reveal">
+      <h2 class="sec-title">一、承诺人与适用范围</h2>
+
+      <div class="card" style="margin-top:24px">
+        <dl class="kv">
+          <div class="kv-row">
+            <dt>承诺人</dt>
+            <dd><b>SWAGENT</b>（跨境实体层情报服务提供方，以下称「我方」）</dd>
+          </div>
+          <div class="kv-row">
+            <dt>受益人</dt>
+            <dd>向我方付费委托调查的客户本人或其指定主体（以下称「你」）</dd>
+          </div>
+          <div class="kv-row">
+            <dt>生效时点</dt>
+            <dd><b>你完成付款之时自动生效</b>，无需签署、无需回执</dd>
+          </div>
+          <div class="kv-row">
+            <dt>适用业务</dt>
+            <dd>L1 首单速查 · L2 深度穿透 · L2+ 关联网络 · L3 数字资产交付，以及一切付费委托</dd>
+          </div>
+          <div class="kv-row">
+            <dt>保护对象</dt>
+            <dd>你的身份与联系方式 · 你委托的调查标的 · 你说明的调查用途与背景 · 我方为你出具的全部结论与交付物 · 沟通过程中你提供的任何材料</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 三、三条核心承诺（深） ══════════ -->
+  <section class="sec section-dark">
+    <div class="wrap reveal">
+      <h2 class="sec-title">二、三条核心承诺</h2>
+      <p class="sec-lead">这一节是整份承诺书的主体。三条各自独立，任何一条都不以另外两条为前提。</p>
+
+      <div class="vows">
+
+        <!-- 承诺一 -->
+        <article class="vow">
+          <p class="vow-no">承诺 01</p>
+          <h3 class="vow-title">不复用</h3>
+          <p class="vow-line">你委托的<b>调查标的、调查用途、调查结论</b>，不用于任何其他客户的交付。</p>
+          <p class="vow-sublabel">具体是指</p>
+          <ul class="feat feat-dark">
+            <li>不把为你出具的结论、图表、关系网络，整段或改写后放进另一份报告</li>
+            <li>不把「你在查谁」这件事本身，作为线索提供给第三人（包括我方的其他客户、同行、你的竞争对手、被调查主体）</li>
+            <li>不因为「已经查过一次」而把同一标的的成果二次出售给他人</li>
+          </ul>
+          <p class="vow-note"><b>唯一的例外是可复用的通用知识</b>：例如「某类经营范围的表述在工商登记中通常对应哪种业务形态」「某个公开数据源的字段含义与更新频率」。这类沉淀进入我方内部事实库，不携带你的身份、标的名称、行业、地域、时间点或任何可回溯到你的字段。</p>
+        </article>
+
+        <!-- 承诺二 -->
+        <article class="vow">
+          <p class="vow-no">承诺 02</p>
+          <h3 class="vow-title">不脱敏引用</h3>
+          <p class="vow-line">你的委托<b>永不进入我方对外内容</b>——包括但不限于公众号、知乎、行业论坛、朋友圈、官网案例、演示样张、报价附件、开源仓库、对外分享的任何形式。</p>
+          <p class="vow-line"><em>即使做了脱敏，也不引用。</em></p>
+          <p class="vow-line">这一条写得比同行严，是因为脱敏在跨境圈通常不成立：品类、站点、时间窗三个字段一对，同行几分钟就能还原出是谁在查谁。所以我方不做「脱敏后可用」的判断，直接采用一条更简单的规则——<b>凡是客户委托的，一律不进内容。</b></p>
+          <p class="vow-line">我方对外发布的调查内容，标的全部为自选的公开对象（公开案卷已公开的当事人、平台已公开点名的卖家、公开判例当事人），<b>从不来自客户委托</b>。</p>
+          <p class="vow-note"><b>可以引用的仅有一种：</b>你<b>主动</b>书面提供的评价文字，且不含任何标的信息，并经你逐字确认之后。你没有提供的义务，不提供也不影响服务与价格。</p>
+        </article>
+
+        <!-- 承诺三 -->
+        <article class="vow">
+          <p class="vow-no">承诺 03</p>
+          <h3 class="vow-title">交付后 30 天销毁工作底稿</h3>
+          <p class="vow-sublabel">销毁范围（交付满 30 天后删除）</p>
+          <ul class="feat feat-dark">
+            <li>中间过程文件、检索记录、草稿与废稿</li>
+            <li>网页抓取快照、截图、导出的原始数据表</li>
+            <li>与你沟通中收到的材料副本</li>
+            <li>我方本地与云端的全部相关工作目录</li>
+          </ul>
+          <p class="vow-sublabel">保留的部分（并写明为什么）</p>
+          <div class="keep">
+            <div class="keep-item">
+              <div class="keep-top">
+                <p class="keep-name">交付物终版一份</p>
+                <p class="keep-term">90 天</p>
+              </div>
+              <p class="keep-why">赔付条款的主张期限为交付后 90 天。这一份是核对赔付主张的依据，90 天届满后一并删除。</p>
+            </div>
+            <div class="keep-item">
+              <div class="keep-top">
+                <p class="keep-name">收款流水记录</p>
+                <p class="keep-term">按经营与对账需要</p>
+              </div>
+              <p class="keep-why">属于经营记录，只含金额与日期，不含调查内容。</p>
+            </div>
+            <div class="keep-item">
+              <div class="keep-top">
+                <p class="keep-name">《调查用途声明》</p>
+                <p class="keep-term">12 个月</p>
+              </div>
+              <p class="keep-why">属于我方拒单筛查的合规留档，不含调查结论。</p>
+            </div>
+          </div>
+          <p class="vow-note"><b>这三项之外，不留任何东西。</b>你也可以要求把上面三项的保留期一并缩短，见第五节「你可以行使的权利」。</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 四、一人公司条款（浅） ══════════ -->
+  <section class="sec">
+    <div class="wrap reveal">
+      <h2 class="sec-title">三、我方人员范围</h2>
+      <p class="sec-lead">在保密这件事上，一人公司不是短板，是结构。</p>
+
+      <div class="solo-quote">
+        没有内部流转，就没有内部泄漏。
+        <span>这是我方为数不多可以写进承诺书的天然条件。</span>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <p class="solo-badge">我方是一人公司</p>
+        <dl class="kv" style="margin-top:16px">
+          <div class="kv-row">
+            <dt>接触你资料的人</dt>
+            <dd><b>仅本人一人</b>，无同事、无助理、无兼职</dd>
+          </div>
+          <div class="kv-row">
+            <dt>是否外包</dt>
+            <dd><b>否。</b>不将你的委托整体或部分转包给任何第三方调查机构、同行或个人</dd>
+          </div>
+          <div class="kv-row">
+            <dt>是否转委托</dt>
+            <dd><b>否。</b>不以任何名义把你的标的交给他人代查</dd>
+          </div>
+          <div class="kv-row">
+            <dt>AI 工具的使用</dt>
+            <dd>检索、整理、排版环节使用 AI 工具，全部为公开商用服务，<b>不向任何模型提供方提交你的身份信息、联系方式或调查用途说明</b>；标的名称仅在检索必需的最小范围内出现</dd>
+          </div>
+          <div class="kv-row">
+            <dt>协作方</dt>
+            <dd>若某单确需引入外部协作（如境外公开档案的付费代调取），我方会<b>事先单独征得你的书面同意</b>，并只提供完成该动作所需的最小字段。你不同意，该动作即取消</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 五、例外情形（浅） ══════════ -->
+  <section class="sec">
+    <div class="wrap reveal">
+      <h2 class="sec-title">四、例外情形</h2>
+      <p class="sec-lead">有两种情况本承诺不再适用。写在这里，是因为不写才是不诚实。</p>
+
+      <div style="margin-top:24px">
+        <article class="card">
+          <p class="exc-pill">例外 4.1</p>
+          <h3 class="exc-title">法律法规或有权机关的强制性要求</h3>
+          <p class="exc-body">当我方收到司法机关、行政机关或其他有权机关依法定程序发出的强制性调取要求时，我方将配合提供。此种情形下：</p>
+          <ul class="feat" style="margin-top:12px">
+            <li>我方<b>只提供被要求范围内的最小内容</b>，不主动扩大</li>
+            <li>在法律法规允许告知的前提下，我方会<b>在提供之前书面通知你</b>，让你有时间自行处置</li>
+            <li>若法律法规禁止告知，我方在禁令解除后第一时间补充告知</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <p class="exc-pill">例外 4.2</p>
+          <h3 class="exc-title">你自行公开的信息</h3>
+          <p class="exc-body">你已经自行公开的信息，不再受本承诺约束。例如你把我方出具的报告发在公开平台、在行业群里说明自己委托了这次调查、或授权第三方转发。</p>
+          <p class="exc-body">即便如此，<b>我方仍不主动引用、不主动扩散、不主动确认</b>。你公开的是你的事，我方不接话。</p>
+        </article>
+      </div>
+
+      <p class="exc-close">此外没有第三种例外。<br>商业合作、同行交流、内容素材、朋友托问，都不是例外。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 六、你可以行使的权利（浅） ══════════ -->
+  <section class="sec">
+    <div class="wrap reveal">
+      <h2 class="sec-title">五、你可以行使的权利</h2>
+      <p class="sec-lead">五项权利，各自附明我方的响应时限。</p>
+
+      <div class="rights">
+        <div class="right-item">
+          <p class="right-name">要求提前销毁</p>
+          <p class="right-how">任何时候告知我方，可指定<b>「立即销毁全部」</b>或<b>「只保留交付物终版」</b>。</p>
+          <p class="right-sla">收到后 3 个工作日内执行</p>
+        </div>
+
+        <div class="right-item">
+          <p class="right-name">要求书面确认销毁</p>
+          <p class="right-how">提出后，我方出具《销毁确认函》，列明销毁项目、销毁时间、剩余保留项。</p>
+          <p class="right-sla">执行后 3 个工作日内出具</p>
+        </div>
+
+        <div class="right-item">
+          <p class="right-name">要求说明底稿现状</p>
+          <p class="right-how">任何时候可以问：现在还留着什么、留到什么时候。</p>
+          <p class="right-sla">2 个工作日内书面答复</p>
+        </div>
+
+        <div class="right-item">
+          <p class="right-name">要求不留交付物终版</p>
+          <p class="right-how">交付会结束后即销毁终版。<b>注意：终版销毁后我方不再持有核对依据，《证据标准声明》第五节的赔付主张可能因此无法成立</b>，我方会在执行前把这一点讲清楚，由你决定。</p>
+          <p class="right-sla">交付会后 3 个工作日内执行</p>
+        </div>
+
+        <div class="right-item">
+          <p class="right-name">撤回对协作方的同意</p>
+          <p class="right-how">第三节「我方人员范围」所述的外部协作，你可在动作发生前随时撤回同意。</p>
+          <p class="right-sla">即时生效</p>
+        </div>
+      </div>
+
+      <p class="rights-foot">行使这些权利不需要说明理由，也不影响服务本身与已定价格。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 七、期限与违反（浅） ══════════ -->
+  <section class="sec">
+    <div class="wrap reveal">
+      <h2 class="sec-title">六、承诺期限，以及我方违反时</h2>
+
+      <div class="two-col">
+        <article class="card">
+          <h3 class="mini-title">承诺期限</h3>
+          <ul class="feat">
+            <li>本承诺<b>不设失效日期</b>，长期有效</li>
+            <li>不因服务结束、合作终止、款项结清、双方失去联系而终止</li>
+            <li>不因我方停止经营、变更主体名称而终止</li>
+            <li>已销毁的部分，自然不存在再度泄漏的可能；未销毁的部分，按本承诺继续受约束</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 class="mini-title">我方违反本承诺时</h3>
+          <p class="exc-body">若我方违反上述任何一条，你可以要求：</p>
+          <ol class="ord">
+            <li><b>立即停止</b>并删除相关内容（若已对外发布，包括公开撤回）</li>
+            <li><b>全额退还</b>本次服务费用</li>
+            <li>我方出具书面说明，写清发生了什么、影响范围、已采取的处置</li>
+          </ol>
+          <p class="after-note">这是我方在商业层面自愿作出的处置安排。除此之外的救济，请以你与我方另行签署的书面协议或适用的法律法规为准，本文不对此作任何判断。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 八、几句大白话（深） ══════════ -->
+  <section class="sec section-dark">
+    <div class="wrap reveal">
+      <h2 class="sec-title">七、几句大白话</h2>
+      <p class="sec-lead">写这份东西不是为了显得正规，是因为这门生意的底层逻辑就在这里。</p>
+
+      <blockquote class="plain-quote">一个卖情报的人，如果连客户的委托本身都守不住，那他卖的东西一文不值。</blockquote>
+
+      <p class="plain-body">在一个同行普遍拿客户案例做营销素材的市场里，「我方的内容里从来没有客户」是可以被核验的：你可以随时翻我方公开发布的全部内容，逐篇对照标的是不是公开对象。<b>发现任何一处对不上，第六节的处置安排立即适用。</b></p>
+
+      <p class="plain-body">本承诺为服务提供方的单方商业承诺。如需具备更强约束力的双向保密协议，可由双方另行签署。</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 九、终 CTA + 页脚（深） ══════════ -->
+  <section class="sec section-dark cta">
+    <div class="wrap reveal">
+      <h2 class="sec-title">先看看我怎么查，再决定要不要托付</h2>
+      <p class="cta-lead">这份承诺书从你提交自己的店铺名那一刻起就已经生效。免费的 L0 主体暴露面自查，查的是你自己：外人从你的店铺名出发，能挖到你哪几层。</p>
+      <a class="btn btn-b" href="/#check">回主页，免费查我自己的暴露面</a>
+      <a class="btn btn-ghost-dark" href="/">返回主页</a>
+      <p class="cta-aux">L0 自查同样适用本承诺 · 24 小时内出报告</p>
+    </div>
+
+    <footer class="footer">
+      <div class="wrap">
+        <p><span class="mono">SWAGENT</span> ｜ 跨境实体层情报 ｜ 微信：<span class="mono">S_6999_S</span></p>
+        <p>主体穿透 · INFORM 交叉验证 · 商标反查 · 关联企业网络 · 数字资产交付</p>
+        <p>本页为《单方保密承诺书》v1.0 全文。本站及所有交付物的结论均来自公开记录，不构成法律意见，不可作为诉讼证据独立使用。</p>
+        <p><a href="/">← 返回主页</a></p>
+      </div>
+    </footer>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var d = document;
+  if ('IntersectionObserver' in window) {
+    var ro = new IntersectionObserver(function (entries) {
+      for (var j = 0; j < entries.length; j++) {
+        if (entries[j].isIntersecting) {
+          entries[j].target.classList.add('is-visible');
+          ro.unobserve(entries[j].target);
+        }
+      }
+    }, { threshold: 0.12 });
+    var reveals = d.querySelectorAll('.reveal');
+    for (var k = 0; k < reveals.length; k++) ro.observe(reveals[k]);
+  } else {
+    var all = d.querySelectorAll('.reveal');
+    for (var m = 0; m < all.length; m++) all[m].classList.add('is-visible');
+  }
+})();
+</script>
+</body>
+</html>
