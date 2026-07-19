@@ -8,7 +8,7 @@ HOST="sharewe"                       # ~/.ssh/config 里的别名
 SRC="$(cd "$(dirname "$0")" && pwd)/04-landing-page/index.html"
 DEST="/var/www/sharewe/index.html"
 BACKUP="/var/www/sharewe/index.html.prev"
-URL="http://47.80.12.92/"
+URL="https://swagent.cn/"
 
 if [[ "${1:-}" == "rollback" ]]; then
   ssh "$HOST" "[ -f $BACKUP ] && cp $BACKUP $DEST && echo '已回滚到上一版' || { echo '没有可回滚的备份'; exit 1; }"
@@ -22,7 +22,7 @@ fi
 if grep -qE '(src|href)="https?://' "$SRC"; then
   echo "❌ 检测到外部链接，微信内可能加载失败。中止。"; exit 1
 fi
-if grep -q "占位" "$SRC" | grep -v "已弃用" > /dev/null 2>&1; then
+if grep "占位" "$SRC" | grep -qv "已弃用"; then
   echo "⚠️  文件里还有占位符，确认后再发。"; exit 1
 fi
 
