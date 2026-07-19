@@ -275,7 +275,7 @@ ul, ol { list-style: none; }
 }
 .note {
   margin-top: 16px;
-  font-size: 13px; line-height: 22px; color: var(--ink-500);
+  font-size: 13px; line-height: 22px; color: var(--ink-700);
 }
 .note strong { color: var(--ink-900); font-weight: 700; }
 
@@ -305,7 +305,7 @@ ul, ol { list-style: none; }
   background: var(--bg-page);
   border-radius: 10px;
   padding: 12px 14px;
-  font-size: 13px; line-height: 22px; color: var(--ink-500);
+  font-size: 13px; line-height: 22px; color: var(--ink-700);
 }
 .tagset { margin-top: 10px; }
 .tagset dt {
@@ -410,7 +410,7 @@ ul, ol { list-style: none; }
 }
 .signoff {
   margin-top: 20px;
-  font-size: 12px; line-height: 20px; color: var(--ink-500); text-align: center;
+  font-size: 12px; line-height: 20px; color: var(--ink-700); text-align: center;
 }
 
 /* ══════════ 底部 CTA ══════════ */
@@ -438,6 +438,201 @@ ul, ol { list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   桌面端布局（纯增量：以下全部包在 min-width 媒体查询内，
+   375px 移动端渲染结果与新增前逐像素一致）
+   ══════════════════════════════════════════════════════════ */
+
+/* ────────── 平板 ≥768px：容器 720，双列开始 ────────── */
+@media (min-width: 768px) {
+
+  .wrap { max-width: 720px; padding-left: 28px; padding-right: 28px; }
+  .sec  { padding-top: 80px; padding-bottom: 80px; }
+
+  /* 标题平滑放大，避开断点跳变 */
+  .sec-title  { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.36; }
+  .sec-lead   { max-width: 620px; margin-left: auto; margin-right: auto;
+                font-size: 15px; line-height: 26px; }
+
+  /* 页头 */
+  .pagehead   { padding-top: 32px; padding-bottom: 56px; }
+  .head-title { font-size: clamp(28px, 4vw, 40px); line-height: 1.3; }
+  .head-sub   { font-size: 18px; line-height: 30px; max-width: 640px; }
+  .head-meta  { max-width: 640px; }
+
+  /* 开篇：正文限宽，避免行长失控 */
+  #opening .open-body,
+  #opening .open-do,
+  #opening .pull { max-width: 640px; margin-left: auto; margin-right: auto; }
+  #opening .pull { padding: 24px 24px; }
+
+  .card { padding: 28px 26px; }
+
+  /* 独立性判定 → 2 列 */
+  .indep-list {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .indep-row + .indep-row { margin-top: 0; }
+
+  /* 数据源清单 → 2 列 */
+  .src-list {
+    display: grid; grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+  }
+  .src-row:nth-child(2) { border-top: 0; padding-top: 0; }
+
+  /* 我明确不做的事 → 2 列（同排卡片等高，避免底边参差） */
+  .nots {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .not + .not { margin-top: 0; }
+
+  /* 复核步骤 → 2×2，序号改为顶置，让文字拿到整幅宽度（同排等高） */
+  .steps {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .step + .step { margin-top: 0; }
+  .step { padding: 22px 20px; }
+  .step::before {
+    position: static;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .recheck-close { max-width: 640px; margin-left: auto; margin-right: auto; }
+
+  /* 用途限制 → 用途限于 / 不得用于 并排 */
+  #usage .card {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  .use-block + .use-block { margin-top: 0; }
+
+  /* 赔付条款：逐字要读的东西，限宽居中 */
+  .pay-hero { max-width: 680px; margin-left: auto; margin-right: auto; padding: 28px 26px; }
+  .pay-fig  { margin-left: 16px; }
+  .pay-fig + .pay-fig { padding-left: 16px; }
+
+  .note     { max-width: 680px; }
+  .disclaim { font-size: 15px; line-height: 26px; }
+
+  /* 对比度补正：桌面阅读距离下，以下两处实测未达 4.5:1，
+     改用更实的既有令牌（不压透明度，不新增颜色）。
+     ink-500 #66757F on bg-page #F5F7F9 = 4.43:1  → ink-700 #33424F = 9.1:1
+     dark-faint #7E93A3 on 徽章底 = 3.97:1        → dark-sub #A8B8C4 = 6.8:1 */
+  .note, .quote-block, .signoff { color: var(--ink-700); }
+  .pay-no { color: var(--dark-sub); }
+
+  /* 底部 CTA */
+  .endcta { padding-top: 72px; padding-bottom: 56px; }
+  .endcta-lead { max-width: 600px; margin-left: auto; margin-right: auto; text-align: center; }
+  .endcta .btn { max-width: 340px; margin-left: auto; margin-right: auto; }
+}
+
+/* ────────── 笔记本 ≥1024px：容器 960，多列铺开 ────────── */
+@media (min-width: 1024px) {
+
+  .wrap { max-width: 960px; padding-left: 32px; padding-right: 32px; }
+  .sec  { padding-top: 88px; padding-bottom: 88px; }
+
+  .sec-lead { max-width: 700px; }
+
+  .pagehead { padding-top: 40px; padding-bottom: 64px; }
+
+  #opening .open-body,
+  #opening .open-do,
+  #opening .pull { max-width: 700px; }
+
+  /* 置信度三级 → 3 列并排，本页最重要的对比 */
+  .grades {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: stretch;
+  }
+  .grade + .grade { margin-top: 0; }
+  .grade { padding: 22px 20px; }
+  .grade-head { flex-wrap: wrap; row-gap: 8px; }
+  .grade-name { font-size: 18px; line-height: 26px; }
+  .grade-pay  { margin-left: 10px; }
+
+  /* 交叉验证清单 → 2 列 */
+  #checks .feat {
+    display: grid; grid-template-columns: 1fr 1fr;
+    column-gap: 36px; row-gap: 12px;
+    align-items: start;
+  }
+  #checks .feat li + li { margin-top: 0; }
+
+  .steps { gap: 18px; }
+
+  .indep-list { gap: 14px; }
+  .src-list   { column-gap: 44px; }
+  .nots       { gap: 20px; }
+
+  .pay-hero { max-width: 720px; padding: 32px 30px; }
+  .note     { max-width: 720px; }
+
+  .endcta { padding-top: 88px; padding-bottom: 64px; }
+}
+
+/* ────────── 桌面 ≥1280px：容器 1120，正文上调一档 ────────── */
+@media (min-width: 1280px) {
+
+  .wrap { max-width: 1120px; padding-left: 40px; padding-right: 40px; }
+  .sec  { padding-top: 96px; padding-bottom: 96px; }
+
+  body { font-size: 16px; line-height: 28px; }
+
+  .sec-lead { font-size: 16px; line-height: 28px; max-width: 760px; }
+
+  .pagehead   { padding-top: 44px; padding-bottom: 72px; }
+  .head-sub   { font-size: 19px; line-height: 32px; }
+  .head-brand { font-size: 15px; }
+
+  /* 阅读距离更远，正文各档上调一级 */
+  #opening .open-body { font-size: 16px; line-height: 29px; max-width: 760px; }
+  #opening .open-do   { font-size: 15px; line-height: 26px; max-width: 760px; }
+  #opening .pull      { max-width: 760px; padding: 26px 28px; }
+  .pull-lead { font-size: 19px; line-height: 30px; }
+  .pull-body { font-size: 15px; line-height: 26px; }
+
+  .feat li      { font-size: 15px; line-height: 26px; }
+  .grade-row dd { font-size: 15px; line-height: 26px; }
+  .indep-txt    { font-size: 14px; line-height: 24px; }
+  .src-name     { font-size: 15px; line-height: 24px; }
+  .src-use      { font-size: 14px; line-height: 23px; }
+  .not-title    { font-size: 18px; line-height: 26px; }
+  .not-body     { font-size: 15px; line-height: 26px; }
+  .quote-block  { font-size: 14px; line-height: 24px; }
+  .tagset dd    { font-size: 14px; line-height: 24px; }
+  .step-title   { font-size: 17px; line-height: 26px; }
+  .step-body    { font-size: 15px; line-height: 26px; }
+  .pay-term dd  { font-size: 15px; line-height: 26px; }
+  .pay-why      { font-size: 15px; line-height: 26px; }
+  .pay-caution  { font-size: 14px; line-height: 24px; }
+  .pay-line     { font-size: 19px; line-height: 32px; }
+  .pay-fig .n   { font-size: 20px; line-height: 30px; }
+  .note         { font-size: 14px; line-height: 24px; max-width: 780px; }
+  .use-label    { font-size: 15px; line-height: 26px; }
+  .endcta-lead  { font-size: 16px; line-height: 28px; }
+
+  .card  { padding: 32px 30px; }
+  .grade { padding: 24px 22px; }
+  .grades { gap: 24px; }
+  .nots   { gap: 24px; }
+  /* 复核四步 → 横向一排，1120 容器下每列约 255px，中文不至于挤成窄条 */
+  .steps  { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+  .pay-hero { max-width: 760px; padding: 36px 34px; }
+
+  .endcta { padding-top: 96px; padding-bottom: 72px; }
+}
 </style>
 </head>
 <body>
@@ -459,7 +654,7 @@ ul, ol { list-style: none; }
 <main>
 
   <!-- ══════════ 开篇：这份报告是怎么做出来的（浅） ══════════ -->
-  <section class="sec">
+  <section class="sec" id="opening">
     <div class="wrap">
       <h2 class="sec-title">写在最前面：这份报告是怎么做出来的</h2>
       <p class="open-body">这份报告由<strong>一个人 + 一套固定流程 + 一组 AI 工具</strong>完成，最终由人逐条核验后签发。</p>

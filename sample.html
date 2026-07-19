@@ -336,7 +336,7 @@ ul, ol { list-style: none; }
 }
 .tag-ok    { background: var(--accent-bright); color: var(--ink-900); }
 .tag-one   { background: var(--amber-face); color: var(--amber-ink); border: 1px solid var(--amber-line); }
-.tag-none  { background: #EDF1F4; color: var(--ink-500); border: 1px solid var(--line); }
+.tag-none  { background: #EDF1F4; color: var(--ink-700); border: 1px solid var(--line); }
 .section-dark .tag-one { background: var(--amber-bg); color: var(--amber-text); border-color: rgba(255,194,102,0.45); }
 .section-dark .tag-none { background: rgba(255,255,255,0.06); color: var(--dark-sub); border-color: var(--dark-line); }
 
@@ -361,7 +361,7 @@ ul, ol { list-style: none; }
 .ev-time {
   flex: 0 0 auto;
   font-family: var(--font-mono);
-  font-size: 12px; line-height: 18px; color: var(--ink-500);
+  font-size: 12px; line-height: 18px; color: var(--ink-700);
 }
 .ev-list { margin-top: 12px; }
 .ev {
@@ -563,6 +563,180 @@ tr:last-child td { border-bottom: 0; }
 
 @media (min-width: 420px) {
   .pghead-title { font-size: 28px; line-height: 40px; }
+}
+
+/* 附录三张卡的正文：等价于原先的内联 font-size:13px;line-height:22px，
+   提出来只为让桌面断点能接管字号，移动端渲染结果与之前逐像素一致 */
+.std-body { font-size: 13px; line-height: 22px; }
+
+/* ════════════════════════════════════════════════════════════════
+   桌面增强（以下全部为 min-width 媒体查询）
+   移动端（< 768px）不进入任何一条规则，渲染结果与改版前完全一致。
+   ════════════════════════════════════════════════════════════════ */
+
+/* ────────── 平板 768+：容器 720，卡片组开始双列 ────────── */
+@media (min-width: 768px) {
+  body { font-size: 16px; line-height: 28px; }
+
+  .wrap { max-width: 720px; padding-left: 24px; padding-right: 24px; }
+  .sec { padding-top: 64px; padding-bottom: 64px; }
+  .pghead { padding-top: 40px; padding-bottom: 48px; }
+  .anchor { margin-top: -96px; padding-top: 96px; }
+
+  /* 目录条：不再横滚，居中换行 */
+  .toc-scroll {
+    max-width: 720px; padding: 12px 24px;
+    flex-wrap: wrap; justify-content: center;
+    overflow-x: visible; gap: 8px 10px;
+  }
+  .toc-scroll a { font-size: 14px; line-height: 22px; padding: 5px 14px; }
+
+  /* 标题：clamp 平滑放大，断点处不跳变 */
+  .pghead-title { font-size: clamp(28px, 3.4vw, 46px); line-height: 1.24; }
+  .sec-title    { font-size: clamp(24px, 2.3vw, 32px); line-height: 1.34; }
+  .ev-h         { font-size: 19px; line-height: 28px; }
+  .level-no     { font-size: clamp(34px, 3vw, 44px); line-height: 1.2; }
+
+  /* 正文上调一档 */
+  .pghead-sub, .sec-lead, .level-desc, .ev-fact, .crit li, .feat li, .cta-lead {
+    font-size: 15px; line-height: 26px;
+  }
+  .note, .demo-note p, .legend li, .nf-r, .nf-m, .tier-b, .blind, .std-body {
+    font-size: 14px; line-height: 24px;
+  }
+  .nf-q { font-size: 15px; line-height: 24px; }
+  .nf-close { font-size: 15px; line-height: 26px; padding: 18px; }
+  .meta-k, .meta-v { font-size: 14px; line-height: 24px; }
+  .meta-k { flex-basis: 104px; }
+  .tier-n { font-size: 17px; line-height: 26px; }
+  .tier-t { font-size: 13px; line-height: 22px; }
+  .footer { font-size: 13px; line-height: 22px; padding-top: 32px; padding-bottom: 32px; }
+
+  .card { padding: 22px; }
+  th, td { font-size: 14px; line-height: 22px; padding: 12px 16px; }
+
+  /* 判据 / 要点 / 没挖到 / 档位 → 双列 */
+  .crit, .feat, .nf-list, .tier-grid {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 16px;
+  }
+  .crit li + li, .feat li + li, .nf + .nf, .tier + .tier { margin-top: 0; }
+  .nf-list { gap: 18px 20px; }
+  .nf { padding: 18px; }
+  .tier-grid { gap: 16px; }
+
+  /* 演示声明块：限宽，长行读不动 */
+  .demo-note { max-width: 640px; }
+
+  /* CTA：按钮不再拉成整行 */
+  .cta-actions { max-width: 420px; }
+}
+
+/* ────────── 笔记本 1024+：容器 960，主体证据卡铺开 ────────── */
+@media (min-width: 1024px) {
+  .wrap { max-width: 960px; }
+  .toc-scroll { max-width: 960px; }
+  .sec { padding-top: 80px; padding-bottom: 80px; }
+  .pghead { padding-top: 48px; padding-bottom: 56px; }
+  .anchor { margin-top: -80px; padding-top: 80px; }
+
+  /* 页头双栏：左标题、右演示声明 */
+  .pghead > .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    column-gap: 48px; align-items: start;
+  }
+  .pghead-top { grid-column: 1 / -1; }
+  .pghead-tag, .pghead-title, .pghead-sub { grid-column: 1; }
+  .pghead-tag { justify-self: start; }
+  .pghead .demo-note {
+    grid-column: 2; grid-row: 2 / span 3;
+    max-width: none; margin-top: 24px;
+  }
+
+  /* 本页主体：证据条目卡 → 双列 */
+  .ev-list {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px; align-items: start;
+  }
+  .ev + .ev { margin-top: 0; }
+  .ev { padding: 16px 16px 14px; }
+  .ev-group { margin-top: 40px; }
+
+  /* 证据标准三张卡 → 三列 */
+  .std-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px; margin-top: 20px;
+  }
+  .std-grid .card { margin-top: 0 !important; }
+  .std-grid .card + .card { margin-top: 0; }
+
+  /* 图例三列 */
+  .legend { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .legend li { display: block; }
+  .legend li + li { margin-top: 0; }
+  .legend .tag { margin-bottom: 6px; }
+
+  /* 抬头元信息 → 双列 */
+  .meta-card {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 36px; row-gap: 10px;
+  }
+  .meta-card .meta-row {
+    margin-top: 0; padding-top: 10px; border-top: 1px solid var(--line);
+  }
+  .meta-card .meta-row:nth-child(-n+2) { padding-top: 0; border-top: 0; }
+
+  /* 表格此时已放得下，不必强制横滚 */
+  table { min-width: 0; }
+
+  .level-stats { gap: 16px; }
+  .stat { padding: 16px 14px; }
+  .stat-n { font-size: 22px; line-height: 30px; }
+
+  /* CTA 双栏：左说明、右动作 */
+  .cta > .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    column-gap: 48px; align-items: start;
+  }
+  .cta .sec-title, .cta .cta-lead, .cta .feat { grid-column: 1; }
+  .cta .feat { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .cta-actions { grid-column: 2; grid-row: 1 / span 3; max-width: none; margin-top: 0; }
+  .cta .demo-note { grid-column: 1 / -1; max-width: none; }
+}
+
+/* ────────── 桌面 1280+：容器 1120，字号再上调一档 ────────── */
+@media (min-width: 1280px) {
+  body { font-size: 17px; line-height: 30px; }
+
+  .wrap { max-width: 1120px; padding-left: 32px; padding-right: 32px; }
+  .toc-scroll { max-width: 1120px; padding-left: 32px; padding-right: 32px; }
+  .sec { padding-top: 96px; padding-bottom: 96px; }
+  .pghead { padding-top: 56px; padding-bottom: 64px; }
+
+  .pghead-sub, .sec-lead, .level-desc, .ev-fact, .crit li, .feat li, .cta-lead {
+    font-size: 16px; line-height: 28px;
+  }
+  .note, .demo-note p, .legend li, .nf-r, .nf-m, .tier-b, .blind, .std-body {
+    font-size: 15px; line-height: 26px;
+  }
+  .nf-q { font-size: 16px; line-height: 26px; }
+  .nf-close { font-size: 16px; line-height: 28px; }
+  .meta-k, .meta-v { font-size: 15px; line-height: 26px; }
+  .meta-k { flex-basis: 120px; }
+  .ev-h { font-size: 20px; line-height: 30px; }
+  .ev-fact .mask { padding: 0 5px; }
+  .ev-meta { font-size: 13px; line-height: 22px; }
+  .crit-ref, .tier-t { font-size: 13px; line-height: 22px; }
+  th, td { font-size: 15px; line-height: 24px; padding: 14px 18px; }
+  .footer { font-size: 13px; line-height: 22px; }
+
+  .ev-list { gap: 16px; }
+  .ev { padding: 18px 18px 16px; }
+  .nf-list { gap: 20px 24px; }
+  .card { padding: 26px; }
+  .level-card { padding: 26px 24px; }
 }
 </style>
 </head>
@@ -1207,7 +1381,7 @@ tr:last-child td { border-bottom: 0; }
       </div>
 
       <h3 class="ev-h" style="margin-top:32px">档位一览</h3>
-      <div style="margin-top:14px">
+      <div class="tier-grid" style="margin-top:14px">
         <div class="tier tier-free">
           <div class="tier-top">
             <p class="tier-n">主体暴露面自查（L0）</p>
@@ -1264,17 +1438,19 @@ tr:last-child td { border-bottom: 0; }
       <h2 class="sec-title" style="margin-top:6px">证据标准声明（简版）</h2>
       <p class="sec-lead">我们对每条结论的可靠性做分级，并且只对其中「已交叉验证」一级承担责任。</p>
 
-      <div class="card" style="margin-top:20px">
-        <p><span class="tag tag-ok">已交叉验证</span></p>
-        <p style="margin-top:8px;font-size:13px;line-height:22px">≥2 个相互独立的公开信源指向同一结论，且来源均可点开复核。<br><b style="color:var(--ink-900)">本报告中：第 1、2、4、13 条（共 4 条）</b><br>我们的责任：<b style="color:var(--ink-900)">承担责任</b>。付费档如出现关键主体识别错误，按合同全额退款并赔付合同额 1 倍，上限 ¥40,000。</p>
-      </div>
-      <div class="card">
-        <p><span class="tag tag-one">单源推定</span></p>
-        <p style="margin-top:8px;font-size:13px;line-height:22px">仅一个公开信源支持，或多个信源实为同一来源的重复。<br><b style="color:var(--ink-900)">本报告中：第 3、5、6、7、8–12、14、15 条（共 11 条）</b><br>我们的责任：仅作线索提供，不承担决策责任。</p>
-      </div>
-      <div class="card">
-        <p><span class="tag tag-none">未证实</span></p>
-        <p style="margin-top:8px;font-size:13px;line-height:22px">有线索但无法回源。<br><b style="color:var(--ink-900)">本报告中：无此类条目进入结论段</b><br>我们的责任：不写进结论，仅列入盲区章节。</p>
+      <div class="std-grid">
+        <div class="card" style="margin-top:20px">
+          <p><span class="tag tag-ok">已交叉验证</span></p>
+          <p class="std-body" style="margin-top:8px">≥2 个相互独立的公开信源指向同一结论，且来源均可点开复核。<br><b style="color:var(--ink-900)">本报告中：第 1、2、4、13 条（共 4 条）</b><br>我们的责任：<b style="color:var(--ink-900)">承担责任</b>。付费档如出现关键主体识别错误，按合同全额退款并赔付合同额 1 倍，上限 ¥40,000。</p>
+        </div>
+        <div class="card">
+          <p><span class="tag tag-one">单源推定</span></p>
+          <p class="std-body" style="margin-top:8px">仅一个公开信源支持，或多个信源实为同一来源的重复。<br><b style="color:var(--ink-900)">本报告中：第 3、5、6、7、8–12、14、15 条（共 11 条）</b><br>我们的责任：仅作线索提供，不承担决策责任。</p>
+        </div>
+        <div class="card">
+          <p><span class="tag tag-none">未证实</span></p>
+          <p class="std-body" style="margin-top:8px">有线索但无法回源。<br><b style="color:var(--ink-900)">本报告中：无此类条目进入结论段</b><br>我们的责任：不写进结论，仅列入盲区章节。</p>
+        </div>
       </div>
 
       <h3 class="ev-h" style="margin-top:32px">六条固定做法</h3>
@@ -1313,14 +1489,16 @@ tr:last-child td { border-bottom: 0; }
           <li>只接受店铺所有方本人提交自查；我们会先确认这一点</li>
         </ul>
 
-        <div class="wx-box" id="wxBox" role="button" tabindex="0" aria-label="复制微信号">
-          <p class="wx-label">微信：<span class="wx-num" id="wxNum">S_6999_S</span></p>
-          <span class="wx-hint" id="wxHint">（长按或点击复制）</span>
-        </div>
+        <div class="cta-actions">
+          <div class="wx-box" id="wxBox" role="button" tabindex="0" aria-label="复制微信号">
+            <p class="wx-label">微信：<span class="wx-num" id="wxNum">S_6999_S</span></p>
+            <span class="wx-hint" id="wxHint">（长按或点击复制）</span>
+          </div>
 
-        <a class="btn btn-b btn-xl" href="/#check">回主页提交免费自查 →</a>
-        <a class="btn btn-c" href="/" style="margin-top:12px;color:var(--dark-text);border-color:rgba(255,255,255,0.35)">返回 SWAGENT 主页</a>
-        <p class="cta-aux">L0 是免费档，交付内容与本样张一致；付费档的责任条款见第六节。</p>
+          <a class="btn btn-b btn-xl" href="/#check">回主页提交免费自查 →</a>
+          <a class="btn btn-c" href="/" style="margin-top:12px;color:var(--dark-text);border-color:rgba(255,255,255,0.35)">返回 SWAGENT 主页</a>
+          <p class="cta-aux">L0 是免费档，交付内容与本样张一致；付费档的责任条款见第六节。</p>
+        </div>
 
         <div class="demo-note demo-note-dark" style="margin-top:28px">
           <p class="demo-note-head"><span class="demo-mark">!</span>再次提示</p>

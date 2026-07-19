@@ -177,7 +177,7 @@ ul, ol { list-style: none; }
   font-size: 14px; line-height: 24px; color: var(--dark-sub);
 }
 .opening-why b { color: var(--accent-bright); font-weight: 700; }
-.opening-foot { margin-top: 18px; font-size: 13px; line-height: 22px; color: var(--ink-500); }
+.opening-foot { margin-top: 18px; font-size: 13px; line-height: 22px; color: var(--ink-700); }
 
 /* 键值行（承诺人 / 适用范围等） ══════════ */
 .kv { margin-top: 4px; }
@@ -319,7 +319,7 @@ ul, ol { list-style: none; }
   font-size: 12px; line-height: 20px; font-weight: 700; text-align: center;
 }
 .ord li b { color: var(--ink-900); font-weight: 600; }
-.after-note { margin-top: 14px; font-size: 13px; line-height: 22px; color: var(--ink-500); }
+.after-note { margin-top: 14px; font-size: 13px; line-height: 22px; color: var(--ink-700); }
 
 /* ══════════ 大白话 ══════════ */
 .plain-quote {
@@ -360,6 +360,170 @@ ul, ol { list-style: none; }
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   桌面端布局（纯增量：以下全部包在 min-width 媒体查询内，
+   375px 移动端渲染结果与改动前完全一致）
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ────────── 平板 ≥768px：容器 720，双列开始 ────────── */
+@media (min-width: 768px) {
+
+  /* 容器与节奏 */
+  .wrap { max-width: 720px; padding-left: 24px; padding-right: 24px; }
+  /* 条款正文限宽：40em ≈ 40 个汉字/行（≈80ch），长行严重伤害逐条阅读 */
+  .wrap.prose { max-width: calc(40em + 48px); }
+  .sec { padding-top: 80px; padding-bottom: 80px; }
+  .page-head { padding-top: 32px; padding-bottom: 64px; }
+
+  /* 标题：clamp 平滑放大，避免断点跳变 */
+  .doc-title   { margin-top: 18px; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.34; }
+  .doc-sub     { margin-top: 16px; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.6; }
+  .doc-meta    { margin-top: 22px; font-size: 14px; line-height: 24px; }
+  .sec-title   { font-size: clamp(24px, 2.2vw, 32px); line-height: 1.36; }
+  .sec-lead    { margin-top: 14px; font-size: 15px; line-height: 26px; }
+  .opening-head{ font-size: clamp(22px, 1.9vw, 26px); line-height: 1.5; }
+  .plain-quote { font-size: clamp(20px, 2vw, 26px); line-height: 1.62; padding-left: 20px; }
+  .solo-quote  { font-size: clamp(18px, 1.7vw, 22px); line-height: 1.6; }
+  .mini-title  { font-size: 18px; line-height: 26px; }
+  .exc-title   { font-size: 18px; line-height: 26px; }
+
+  /* 卡片内边距放大 */
+  .card         { padding: 28px 26px; }
+  .opening-card { padding: 28px 26px; }
+  .vow          { padding: 24px 22px; }
+  .solo-quote   { padding: 26px 24px; }
+  .right-item   { padding: 20px 18px; }
+
+  /* 键值行 → 标签/内容两栏，密度提升 */
+  .kv-row { display: grid; grid-template-columns: 132px 1fr; column-gap: 20px; align-items: baseline; }
+  .kv-row dt { padding-top: 2px; }
+  .kv-row dd { margin-top: 0; }
+
+  /* 「你可以行使的权利」→ 2 列 */
+  .rights {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 16px; align-items: start;
+  }
+  .right-item + .right-item { margin-top: 0; }
+  .rights .right-item:nth-child(5) { grid-column: 1 / -1; }
+
+  /* 期限 / 违反 → 2 列 */
+  .two-col {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 20px; align-items: start;
+  }
+  .two-col .card + .card { margin-top: 0; }
+
+  /* 例外情形：保持单列，加大留白 */
+  .card + .card { margin-top: 20px; }
+
+  /* CTA：两个按钮并排 */
+  .cta-actions { display: flex; justify-content: center; align-items: center; gap: 16px; }
+  /* 基础样式里 .btn-b 是 52px、.btn-ghost-dark 是 48px：竖排时看不出来，
+     并排后 4px 落差与宽度差会很明显。仅在桌面档统一为 52px 等高等宽。 */
+  .cta .btn { width: auto; min-width: 280px; height: 52px; padding: 0 28px; margin-top: 0; }
+  .cta .btn + .btn { margin-top: 0; }
+  .cta .cta-lead {
+    max-width: 62ch; margin-left: auto; margin-right: auto; text-align: center;
+    font-size: 16px; line-height: 28px;
+  }
+  .cta-aux { margin-top: 20px; font-size: 13px; line-height: 20px; }
+  /* 细则文字：压低视觉权重改用实色令牌 --ink-700，不用 opacity；
+     --ink-500 在 --bg-page 上仅 4.43:1，桌面正文尺寸下不达标 */
+  .opening-foot, .after-note, .solo-quote span { color: var(--ink-700); }
+
+  .exc-close { margin-top: 28px; font-size: 16px; line-height: 28px; }
+  .rights-foot { margin-top: 28px; font-size: 15px; line-height: 26px; }
+
+  .footer { padding-top: 32px; padding-bottom: calc(32px + env(safe-area-inset-bottom)); font-size: 13px; line-height: 22px; }
+  .footer .mono { font-size: 13px; }
+}
+
+/* ────────── 笔记本 ≥1024px：容器 960，三条核心承诺三列铺开 ────────── */
+@media (min-width: 1024px) {
+
+  .wrap { max-width: 960px; padding-left: 32px; padding-right: 32px; }
+  .wrap.prose { max-width: calc(40em + 64px); }
+  .sec { padding-top: 88px; padding-bottom: 88px; }
+  .page-head { padding-top: 36px; padding-bottom: 72px; }
+
+  /* 正文字号上调一档（桌面阅读距离更远） */
+  body { font-size: 16px; line-height: 28px; }
+  .sec-lead, .opening-body, .opening-why, .vow-line, .kv-row dd,
+  .exc-body, .right-how, .ord li, .plain-body, .feat li {
+    font-size: 15px; line-height: 26px;
+  }
+  .vow-note, .keep-why, .after-note, .opening-foot, .solo-quote span {
+    font-size: 14px; line-height: 24px;
+  }
+  .feat li { padding-left: 18px; }
+  .feat li::before { top: 10px; }
+  .ord li { padding-left: 34px; }
+
+  /* ★ 三条核心承诺 → 3 列并排（本页视觉锚点） */
+  .vows {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 20px; align-items: stretch;
+  }
+  .vow + .vow { margin-top: 0; }
+  .vow { display: flex; flex-direction: column; padding: 26px 22px; }
+  .vow-title { font-size: 22px; line-height: 30px; }
+  .vow .vow-note:last-child { margin-top: auto; }
+  .vow .keep { margin-top: 12px; }
+
+  /* 权利 2 列间距放大 */
+  .rights { gap: 20px; }
+  .two-col { gap: 24px; }
+
+  .card, .opening-card { padding: 30px 28px; }
+  .right-item { padding: 22px 20px; }
+  .right-name { font-size: 17px; line-height: 26px; }
+  .card + .card { margin-top: 24px; }
+  .two-col .card + .card { margin-top: 0; }
+  .right-item + .right-item { margin-top: 0; }
+
+  .kv-row { grid-template-columns: 148px 1fr; column-gap: 24px; }
+  .kv-row + .kv-row { margin-top: 20px; padding-top: 20px; }
+
+  .cta .btn { min-width: 280px; }
+}
+
+/* ────────── 桌面 ≥1280px：容器 1120，字号再上调一档 ────────── */
+@media (min-width: 1280px) {
+
+  .wrap { max-width: 1120px; padding-left: 40px; padding-right: 40px; }
+  .wrap.prose { max-width: calc(40em + 80px); }
+  .sec { padding-top: 96px; padding-bottom: 96px; }
+  .page-head { padding-top: 40px; padding-bottom: 84px; }
+
+  body { font-size: 17px; line-height: 30px; }
+  .sec-lead, .opening-body, .opening-why, .vow-line, .kv-row dd,
+  .exc-body, .right-how, .ord li, .plain-body, .feat li {
+    font-size: 16px; line-height: 28px;
+  }
+  .vow-note, .keep-why, .after-note, .opening-foot, .solo-quote span {
+    font-size: 15px; line-height: 26px;
+  }
+  .keep-name { font-size: 15px; line-height: 24px; }
+  .keep-term { font-size: 14px; line-height: 24px; }
+  .vow-title { font-size: 24px; line-height: 34px; }
+  .vow-no, .vow-sublabel, .kv-row dt { font-size: 13px; line-height: 20px; }
+  .doc-meta { font-size: 15px; line-height: 26px; }
+  .head-brand { font-size: 15px; line-height: 22px; }
+  .back-link { font-size: 14px; line-height: 22px; padding: 5px 16px; }
+  .cta-lead { font-size: 17px; line-height: 30px; }
+
+  .vows { gap: 24px; }
+  .vow { padding: 30px 26px; }
+  .card, .opening-card { padding: 34px 32px; }
+  .right-item { padding: 24px 22px; }
+  .rights { gap: 24px; }
+  .two-col { gap: 28px; }
+  .kv-row { grid-template-columns: 168px 1fr; column-gap: 28px; }
+
+  .footer { padding-top: 40px; padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+}
 </style>
 </head>
 <body>
@@ -382,7 +546,7 @@ ul, ol { list-style: none; }
 
   <!-- ══════════ 一、写在最前面 ══════════ -->
   <section class="sec">
-    <div class="wrap reveal">
+    <div class="wrap reveal prose">
       <h2 class="sec-title">写在最前面</h2>
       <p class="sec-lead">先说清楚这份文件的性质，再说条款。</p>
 
@@ -545,7 +709,7 @@ ul, ol { list-style: none; }
 
   <!-- ══════════ 五、例外情形（浅） ══════════ -->
   <section class="sec">
-    <div class="wrap reveal">
+    <div class="wrap reveal prose">
       <h2 class="sec-title">四、例外情形</h2>
       <p class="sec-lead">有两种情况本承诺不再适用。写在这里，是因为不写才是不诚实。</p>
 
@@ -647,7 +811,7 @@ ul, ol { list-style: none; }
 
   <!-- ══════════ 八、几句大白话（深） ══════════ -->
   <section class="sec section-dark">
-    <div class="wrap reveal">
+    <div class="wrap reveal prose">
       <h2 class="sec-title">七、几句大白话</h2>
       <p class="sec-lead">写这份东西不是为了显得正规，是因为这门生意的底层逻辑就在这里。</p>
 
@@ -664,8 +828,10 @@ ul, ol { list-style: none; }
     <div class="wrap reveal">
       <h2 class="sec-title">先看看我怎么查，再决定要不要托付</h2>
       <p class="cta-lead">这份承诺书从你提交自己的店铺名那一刻起就已经生效。免费的 L0 主体暴露面自查，查的是你自己：外人从你的店铺名出发，能挖到你哪几层。</p>
-      <a class="btn btn-b" href="/#check">回主页，免费查我自己的暴露面</a>
-      <a class="btn btn-ghost-dark" href="/">返回主页</a>
+      <div class="cta-actions">
+        <a class="btn btn-b" href="/#check">回主页，免费查我自己的暴露面</a>
+        <a class="btn btn-ghost-dark" href="/">返回主页</a>
+      </div>
       <p class="cta-aux">L0 自查同样适用本承诺 · 24 小时内出报告</p>
     </div>
 
