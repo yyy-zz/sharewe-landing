@@ -220,18 +220,22 @@ ul, ol { list-style: none; }
 .p-card .btn { margin-top: 16px; }
 
 /* 推荐档（深底反白 + accent 描边 + 浮起阴影，不放大） */
-.p-card-pro {
-  position: relative;
+.p-card.is-active {
   background: var(--dark-bg);
   border: 1.5px solid var(--accent-bright);
   box-shadow: var(--shadow-float);
 }
-.p-card-pro .p-name { color: var(--dark-text); }
-.p-card-pro .price-num { color: var(--accent-bright); }
-.p-card-pro .price-unit { color: var(--dark-sub); }
-.p-card-pro .feat li { color: var(--dark-text); }
-.p-card-pro .feat li::before { background: var(--accent-bright); }
-.p-card-pro .p-fit { color: var(--dark-sub); }
+.p-card.is-active .p-name { color: var(--dark-text); }
+.p-card.is-active .price-num { color: var(--accent-bright); }
+.p-card.is-active .price-unit { color: var(--dark-sub); }
+.p-card.is-active .feat li { color: var(--dark-text); }
+.p-card.is-active .feat li::before { background: var(--accent-bright); }
+.p-card.is-active .p-fit { color: var(--dark-sub); }
+.p-card { position: relative; cursor: pointer; transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+.p-card:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 3px; }
+.p-card.is-active .btn-c { border-color: var(--accent-bright); background: var(--accent-bright); color: var(--ink-900); font-weight: 700; }
+.p-card.is-active .p-fit strong { color: var(--dark-text); }
+.p-hint { margin-top: 10px; font-size: 13px; line-height: 22px; color: var(--ink-700); }
 .p-badge {
   position: absolute; top: -10px; right: 16px;
   background: var(--accent-bright); color: var(--ink-900);
@@ -601,7 +605,7 @@ ul, ol { list-style: none; }
   .btn-b:hover, .btn-d:hover { background: var(--accent-press); }
   .btn-c:hover { background: rgba(12,26,38,0.06); }
   .card:hover  { border-color: var(--dark-sub); }
-  .p-card-pro:hover { border-color: var(--accent-bright); }
+  .p-card:hover { border-color: var(--accent-bright); transform: translateY(-2px); box-shadow: var(--shadow-float); }
 
   .qr-img { width: 180px; height: 180px; }
   .sheet  { max-width: 520px; }
@@ -720,10 +724,11 @@ ul, ol { list-style: none; }
   <section class="sec pricing" id="pricing">
     <div class="wrap reveal">
       <h2 class="sec-title">四档报价，明码标价</h2>
+      <p class="p-hint">四档都能点，点哪档哪档展开高亮——没有默认锁死的「推荐档」。</p>
       <p class="price-lead">同样的活，工商调查公司或律所报 ¥8,000–30,000、要 2–3 周，而且不懂亚马逊那一半。下面的价格和工期就是照这个差额定的。聊完给准数，报价单写清总价、付款节奏、改稿次数。</p>
-      <div class="price-cards">
+      <div class="price-cards" id="priceCards" role="radiogroup" aria-label="四档报价，选一档查看">
 
-        <article class="card p-card">
+        <article class="card p-card" role="radio" tabindex="-1" aria-checked="false" data-tier="L1 · 首单速查" data-price="299 元">
           <h3 class="p-name">L1 · 首单速查</h3>
           <p class="p-price"><span class="price-num">299</span><span class="price-unit">元</span></p>
           <ul class="feat">
@@ -736,7 +741,7 @@ ul, ol { list-style: none; }
           <a class="btn btn-c js-cta" href="#weixin">问这一档</a>
         </article>
 
-        <article class="card p-card p-card-pro">
+        <article class="card p-card is-active" role="radio" tabindex="0" aria-checked="true" data-tier="L2 · 单主体深度穿透" data-price="3,800 元">
           <span class="p-badge">主营</span>
           <h3 class="p-name">L2 · 单主体深度穿透</h3>
           <p class="p-price"><span class="price-num">3,800</span><span class="price-unit">元</span></p>
@@ -751,10 +756,10 @@ ul, ol { list-style: none; }
             <li><b>带赔付条款</b>（见下一节）</li>
           </ul>
           <p class="p-fit"><strong>适合：</strong>被起诉了要搞清楚同案被告是谁、盯一个具体竞品、评估一个具体供应商。</p>
-          <a class="btn btn-d js-cta" href="#weixin">问这一档</a>
+          <a class="btn btn-c js-cta" href="#weixin">问这一档</a>
         </article>
 
-        <article class="card p-card">
+        <article class="card p-card" role="radio" tabindex="-1" aria-checked="false" data-tier="L2+ · 含关联企业网络" data-price="7,800 元">
           <h3 class="p-name">L2+ · 含关联企业网络</h3>
           <p class="p-price"><span class="price-num">7,800</span><span class="price-unit">元</span></p>
           <ul class="feat">
@@ -768,7 +773,7 @@ ul, ol { list-style: none; }
           <a class="btn btn-c js-cta" href="#weixin">问这一档</a>
         </article>
 
-        <article class="card p-card">
+        <article class="card p-card" role="radio" tabindex="-1" aria-checked="false" data-tier="L3 · 数字资产交付" data-price="6,800 元起">
           <h3 class="p-name">L3 · 数字资产交付</h3>
           <p class="p-price"><span class="price-num">6,800</span><span class="price-unit">元起</span></p>
           <ul class="feat">
@@ -1094,11 +1099,52 @@ ul, ol { list-style: none; }
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); mainCopy(); }
   });
 
+  /* ── 四档报价：单选组，点哪张哪张亮（不锁死任何一档） ── */
+  var priceCards = d.getElementById('priceCards');
+  var tierCards = priceCards ? priceCards.querySelectorAll('.p-card') : [];
+  var sheetLead = d.querySelector('.sheet-lead');
+  var LEAD_DEFAULT = sheetLead ? sheetLead.textContent : '';
+  var pickedTier = null;
+
+  function selectTier(card, focusIt) {
+    for (var i = 0; i < tierCards.length; i++) {
+      var on = tierCards[i] === card;
+      tierCards[i].classList.toggle('is-active', on);
+      tierCards[i].setAttribute('aria-checked', on ? 'true' : 'false');
+      tierCards[i].tabIndex = on ? 0 : -1;
+    }
+    pickedTier = card.getAttribute('data-tier');
+    if (focusIt) card.focus();
+  }
+
+  for (var t = 0; t < tierCards.length; t++) {
+    (function (card) {
+      card.addEventListener('click', function () { selectTier(card, false); });
+      card.addEventListener('keydown', function (e) {
+        var k = e.key;
+        if (k === ' ' || k === 'Enter') { e.preventDefault(); selectTier(card, true); return; }
+        var dir = (k === 'ArrowRight' || k === 'ArrowDown') ? 1 : (k === 'ArrowLeft' || k === 'ArrowUp') ? -1 : 0;
+        if (!dir) return;
+        e.preventDefault();
+        var list = [].slice.call(tierCards);
+        var next = list[(list.indexOf(card) + dir + list.length) % list.length];
+        selectTier(next, true);
+      });
+    })(tierCards[t]);
+  }
+
   /* ── 全站 CTA：统一打开抽屉（无 JS 时退化为 #weixin 锚点） ── */
   var ctas = d.querySelectorAll('.js-cta');
   for (var i = 0; i < ctas.length; i++) {
     ctas[i].addEventListener('click', function (e) {
       e.preventDefault();
+      var inCard = this.closest ? this.closest('.p-card') : null;
+      if (inCard) selectTier(inCard, false);
+      if (sheetLead) {
+        sheetLead.textContent = inCard
+          ? '你看的是「' + inCard.getAttribute('data-tier') + '」（' + inCard.getAttribute('data-price') + '）。加微信直接说这一档，我把交付清单和工期发你。'
+          : LEAD_DEFAULT;
+      }
       openSheet();
     });
   }
