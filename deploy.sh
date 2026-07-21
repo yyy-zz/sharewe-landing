@@ -12,7 +12,7 @@ URL="https://swagent.cn/"
 GATE="$(cd "$(dirname "$0")" && pwd)/ops/check-words.sh"
 
 # 要部署的页面（新增页面加到这里）
-PAGES=(index.html standard.html privacy.html sample.html)
+PAGES=(index.html standard.html privacy.html sample.html sample-anker.html)
 
 if [[ "${1:-}" == "rollback" ]]; then
   ssh "$HOST" "[ -d $BACKUP ] && cp -f $BACKUP/*.html $DEST/ && echo '已整站回滚到上一版' || { echo '没有可回滚的备份'; exit 1; }"

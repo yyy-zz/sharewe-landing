@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="format-detection" content="telephone=no">
+<title>安克创新 公开主体情报报告 · 深度演示样张｜SWAGENT</title>
+<meta name="description" content="SWAGENT 深度穿透（L2）演示样张。标的为依法公开披露的上市公司安克创新（深交所创业板 300866），仅用公开信息、只到企业主体层，展示报告的证据链格式、置信度分级、协作留痕与交付边界。">
+<meta name="robots" content="index,follow">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ══════════ 设计令牌（与首页/样张同源，勿改） ══════════ */
+:root {
+  color-scheme: light;
+
+  --bg-page:      #F5F7F9;
+  --bg-card:      #FFFFFF;
+  --ink-900:      #0C1A26;
+  --ink-700:      #33424F;
+  --ink-500:      #66757F;
+  --line:         #E3E9EE;
+
+  --dark-bg:      #0C1A26;
+  --dark-card:    #142838;
+  --dark-text:    #F2F6F9;
+  --dark-sub:     #A8B8C4;
+  --dark-faint:   #7E93A3;
+  --dark-line:    rgba(255,255,255,0.08);
+
+  --accent-bright: #27D3A2;
+  --accent-deep:   #0B7A5A;
+  --accent-press:  #1FBF92;
+
+  --amber-text:   #FFC266;
+  --amber-bg:     rgba(255,194,102,0.12);
+  --amber-ink:    #8A5A00;
+  --amber-face:   #FFF6E6;
+  --amber-line:   #F0C67A;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "PingFang SC",
+               "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC",
+               "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
+               "Liberation Mono", "Courier New", monospace;
+
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-7: 32px; --sp-8: 40px;
+  --sp-9: 48px; --sp-10: 56px;
+
+  --r-card: 16px; --r-btn: 12px; --r-sm: 12px; --r-pill: 999px;
+
+  --shadow-card:  0 1px 2px rgba(12,26,38,0.04);
+  --shadow-float: 0 8px 24px rgba(12,26,38,0.18);
+
+  --z-sticky: 40;
+}
+
+/* ══════════ 基础 ══════════ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 26px;
+  color: var(--ink-700);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+[hidden] { display: none !important; }
+
+:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 2px; }
+.section-dark :focus-visible { outline-color: var(--accent-bright); }
+
+.wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.sec { padding-top: 48px; padding-bottom: 48px; background: var(--bg-page); }
+
+.section-dark {
+  background-color: var(--dark-bg);
+  background-image:
+    repeating-linear-gradient(0deg,  rgba(255,255,255,0.035) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 24px);
+}
+/* 嵌套在深色区块内的 .sec 不得用浅底覆盖父级深底 */
+.section-dark .sec { background: transparent; }
+
+.sec-title {
+  font-size: 22px; line-height: 30px; font-weight: 700;
+  color: var(--ink-900);
+}
+.section-dark .sec-title { color: var(--dark-text); }
+.sec-kicker {
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  color: var(--accent-deep);
+}
+.section-dark .sec-kicker { color: var(--accent-bright); }
+.sec-lead { margin-top: 12px; font-size: 14px; line-height: 24px; color: var(--ink-700); }
+.section-dark .sec-lead { color: var(--dark-sub); }
+
+.mono { font-family: var(--font-mono); letter-spacing: 0.05em; }
+
+/* URL / 代码：本页所有来源链接以不可点击的纯文本呈现 */
+code, .url {
+  font-family: var(--font-mono);
+  font-size: 0.86em; line-height: 1.5;
+  background: #EDF1F4;
+  color: var(--ink-700);
+  border-radius: 4px;
+  padding: 1px 5px;
+  word-break: break-all;
+}
+.section-dark code, .section-dark .url { background: rgba(255,255,255,0.08); color: var(--dark-sub); }
+td code, .ev-meta code { font-size: 0.82em; }
+
+/* 通用锚点偏移（顶部有 sticky 目录条） */
+.anchor { display: block; height: 1px; margin-top: -56px; padding-top: 56px; visibility: hidden; }
+
+/* ══════════ 按钮（沿用首页 A/B/C/D） ══════════ */
+.btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  border: 0; border-radius: var(--r-btn);
+  font-family: var(--font-sans); font-size: 16px; font-weight: 600;
+  cursor: pointer;
+  transition: transform 80ms ease, background-color 80ms ease;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.btn-a { height: 52px; background: var(--ink-900); color: #FFFFFF; }
+.btn-a:active { transform: scale(0.98); background: #16283A; }
+.btn-b { height: 52px; background: var(--accent-bright); color: var(--ink-900); font-weight: 700; }
+.btn-b:active { transform: scale(0.98); background: var(--accent-press); }
+.btn-c {
+  height: 48px; background: transparent;
+  border: 1.5px solid var(--ink-900); color: var(--ink-900);
+}
+.btn-c:active { transform: scale(0.98); background: rgba(12,26,38,0.06); }
+.btn-xl { height: 56px; font-size: 17px; }
+
+/* ══════════ 白卡 ══════════ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 20px 18px;
+}
+.card + .card { margin-top: 14px; }
+
+/* ══════════ 页头 ══════════ */
+.pghead { padding-top: 28px; padding-bottom: 32px; }
+.pghead-top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+}
+.pghead-brand { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--dark-sub); }
+.pghead-brand .mono { font-weight: 700; color: var(--dark-text); }
+.backlink {
+  flex: 0 0 auto;
+  font-size: 13px; line-height: 20px; font-weight: 600;
+  color: var(--accent-bright);
+  border: 1px solid rgba(39,211,162,0.4);
+  border-radius: var(--r-pill);
+  padding: 4px 12px;
+}
+.backlink:active { background: rgba(39,211,162,0.12); }
+.pghead-tag {
+  display: inline-block; margin-top: 24px;
+  background: var(--accent-bright); color: var(--ink-900);
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 4px 10px; border-radius: var(--r-pill);
+}
+.pghead-title {
+  margin-top: 12px;
+  font-size: 26px; line-height: 36px; font-weight: 700;
+  color: var(--dark-text);
+}
+.pghead-title .em { color: var(--accent-bright); }
+.pghead-sub { margin-top: 12px; font-size: 14px; line-height: 24px; color: var(--dark-sub); }
+
+/* ══════════ 演示声明（醒目警示块） ══════════ */
+.demo-note {
+  margin-top: 24px;
+  background: var(--amber-face);
+  border: 2px solid var(--amber-line);
+  border-radius: var(--r-card);
+  padding: 16px 16px 18px;
+}
+.demo-note-head {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 16px; line-height: 24px; font-weight: 700;
+  color: var(--amber-ink);
+}
+.demo-mark {
+  flex: 0 0 auto;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--amber-ink); color: var(--amber-face);
+  font-size: 14px; line-height: 22px; font-weight: 700;
+  text-align: center;
+}
+.demo-note p { margin-top: 10px; font-size: 13px; line-height: 22px; color: #6B4A0E; }
+.demo-note b { font-weight: 700; color: var(--amber-ink); }
+.demo-note .mono { font-weight: 700; }
+
+/* 页尾再次提示（深底版） */
+.demo-note-dark {
+  background: var(--amber-bg);
+  border: 1px solid rgba(255,194,102,0.5);
+}
+.demo-note-dark .demo-note-head { color: var(--amber-text); }
+.demo-note-dark p { color: var(--dark-sub); }
+.demo-note-dark b { color: var(--amber-text); }
+.demo-note-dark .mask,
+.demo-note-dark .mono { color: var(--amber-text); }
+.demo-note-dark .demo-mark { background: var(--amber-text); color: var(--dark-bg); }
+
+/* ══════════ 目录 ══════════ */
+.toc-bar {
+  position: sticky; top: 0; z-index: var(--z-sticky);
+  background: rgba(245,247,249,0.94);
+  border-bottom: 1px solid var(--line);
+}
+.toc-scroll {
+  display: flex; gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.toc-scroll a {
+  flex: 0 0 auto;
+  font-size: 13px; line-height: 20px; font-weight: 600;
+  color: var(--ink-700);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+.toc-scroll a:active { background: var(--bg-page); }
+
+/* ══════════ 抬头元信息 ══════════ */
+.meta-card { margin-top: 0; }
+.meta-row { display: flex; gap: 12px; }
+.meta-row + .meta-row { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+.meta-k {
+  flex: 0 0 96px;
+  font-size: 13px; line-height: 22px; color: var(--ink-500);
+}
+.meta-v { flex: 1 1 auto; font-size: 13px; line-height: 22px; color: var(--ink-900); font-weight: 600; }
+.meta-v .mono { font-weight: 700; }
+
+/* ══════════ 等级卡 ══════════ */
+.level-card {
+  margin-top: 20px;
+  background: var(--dark-bg);
+  border: 1.5px solid var(--accent-bright);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-float);
+  padding: 22px 18px;
+}
+.level-no {
+  font-family: var(--font-mono);
+  font-size: 34px; line-height: 40px; font-weight: 700;
+  color: var(--accent-bright);
+}
+.level-name { margin-top: 4px; font-size: 18px; line-height: 26px; font-weight: 700; color: var(--dark-text); }
+.level-desc { margin-top: 10px; font-size: 14px; line-height: 24px; color: var(--dark-sub); }
+.level-desc b { color: var(--dark-text); font-weight: 600; }
+.level-stats { display: flex; gap: 12px; margin-top: 18px; }
+.stat {
+  flex: 1 1 0;
+  background: var(--dark-card);
+  border-radius: 12px;
+  padding: 12px 10px;
+  text-align: center;
+}
+.stat-n {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 20px; line-height: 28px; font-weight: 700;
+  color: var(--accent-bright);
+}
+.stat-l { margin-top: 2px; font-size: 12px; line-height: 18px; color: var(--dark-sub); }
+
+/* 判据清单 */
+.crit { margin-top: 20px; }
+.crit li {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 14px; line-height: 24px; color: var(--ink-700);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.crit li + li { margin-top: 10px; }
+.crit-mark {
+  flex: 0 0 auto;
+  width: 20px; height: 20px; margin-top: 2px;
+  border-radius: 50%;
+  background: var(--accent-deep); color: #FFFFFF;
+  font-size: 12px; line-height: 20px; font-weight: 700;
+  text-align: center;
+}
+.crit-txt { flex: 1 1 auto; }
+.crit-ref {
+  display: block; margin-top: 2px;
+  font-size: 12px; line-height: 18px; color: var(--ink-500);
+}
+
+/* ══════════ 旁注引用块 ══════════ */
+.note {
+  margin-top: 16px;
+  border-left: 3px solid var(--accent-deep);
+  background: rgba(11,122,90,0.05);
+  border-radius: 0 12px 12px 0;
+  padding: 12px 14px;
+  font-size: 13px; line-height: 22px; color: var(--ink-700);
+}
+.note + .note { margin-top: 12px; }
+.note b { color: var(--ink-900); font-weight: 700; }
+.note-t {
+  display: block; margin-bottom: 4px;
+  font-size: 13px; line-height: 20px; font-weight: 700; color: var(--ink-900);
+}
+.section-dark .note {
+  border-left-color: var(--accent-bright);
+  background: rgba(255,255,255,0.04);
+  color: var(--dark-sub);
+}
+.section-dark .note b, .section-dark .note-t { color: var(--dark-text); }
+
+/* 琥珀旁注（合规/坑，浅底） */
+.note-amber {
+  border-left-color: var(--amber-line);
+  background: var(--amber-face);
+  color: #6B4A0E;
+}
+.note-amber b, .note-amber .note-t { color: var(--amber-ink); }
+
+/* ══════════ 置信度标签 ══════════ */
+.tag {
+  display: inline-block;
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 2px 10px; border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+.tag-ok    { background: var(--accent-bright); color: var(--ink-900); }
+.tag-one   { background: var(--amber-face); color: var(--amber-ink); border: 1px solid var(--amber-line); }
+.tag-none  { background: #EDF1F4; color: var(--ink-700); border: 1px solid var(--line); }
+.section-dark .tag-one { background: var(--amber-bg); color: var(--amber-text); border-color: rgba(255,194,102,0.45); }
+.section-dark .tag-none { background: rgba(255,255,255,0.06); color: var(--dark-sub); border-color: var(--dark-line); }
+
+/* 图例 */
+.legend { margin-top: 16px; }
+.legend li {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 13px; line-height: 22px; color: var(--ink-700);
+}
+.legend li + li { margin-top: 8px; }
+.legend .tag { flex: 0 0 auto; margin-top: 1px; }
+
+/* ══════════ 证据条目卡 ══════════ */
+.ev-group { margin-top: 24px; }
+.ev-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 10px;
+}
+.ev-h {
+  font-size: 17px; line-height: 26px; font-weight: 700; color: var(--ink-900);
+}
+.section-dark .ev-h { color: var(--dark-text); }
+.ev-time {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 12px; line-height: 18px; color: var(--ink-700);
+}
+
+/* ══════════ 「没能挖到」区块 ══════════ */
+.nf-badge {
+  display: inline-block;
+  background: var(--accent-bright); color: var(--ink-900);
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  padding: 4px 10px; border-radius: var(--r-pill);
+}
+.nf-list { margin-top: 20px; }
+.nf {
+  background: var(--dark-card);
+  border: 1px solid var(--dark-line);
+  border-radius: 12px;
+  padding: 14px;
+}
+.nf + .nf { margin-top: 12px; }
+.nf-q { font-size: 14px; line-height: 22px; font-weight: 600; color: var(--dark-text); }
+.nf-r { margin-top: 8px; font-size: 13px; line-height: 22px; color: var(--dark-sub); }
+.nf-r b { color: var(--accent-bright); font-weight: 700; }
+.nf-m {
+  margin-top: 8px; padding-top: 8px;
+  border-top: 1px dashed var(--dark-line);
+  font-size: 13px; line-height: 22px; color: var(--dark-sub);
+}
+.nf-m span { color: var(--accent-bright); font-weight: 600; }
+.nf-close {
+  margin-top: 20px;
+  border: 1px solid var(--accent-bright);
+  border-radius: 12px;
+  padding: 16px 14px;
+  font-size: 14px; line-height: 24px; color: var(--dark-text);
+}
+.nf-close b { color: var(--accent-bright); font-weight: 700; }
+.blind {
+  margin-top: 14px;
+  font-size: 13px; line-height: 22px; color: var(--dark-faint);
+}
+.blind b { color: var(--dark-sub); font-weight: 600; }
+
+/* ══════════ 协作留痕：接力棒 ══════════ */
+.relay-no {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px; line-height: 18px; font-weight: 700;
+  color: var(--dark-bg);
+  background: var(--accent-bright);
+  border-radius: var(--r-pill);
+  padding: 2px 10px;
+}
+.nf-hand {
+  margin-top: 10px; padding-top: 8px;
+  border-top: 1px dashed var(--dark-line);
+  font-size: 13px; line-height: 22px; color: var(--dark-sub);
+}
+.nf-hand span { color: var(--accent-bright); font-weight: 600; }
+.gate-title { margin-top: 28px; font-size: 15px; line-height: 24px; font-weight: 700; color: var(--dark-text); }
+
+/* ══════════ 通用列表 ══════════ */
+.feat { margin-top: 12px; }
+.feat li {
+  position: relative; padding-left: 16px;
+  font-size: 14px; line-height: 24px; color: var(--ink-700);
+}
+.feat li + li { margin-top: 10px; }
+.feat li::before {
+  content: ""; position: absolute; left: 0; top: 9px;
+  width: 6px; height: 6px; border-radius: 1px;
+  background: var(--accent-deep);
+}
+.section-dark .feat li { color: var(--dark-sub); }
+.section-dark .feat li::before { background: var(--accent-bright); }
+
+/* 编号清单（复核指引） */
+.steps { margin-top: 16px; counter-reset: step; }
+.steps li {
+  position: relative; padding-left: 40px;
+  font-size: 14px; line-height: 24px; color: var(--ink-700);
+}
+.steps li + li { margin-top: 14px; }
+.steps li::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; left: 0; top: 1px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent-deep); color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 13px; line-height: 26px; font-weight: 700;
+  text-align: center;
+}
+.steps b { color: var(--ink-900); font-weight: 700; }
+
+/* ══════════ 表格（横向可滚动） ══════════ */
+.tbl-scroll {
+  margin-top: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-card);
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 560px;
+}
+th, td {
+  text-align: left;
+  font-size: 13px; line-height: 20px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+th { font-weight: 700; color: var(--ink-900); background: #EFF3F6; white-space: nowrap; }
+td { color: var(--ink-700); }
+td b { color: var(--ink-900); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+.src-name { color: var(--ink-700); }
+.tbl-narrow table { min-width: 0; }
+
+/* ══════════ 档位 ══════════ */
+.tier {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: 18px;
+}
+.tier + .tier { margin-top: 14px; }
+.tier-free { border: 1.5px solid var(--accent-deep); }
+.tier-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.tier-n { font-size: 16px; line-height: 24px; font-weight: 700; color: var(--ink-900); }
+.tier-p {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 22px; line-height: 30px; font-weight: 700;
+  color: var(--ink-900);
+}
+.tier-free .tier-p { color: var(--accent-deep); }
+.tier-b { margin-top: 8px; font-size: 13px; line-height: 22px; color: var(--ink-700); }
+.tier-t { margin-top: 8px; font-size: 12px; line-height: 20px; color: var(--ink-500); }
+
+/* ══════════ 终 CTA ══════════ */
+.cta-lead { margin-top: 14px; font-size: 15px; line-height: 26px; color: var(--dark-sub); }
+.cta-lead b { color: var(--dark-text); font-weight: 700; }
+.wx-box {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  background: var(--dark-card);
+  border: 1px dashed rgba(255,255,255,0.25);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+.wx-label { font-size: 18px; line-height: 26px; font-weight: 700; color: var(--dark-text); }
+.wx-num {
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  font-size: 18px; line-height: 26px; font-weight: 700;
+  color: var(--dark-text);
+  -webkit-user-select: all; user-select: all;
+}
+.wx-hint { display: block; margin-top: 2px; font-size: 12px; line-height: 18px; color: var(--dark-faint); }
+.wx-hint.ok { color: var(--accent-bright); }
+.cta .btn { margin-top: 16px; }
+.cta-aux {
+  margin-top: 12px;
+  font-size: 12px; line-height: 20px; color: var(--dark-faint);
+  text-align: center;
+}
+
+/* ══════════ 页脚 ══════════ */
+.footer {
+  border-top: 1px solid var(--dark-line);
+  padding: 24px 20px 24px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  text-align: center;
+  font-size: 12px; line-height: 20px; color: var(--dark-faint);
+}
+.footer p + p { margin-top: 6px; }
+.footer .mono { font-size: 12px; }
+.footer a { color: var(--accent-bright); font-weight: 600; }
+
+/* ══════════ 动效 ══════════ */
+.js .reveal { opacity: 0; transform: translateY(16px); }
+.js .reveal.is-visible {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+@media (min-width: 420px) {
+  .pghead-title { font-size: 28px; line-height: 40px; }
+}
+
+.std-body { font-size: 13px; line-height: 22px; }
+
+/* ════════════════════════════════════════════════════════════════
+   桌面增强（以下全部为 min-width 媒体查询）
+   移动端（< 768px）不进入任何一条规则。
+   ════════════════════════════════════════════════════════════════ */
+
+/* ────────── 平板 768+：容器 720，卡片组开始双列 ────────── */
+@media (min-width: 768px) {
+  body { font-size: 16px; line-height: 28px; }
+
+  .wrap { max-width: 720px; padding-left: 24px; padding-right: 24px; }
+  .sec { padding-top: 64px; padding-bottom: 64px; }
+  .pghead { padding-top: 40px; padding-bottom: 48px; }
+  .anchor { margin-top: -96px; padding-top: 96px; }
+
+  .toc-scroll {
+    max-width: 720px; padding: 12px 24px;
+    flex-wrap: wrap; justify-content: center;
+    overflow-x: visible; gap: 8px 10px;
+  }
+  .toc-scroll a { font-size: 14px; line-height: 22px; padding: 5px 14px; }
+
+  .pghead-title { font-size: clamp(28px, 3.4vw, 46px); line-height: 1.24; }
+  .sec-title    { font-size: clamp(24px, 2.3vw, 32px); line-height: 1.34; }
+  .ev-h         { font-size: 19px; line-height: 28px; }
+  .level-no     { font-size: clamp(34px, 3vw, 44px); line-height: 1.2; }
+
+  .pghead-sub, .sec-lead, .level-desc, .crit li, .feat li, .steps li, .cta-lead {
+    font-size: 15px; line-height: 26px;
+  }
+  .note, .demo-note p, .legend li, .nf-r, .nf-m, .nf-hand, .tier-b, .blind, .std-body {
+    font-size: 14px; line-height: 24px;
+  }
+  .nf-q { font-size: 15px; line-height: 24px; }
+  .nf-close { font-size: 15px; line-height: 26px; padding: 18px; }
+  .meta-k, .meta-v { font-size: 14px; line-height: 24px; }
+  .meta-k { flex-basis: 116px; }
+  .tier-n { font-size: 17px; line-height: 26px; }
+  .tier-t { font-size: 13px; line-height: 22px; }
+  .footer { font-size: 13px; line-height: 22px; padding-top: 32px; padding-bottom: 32px; }
+
+  .card { padding: 22px; }
+  th, td { font-size: 14px; line-height: 22px; padding: 12px 16px; }
+
+  .crit, .feat, .nf-list, .tier-grid {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 16px;
+  }
+  .crit li + li, .feat li + li, .nf + .nf, .tier + .tier { margin-top: 0; }
+  .nf-list { gap: 18px 20px; }
+  .nf { padding: 18px; }
+  .tier-grid { gap: 16px; }
+  .steps { display: block; }
+
+  .demo-note { max-width: 640px; }
+  .cta-actions { max-width: 420px; }
+}
+
+/* ────────── 笔记本 1024+：容器 960 ────────── */
+@media (min-width: 1024px) {
+  .wrap { max-width: 960px; }
+  .toc-scroll { max-width: 960px; }
+  .sec { padding-top: 80px; padding-bottom: 80px; }
+  .pghead { padding-top: 48px; padding-bottom: 56px; }
+  .anchor { margin-top: -80px; padding-top: 80px; }
+
+  /* 页头双栏：左标题、右演示声明 */
+  .pghead > .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    column-gap: 48px; align-items: start;
+  }
+  .pghead-top { grid-column: 1 / -1; }
+  .pghead-tag, .pghead-title, .pghead-sub { grid-column: 1; }
+  .pghead-tag { justify-self: start; }
+  .pghead .demo-note {
+    grid-column: 2; grid-row: 2 / span 3;
+    max-width: none; margin-top: 24px;
+  }
+
+  /* 证据标准三张卡 → 三列 */
+  .std-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px; margin-top: 20px;
+  }
+  .std-grid .card { margin-top: 0 !important; }
+  .std-grid .card + .card { margin-top: 0; }
+
+  /* 图例三列 */
+  .legend { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .legend li { display: block; }
+  .legend li + li { margin-top: 0; }
+  .legend .tag { margin-bottom: 6px; }
+
+  /* 抬头元信息 → 双列 */
+  .meta-card {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 36px; row-gap: 10px;
+  }
+  .meta-card .meta-row {
+    margin-top: 0; padding-top: 10px; border-top: 1px solid var(--line);
+  }
+  .meta-card .meta-row:nth-child(-n+2) { padding-top: 0; border-top: 0; }
+
+  /* 协作接力四棒 → 双列（更醒目） */
+  .relay-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .relay-list .nf + .nf { margin-top: 0; }
+
+  /* 表格放得下，取消强制横滚 */
+  table { min-width: 0; }
+
+  .level-stats { gap: 16px; }
+  .stat { padding: 16px 14px; }
+  .stat-n { font-size: 22px; line-height: 30px; }
+
+  /* CTA 双栏：左说明、右动作 */
+  .cta > .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    column-gap: 48px; align-items: start;
+  }
+  .cta .sec-title, .cta .cta-lead, .cta .feat { grid-column: 1; }
+  .cta .feat { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .cta-actions { grid-column: 2; grid-row: 1 / span 3; max-width: none; margin-top: 0; }
+  .cta .demo-note { grid-column: 1 / -1; max-width: none; }
+}
+
+/* ────────── 桌面 1280+：容器 1120 ────────── */
+@media (min-width: 1280px) {
+  body { font-size: 17px; line-height: 30px; }
+
+  .wrap { max-width: 1120px; padding-left: 32px; padding-right: 32px; }
+  .toc-scroll { max-width: 1120px; padding-left: 32px; padding-right: 32px; }
+  .sec { padding-top: 96px; padding-bottom: 96px; }
+  .pghead { padding-top: 56px; padding-bottom: 64px; }
+
+  .pghead-sub, .sec-lead, .level-desc, .crit li, .feat li, .steps li, .cta-lead {
+    font-size: 16px; line-height: 28px;
+  }
+  .note, .demo-note p, .legend li, .nf-r, .nf-m, .nf-hand, .tier-b, .blind, .std-body {
+    font-size: 15px; line-height: 26px;
+  }
+  .nf-q { font-size: 16px; line-height: 26px; }
+  .nf-close { font-size: 16px; line-height: 28px; }
+  .meta-k, .meta-v { font-size: 15px; line-height: 26px; }
+  .meta-k { flex-basis: 128px; }
+  .ev-h { font-size: 20px; line-height: 30px; }
+  .crit-ref, .tier-t { font-size: 13px; line-height: 22px; }
+  th, td { font-size: 15px; line-height: 24px; padding: 14px 18px; }
+  .footer { font-size: 13px; line-height: 22px; }
+
+  .nf-list { gap: 20px 24px; }
+  .card { padding: 26px; }
+  .level-card { padding: 26px 24px; }
+  .relay-list { gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ 页头（深） ══════════ -->
+<header class="section-dark pghead">
+  <div class="wrap">
+    <div class="pghead-top">
+      <p class="pghead-brand"><span class="mono">SWAGENT</span> ｜ 跨境实体层情报</p>
+      <a class="backlink" href="/">← 回主页</a>
+    </div>
+
+    <p class="pghead-tag">L2 · 深度穿透 · 公开演示样张</p>
+    <h1 class="pghead-title">
+      安克创新 公开主体情报报告<br><span class="em">深度演示样张</span>
+    </h1>
+    <p class="pghead-sub">这是 L2 深度穿透档《公开主体·品牌·商标 情报报告》的完整结构。与脱敏样张不同，本篇选取一家<b style="color:var(--dark-text)">真实的上市公司</b>作标的——你看到的每一处格式、每一条置信度标注、每一句「没查到」，都可以逐条自己点开核对。</p>
+
+    <!-- 醒目演示声明（琥珀警示） -->
+    <div class="demo-note demo-note-dark">
+      <p class="demo-note-head"><span class="demo-mark">!</span>本页为演示样张</p>
+      <p><b>标的为依法公开披露的上市公司：安克创新科技股份有限公司（深交所创业板 <span class="mono">300866</span>）。</b>其公司名、统一社会信用代码、上市代码、注册地、主要子公司、品牌与商标注册人，本就依法向社会公开。</p>
+      <p>本页<b>仅使用公开信息</b>、<b>只到企业主体层</b>、<b>不涉及任何自然人隐私</b>（不含身份证 / 手机 / 私人联系方式 / 住址），且<b>不含任何法律意见</b>（不作侵权或违法一类的定性判断，法律问题请交执业律师）。</p>
+      <p>报告正文的来源链接在本页均以<b>不可点击的纯文本</b>呈现；你收到的正式报告里，每一条来源都是可点开的原始链接。</p>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ 目录 ══════════ -->
+<nav class="toc-bar" aria-label="页内目录">
+  <div class="toc-scroll">
+    <a href="#std">〇 证据标准</a>
+    <a href="#subject">一 被调查主体</a>
+    <a href="#brand">二 品牌与商标</a>
+    <a href="#network">三 关联企业网络</a>
+    <a href="#excluded">五 辨析主体</a>
+    <a href="#layer">六 主体分层</a>
+    <a href="#conclusion">七 调查结论</a>
+    <a href="#sources">八 数据源台账</a>
+    <a href="#blind">九 盲区</a>
+    <a href="#collab">附录C 协作留痕</a>
+    <a href="#disclaimer">十一 免责赔付</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ══════════ 抬头元信息 + 证据标准 ══════════ -->
+  <section class="sec">
+    <span class="anchor" id="std"></span>
+    <div class="wrap reveal">
+
+      <div class="card meta-card">
+        <div class="meta-row">
+          <div class="meta-k">报告标题</div>
+          <div class="meta-v">安克创新科技股份有限公司 公开主体·品牌·商标 情报报告</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">标的性质</div>
+          <div class="meta-v">A 股上市公司（深交所创业板，证券代码 <span class="mono">300866</span>，证券简称「安克创新」）</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">报告类型</div>
+          <div class="meta-v">演示样张 · 公开主体层情报（非脱敏，真实标的，数据可点开自核）</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">级别对标</div>
+          <div class="meta-v">L2 深度穿透（¥3,800 单主体档）的结构与证据链标准</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">检索日期</div>
+          <div class="meta-v">2026 年 7 月 20 日（公开网络检索）</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">签发方</div>
+          <div class="meta-v">SWAGENT ｜ 跨境实体层情报（演示）</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">覆盖主体</div>
+          <div class="meta-v">上市主体 1 家 ＋ 公开披露的关联/子公司 4 家（逐家独立成节）</div>
+        </div>
+        <div class="meta-row">
+          <div class="meta-k">商标库</div>
+          <div class="meta-v">USPTO（美国）· EUIPO（欧盟）· CNIPA（中国），三库反查</div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:20px">
+        <span class="note-t">本样张为什么用真实上市公司做标的</span>
+        ① 该主体是依法公开披露的上市公司，对其做公开主体情报整理，属正当的公开公司竞品/交易对手情报；<br>
+        ② 用真实标的，你才能逐条点开链接自己核对——这正是我们让报告可被证伪、而不是让你选择相信的核心；<br>
+        ③ 我们对外发布/演示的调查内容，标的一律为自选的公开对象，从不来自客户委托（见第十一节）。
+      </div>
+
+      <p class="sec-kicker" style="margin-top:40px">SECTION 00</p>
+      <h2 class="sec-title" style="margin-top:6px">证据标准声明（摘要）</h2>
+      <p class="sec-lead">真实交付时，此处整页插入《证据标准声明》完整文本，不省略、不节选、不改写。正文页保留这三条：</p>
+
+      <ul class="feat">
+        <li>每条结论标注置信度：🟢 已交叉验证 / 🟡 单源推定 / ⚪ 未证实。<b>我们只对 🟢 项承担赔付责任。</b></li>
+        <li>全部数据来自公开可访问来源，每条结论附可点开链接与抓取日期，<b>请随机抽 3 条自行核对。</b></li>
+        <li>本报告不构成法律意见，不含自然人的个人信息，不得作为诉讼证据独立使用。</li>
+      </ul>
+
+      <!-- 本报告事实性断言统计 -->
+      <div class="level-card">
+        <p class="level-no">≈58</p>
+        <p class="level-name">条事实性断言</p>
+        <p class="level-desc">每条结论标注置信度，只有 🟢 <b>已交叉验证</b>一级进入赔付范围；⚪ 级一律只进第九节盲区，不作结论。</p>
+        <div class="level-stats">
+          <div class="stat"><p class="stat-n">34</p><p class="stat-l">🟢 已交叉验证</p></div>
+          <div class="stat"><p class="stat-n">17</p><p class="stat-l">🟡 单源推定</p></div>
+          <div class="stat"><p class="stat-n">7</p><p class="stat-l">⚪ 未证实</p></div>
+        </div>
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">置信度三级判定标准（全文通用）</h3>
+      <ul class="legend">
+        <li><span class="tag tag-ok">已交叉验证</span><span>≥2 个相互独立的公开信源同时指向同一结论，且链接在检索当日有效。可进结论段，在赔付范围内。</span></li>
+        <li><span class="tag tag-one">单源推定</span><span>仅 1 个公开信源，或多个信源实为同源二次分发，或为基于公开事实的合理推断。可进结论段，须明标，不在赔付范围。</span></li>
+        <li><span class="tag tag-none">未证实</span><span>无可点开原始来源，或需登录/付费/现场抓取才能确认。只进第九节盲区，不在赔付范围。</span></li>
+      </ul>
+
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>标签</th><th>判定条件</th><th>能否进结论段</th><th>是否在赔付范围内</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="tag tag-ok">已交叉验证</span></td>
+              <td>≥2 个<b>相互独立</b>的公开信源同时指向同一结论，且链接在检索当日有效</td>
+              <td>✅ 可</td><td>✅ 是</td>
+            </tr>
+            <tr>
+              <td><span class="tag tag-one">单源推定</span></td>
+              <td>仅 1 个公开信源，或多个信源实为同一来源的二次分发，或为基于公开事实的合理推断</td>
+              <td>✅ 可，须明标</td><td>❌ 否</td>
+            </tr>
+            <tr>
+              <td><span class="tag tag-none">未证实</span></td>
+              <td>无可点开原始来源，仅逻辑推断，或需登录/付费/现场抓取才能确认</td>
+              <td>❌ 只进第九节</td><td>❌ 否</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-t">「相互独立」在本报告中的具体判定</span>
+        巨潮资讯网年报（证券披露体系）＋ 国家企业信用信息公示系统（工商登记体系）＝ 独立 ✅；USPTO 商标注册人 ＋ 上市公司年报子公司清单 ＝ 独立 ✅；启信宝 ＋ 企查查 ＝ <b>不独立</b> ❌（同源于工商登记的二次分发）；官网自述 ＋ 招聘平台自述 ＝ <b>不独立</b> ❌；<code>uspto.report</code> ＋ Justia Trademarks ＝ <b>不独立</b> ❌（均为 USPTO 官方数据的二次镜像，合并计为「USPTO 官方登记」一源）。
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 一、被调查主体 ══════════ -->
+  <section class="sec" style="background:#EEF2F5">
+    <span class="anchor" id="subject"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 01</p>
+      <h2 class="sec-title" style="margin-top:6px">一、被调查主体：安克创新科技股份有限公司</h2>
+      <p class="sec-lead">本节回答一个问题：<b>「Anker / AnkerDirect」这一组对外品牌与店铺名，落到工商与证券登记体系里，是哪一家实体、以及它是如何分层的。</b>后面所有章节都建立在本节的主体锚点上。</p>
+
+      <h3 class="ev-h" style="margin-top:32px">1.1　工商与证券基本信息</h3>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>项目</th><th>内容</th><th>来源</th><th>抓取</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>公司全称</td><td><b>安克创新科技股份有限公司</b></td><td><span class="src-name">巨潮资讯 2024 年年度报告</span> <code>pdf.dfcfw.com</code> ＋ 启信宝 <code>qixin.com</code></td><td>2026-07-20</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>英文名称</td><td>Anker Innovations Technology Co., Ltd.（常用简写 Anker Innovations Co., Ltd.）</td><td>维基百科「Anker」 <code>en.wikipedia.org/wiki/Anker</code> ＋ 年报</td><td>2026-07-20</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>曾用名</td><td><b>湖南海翼电子商务股份有限公司</b>（前身 Oceanwing / 海翼）</td><td>维基百科 ＋ 启信宝</td><td>2026-07-20</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>统一社会信用代码</td><td><b>91430111587017150P</b>（前 6 位 914301＝湖南长沙）</td><td>启信宝 ＋ 前瞻上市企业库 <code>qianzhan.com</code></td><td>2026-07-20</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>证券代码 / 板块</td><td><b>300866</b>，深圳证券交易所<b>创业板</b>（证券简称：安克创新）</td><td>东方财富 F10 <code>emweb.eastmoney.com</code> ＋ 年报</td><td>2026-07-20</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>上市日期</td><td>2020 年 8 月（首次公开发行并于创业板上市）</td><td>东方财富 F10</td><td>2026-07-20</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>成立年份</td><td><b>2011 年</b>（前身湖南海翼电子商务成立）</td><td>维基百科</td><td>2026-07-20</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>法定代表人</td><td><b>阳萌</b>（证券披露与工商公示字段；本报告不作任何延伸检索，不涉及其任何个人信息）</td><td>年报封面/公司治理章节</td><td>2026-07-20</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>注册资本</td><td><b>人民币 40,642.7207 万元</b></td><td>2024 年年度报告</td><td>2026-07-20</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>总股本</td><td><b>531,410,776 股</b></td><td>2024 年年度报告</td><td>2026-07-20</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>注册地</td><td>湖南省<b>长沙市</b>高新技术产业开发区（麓谷片区）</td><td>东方财富 F10 ＋ 启信宝</td><td>2026-07-20</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>主要办公地</td><td>长沙（注册地）＋ <b>深圳市宝安区沙井</b>（主要运营/研发基地）</td><td>搜狐证券 F10 <code>q.stock.sohu.com</code></td><td>2026-07-20</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>主营业务</td><td>消费电子产品（移动电源/储能、智能家居、智能影音等）的自主研发、设计与全球销售</td><td>年报 ＋ 官网 <code>anker.com.cn/story</code></td><td>2026-07-20</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <span class="note-t">本节合规检查（已执行）</span>
+        本表不含任何自然人的证件信息、私人联系方式、居住地址；不含自然人股东的持股比例与出资额。法定代表人姓名属<b>上市公司依法披露 ＋ 工商公示</b>字段，予以保留，且<b>未围绕该姓名做任何延伸挖掘</b>。
+      </div>
+
+      <div class="note note-amber">
+        <span class="note-t">一处必须点名的坑（真实发生在本次检索中）</span>
+        搜狐证券 F10 页面在抓取时返回了<b>串页污染</b>数据——把「深圳市欧瑞博电子科技有限公司 / 法定代表人阮正平 / 注册资本 3,000 万元」错挂到了 300866 名下。这三项与安克创新<b>均不符</b>（欧瑞博是另一家公司；安克法定代表人为阳萌；注册资本为 4.06 亿元）。<b>我们没有采信被污染的字段</b>，改以巨潮年报（证券披露体系）为准，并把搜狐仅用于「深圳办公地」这类不冲突的旁证。此事写进正文，是要让你看到我们对单一数据源的默认态度：<b>先交叉，再采信。</b>
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">1.2　规模与营收（2024 年报公开数据）</h3>
+      <div class="tbl-scroll tbl-narrow">
+        <table>
+          <thead>
+            <tr><th>指标</th><th>数值</th><th>来源</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2024 年营业总收入</td><td><b>人民币 247.10 亿元</b>（同比 +41.14%）</td><td>2024 年年度报告 <code>pdf.dfcfw.com</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>2024 年归母净利润</td><td><b>人民币 21.14 亿元</b>（同比 +30.93%）</td><td>2024 年年度报告</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>充电储能类产品收入</td><td>126.67 亿元（占比 51.26%，同比 +47.23%）</td><td>2024 年年度报告</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>智能创新类产品收入</td><td>63.36 亿元（同比 +39.53%）</td><td>2024 年年度报告</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>智能影音类产品收入</td><td>56.92 亿元（占比 23.04%，同比 +32.84%）</td><td>2024 年年度报告</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="note-t">为什么这几行能标 🟢</span>
+        它们来自<b>经审计并依法披露</b>的上市公司年报（证券披露体系），与工商登记体系相互独立且各自可回源。这正是「上市公司标的」相对「非上市卖家标的」在证据强度上的天然优势——非上市卖家的营收多来自招聘平台自填区间（只能标 🟡），而上市公司有经审计的披露口径。
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">1.3　业务定位与三大品类</h3>
+      <p class="sec-lead">安克创新在年报与官网中将自身定位为<b>面向全球市场的自有品牌消费电子企业</b>，以「充电」为原点向储能、智能家居、智能影音扩展（官网 story 页 <code>anker.com.cn/story</code>，2026-07-20 抓取）。收入数字为 🟢，品类↔品牌的归属映射为 🟡 合理推断：</p>
+      <div class="tbl-scroll tbl-narrow">
+        <table>
+          <thead>
+            <tr><th>年报产品类别</th><th>对应主要对外品牌</th><th>2024 收入</th><th>类别</th><th>映射</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>充电储能类</td><td><b>Anker</b>、<b>Anker SOLIX</b></td><td>126.67 亿元</td><td><span class="tag tag-ok">交叉验证</span></td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>智能创新类</td><td><b>eufy</b>、<b>eufyMake</b>、<b>AnkerWork</b>、<b>AnkerMake</b> 等</td><td>63.36 亿元</td><td><span class="tag tag-ok">交叉验证</span></td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>智能影音类</td><td><b>soundcore</b>、<b>Nebula</b>（2025 年 8 月并入 soundcore 体系）</td><td>56.92 亿元</td><td><span class="tag tag-ok">交叉验证</span></td><td><span class="tag tag-one">单源推定</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="note-t">写法约束</span>
+        品类收入是年报口径（🟢）；「哪个品牌算进哪个品类」是我们依据品牌公开定位做的<b>合理映射</b>，年报未逐一披露品牌级收入，故映射一律标 🟡，不写成结论。
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">1.4　主体识别路径复盘（从店铺名到上市实体，四步）</h3>
+      <p class="sec-lead">这一节写给你的尽调同事看——<b>它让你判断我们是怎么把「AnkerDirect」这个美国店铺名一路穿到 A 股上市主体的，而不是只能选择相信我们穿对了。</b></p>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>步</th><th>动作</th><th>输入 → 产出</th><th>来源</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>S1</b></td><td>店铺名 → 运营法律实体</td>
+              <td>Amazon US 店铺 <b>AnkerDirect</b> → 运营主体 <b>Fantasia Trading LLC</b>（DBA: AnkerDirect），地址 5350 Ontario Mills Pkwy Ste 100, Ontario, CA 91764</td>
+              <td>D&amp;B 企业档案 <code>dnb.com</code> ＋ UNIS 进口商档案 <code>unisco.com</code></td>
+              <td><span class="tag tag-ok">交叉验证</span></td>
+            </tr>
+            <tr>
+              <td><b>S2</b></td><td>美国实体 → 母公司</td>
+              <td>Fantasia Trading LLC → 母公司为香港实体 <b>Anker Innovations Limited（安克創新有限公司）</b></td>
+              <td>年报子公司披露 ＋ 多个企业档案库</td>
+              <td><span class="tag tag-one">单源推定</span></td>
+            </tr>
+            <tr>
+              <td><b>S3</b></td><td>香港实体 → 上市主体</td>
+              <td>Anker Innovations Limited（HK） → 归属于 A 股上市公司 <b>安克创新科技股份有限公司（300866）</b> 的合并报表范围</td>
+              <td>年报合并范围/主要子公司</td>
+              <td><span class="tag tag-ok">交叉验证</span></td>
+            </tr>
+            <tr>
+              <td><b>S4</b></td><td>独立旁证：商标注册人</td>
+              <td>品牌 <b>ANKER / soundcore / eufy</b> → 美/欧商标注册人即为 <b>Anker Innovations Limited</b></td>
+              <td>USPTO ANKER <code>uspto.report/TM/86393551</code> ＋ Trademarkia 权利人页 <code>trademarkia.com</code></td>
+              <td><span class="tag tag-ok">交叉验证</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="note-t">这条主体锚点为什么成立</span>
+        上市公司年报（证券披露）＋ 美国工商/进口商档案（Fantasia）＋ USPTO 商标登记（知识产权），<b>三个互不相通的登记体系同时把「AnkerDirect / Anker 品牌」指向同一集团</b>。
+      </div>
+      <div class="note">
+        <span class="note-t">一条贯穿全篇的分层观察（重要）</span>
+        安克创新是一个<b>三层主体结构</b>——① 上市/工商主体在中国大陆（安克创新科技股份有限公司，长沙）；② 品牌与商标资产多由香港实体持有（Anker Innovations Limited）；③ 各海外市场的销售由当地子公司承接（美国 Fantasia Trading LLC、英国 Anker Technology (UK) Ltd. 等）。<br>
+        这不是「隐藏」——它是上市公司<b>依法披露</b>的常规跨境架构。但它意味着：<b>从任何单一入口出发，都拿不到完整主体关系</b>。这正是本报告要跨证券/工商/商标/平台四个体系的原因。
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 二、品牌与 Amazon 店铺 ══════════ -->
+  <section class="sec">
+    <span class="anchor" id="brand"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 02</p>
+      <h2 class="sec-title" style="margin-top:6px">二、品牌与 Amazon 店铺</h2>
+
+      <h3 class="ev-h" style="margin-top:28px">2.1　品牌矩阵</h3>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>品牌</th><th>定位 / 品类</th><th>状态</th><th>来源</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Anker</b></td><td>充电、移动电源、数据线、充电器</td><td>主品牌，在售</td><td>维基百科 ＋ 官网 <code>anker.com.cn</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td><b>Anker SOLIX</b></td><td>家庭/户外储能、太阳能</td><td>在售</td><td>维基百科</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td><b>soundcore</b></td><td>耳机、音箱、音频</td><td>在售</td><td>维基百科 ＋ soundcore 官网 <code>soundcore.com</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td><b>eufy</b></td><td>智能家居、扫地机、安防摄像头</td><td>在售</td><td>维基百科 ＋ eufy 官网 <code>eufy.com</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td><b>eufyMake</b></td><td>创意/制造类（新）</td><td>在售</td><td>维基百科</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td><b>Nebula</b></td><td>便携投影</td><td><b>2025 年 8 月并入 soundcore 品牌体系</b></td><td>维基百科</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td><b>AnkerMake / AnkerWork</b></td><td>3D 打印 / 办公影音</td><td>在售（产品线品牌）</td><td>USPTO ANKERMAKE <code>uspto.report/TM/97237784</code></td><td><span class="tag tag-one">单源推定</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">2.2　商标信息（USPTO / EUIPO / CNIPA 三库反查）</h3>
+      <p class="sec-lead"><b>为什么要三库都查</b>：一个跨境品牌在美、欧、中三地的商标注册人<b>经常不是同一家公司</b>。本案的核心结论之一正是——美/欧商标由香港实体持有，与上市工商主体不是同一法律主体。这不是瑕疵，是主体分层的直接证据。</p>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>辖区</th><th>商标</th><th>注册号/序列号</th><th>注册人/申请人</th><th>状态</th><th>来源</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>🇺🇸 USPTO</td><td><b>ANKER</b>（图文）</td><td>Serial <b>86393551</b></td><td><b>Anker Innovations Limited</b></td><td>已注册</td><td><code>uspto.report/TM/86393551</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>🇺🇸 USPTO</td><td>ANKER（文字）</td><td>Serial 87428606</td><td>Anker Innovations Limited</td><td>已注册</td><td><code>uspto.report/TM/87428606</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>🇺🇸 USPTO</td><td><b>SOUNDCORE</b></td><td>Serial <b>86940555</b></td><td>Anker Innovations Limited</td><td>已注册（2023-05-23）</td><td>Justia <code>trademarks.justia.com</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>🇺🇸 USPTO</td><td><b>EUFY</b></td><td>Reg. <b>5770280</b>（Serial 87470141）</td><td>Anker Innovations Limited</td><td>已注册</td><td><code>uspto.report/TM/87470141</code> ＋ Justia</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>🇺🇸 USPTO</td><td>EUFY</td><td>Reg. 5835112（Serial 87011097）</td><td>Anker Innovations Limited</td><td>已注册</td><td>Justia <code>trademarks.justia.com</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>🇺🇸 USPTO</td><td>EUFY SECURITY</td><td>Reg. 5717123（Serial 87758564）</td><td>Anker Innovations Limited</td><td>已注册</td><td>Trademarkia <code>trademarkia.com</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>🇺🇸 USPTO</td><td>ANKERMAKE</td><td>Serial 97237784</td><td>Anker Innovations Limited</td><td>登记在册</td><td><code>uspto.report/TM/97237784</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>🇺🇸 USPTO</td><td>SOUNDCORE FRAMES</td><td>Serial 90708522</td><td>Anker Innovations Limited</td><td>登记在册</td><td><code>uspto.report/TM/90708522</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>🇪🇺 EUIPO</td><td>SOUNDCORE</td><td>Application <b>015223712</b></td><td>Anker Innovations Limited</td><td>登记在册</td><td>TrademarkElite EU <code>trademarkelite.com</code></td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>🇨🇳 CNIPA</td><td>安克 / ANKER / 安克创新（多类别）</td><td><b>具体注册号未逐一取号</b></td><td>归属安克创新境内实体/集团</td><td>待取号</td><td>CNIPA 中国商标网 <code>sbj.cnipa.gov.cn</code></td><td><span class="tag tag-none">未证实</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="sec-lead" style="margin-top:20px"><b>注册人与上市工商主体是否一致：不一致（这是本报告的关键发现之一，🟢）。</b></p>
+      <div class="tbl-scroll tbl-narrow">
+        <table>
+          <thead>
+            <tr><th>观察到的事实</th><th>说明</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>美国、欧盟的 ANKER / soundcore / eufy 商标注册人为 <b>Anker Innovations Limited（香港）</b>，非 A 股上市主体本身</td><td>品牌资产由香港实体持有，境内上市主体持工商与合并报表</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>权利人 <b>Anker Innovations Limited</b> 名下在 USPTO 有大量商标（第三方统计约 <b>268 件</b>）</td><td>反映该香港实体是集团的核心品牌/商标持有平台</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>中国境内 安克/ANKER 商标注册号<b>本次未逐一取号</b></td><td>需在 CNIPA 官方库按权利人逐条核验</td><td><span class="tag tag-none">未证实</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="note-t">本节只陈述「注册人分层」这一事实</span>
+        不作任何定性、不作法律判断。商标由集团内香港实体统一持有，在跨境上市公司中属常见的知识产权归集安排。
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">2.3　Amazon 店铺主体（AnkerDirect ＝ Fantasia Trading LLC）</h3>
+      <p class="sec-lead">本节最容易与「用工具搜一下店铺」拉开差距的地方——先说清 1P/3P 与主体的关系：</p>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>项目</th><th>内容</th><th>来源</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>美国站主力店铺名</td><td><b>AnkerDirect</b></td><td>Amazon 卖家搜索页 <code>amazon.com</code> ＋ 第三方卖家档案</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>店铺运营法律实体</td><td><b>Fantasia Trading LLC</b>（DBA: AnkerDirect）</td><td>D&amp;B <code>dnb.com</code> ＋ UNIS 进口商档案 <code>unisco.com</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>实体注册地址</td><td>5350 Ontario Mills Pkwy, Ste 100, Ontario, CA 91764-5137, US</td><td>D&amp;B</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>卖家身份（1P/3P）</td><td>主力为<b>第三方卖家（3P）</b>「AnkerDirect」；部分品类可能存在亚马逊自营（1P）并行</td><td>第三方卖家档案</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td><b>精确卖家 ID（A 开头）</b></td><td><b>本次公开检索未取得可核验的卖家 ID</b></td><td>—</td><td><span class="tag tag-none">未证实</span></td></tr>
+            <tr><td>站点布局</td><td>全球多站（US/UK/DE/FR/IT/ES/JP 等），本次<b>未逐站现场抓取</b> INFORM 板块</td><td>—</td><td><span class="tag tag-none">未证实</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="note-t">判读规则执行记录（不可省略）</span>
+        本次为<b>公开网络检索</b>级别（对标 L2 结构，但未启动逐站住宅代理抓取）。因此：<br>
+        ① 我们没有据第三方档案就编一个卖家 ID——查不到就写「未取得」，放进盲区（§9.1）。<br>
+        ② 「AnkerDirect 是主力 3P 店」是 🟡，因为它来自第三方卖家档案，非我们亲自抓取的 INFORM 板块。<br>
+        真实 L2 交付会<b>逐站打开卖家页 INFORM 板块</b>，取得每站的卖家 ID、备案企业名、备案地址，并做 1P/3P 逐站判读。本样张此处止步于公开检索层，并如实标注——这正是「诚实盲区」的示范。
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 三、关联企业网络 ══════════ -->
+  <section class="sec" style="background:#EEF2F5">
+    <span class="anchor" id="network"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 03</p>
+      <h2 class="sec-title" style="margin-top:6px">三、关联企业网络</h2>
+      <p class="sec-lead">本案 ＝ 上市公司公开披露的主要子公司，逐家独立成节。</p>
+
+      <div class="note note-amber">
+        <span class="note-t">📌 本节的交付边界，先说清楚</span>
+        本案标的为上市公司，其「关联企业」在年报中<b>依法披露</b>，无需像非上市卖家那样去反查隐藏壳公司。本节把在主体穿透中<b>绕不过去</b>的 4 家关联/子公司逐家成节。<b>主动的全网关联扩展、股权穿透至自然人层、已注销主体全量梳理</b>属 ¥7,800 档，本次不含。
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">3.1　Anker Innovations Limited（安克創新有限公司，香港）</h3>
+      <p class="sec-lead">本次<b>份量最重</b>的关联主体：美/欧商标注册人是它，美国销售实体 Fantasia Trading 的母公司也是它。</p>
+
+      <p style="margin-top:16px;font-weight:700;color:var(--ink-900)">3.1.1　工商基本信息</p>
+      <div class="tbl-scroll tbl-narrow">
+        <table>
+          <thead>
+            <tr><th>项目</th><th>内容</th><th>来源</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>公司全名</td><td><b>Anker Innovations Limited</b></td><td>年报子公司披露 ＋ 香港公司档案库</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>中文名称</td><td><b>安克創新有限公司</b></td><td>香港公司名单数据集 <code>hkg.databasesets.com</code></td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>香港公司编号</td><td><b>1982550</b>（第三方库口径）</td><td>香港公司名单数据集</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>注册办事处地址</td><td>Unit 56, 8/F, Tower 2, Admiralty Centre, 18 Harcourt Road, Hong Kong</td><td>多个香港企业档案库</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>LEI（法人识别编码）</td><td>300300IWP8K4MRDASZ71</td><td>LEI Lookup <code>lei-lookup.com</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>董事 / 股东详情</td><td><b>未调取</b>（香港公司注册处按次收费文件，本次未购买）</td><td>—</td><td><span class="tag tag-none">未证实</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="note-t">明确写出我们没做的动作</span>
+        香港公司注册处（<code>icris.cr.gov.hk</code>）的董事/股东信息需按次付费调取。本次未购买，因此<b>无法从香港侧独立确认股权链</b>。第三方库给出的公司编号（1982550）与部分档案库标注的成立日期存在口径差异，故 HK 工商信息整体标 🟡，董事股东标 ⚪。此项进第九节盲区。
+      </div>
+
+      <p style="margin-top:24px;font-weight:700;color:var(--ink-900)">3.1.2　与上市主体的关联证据</p>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>#</th><th>证据类型</th><th>具体内容</th><th>来源 A / 来源 B</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>①</td><td><b>合并报表披露</b></td><td>香港实体在上市公司年报的主要子公司/合并范围内</td><td>年报 / 维基百科子公司列表</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>②</td><td><b>商标注册人</b></td><td>ANKER/soundcore/eufy 美欧商标注册人为该香港实体</td><td>USPTO 86393551 / Trademarkia 权利人页</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>③</td><td><b>对美销售实体母公司</b></td><td>Fantasia Trading LLC 为其全资/下属实体</td><td>年报 / D&amp;B</td><td><span class="tag tag-one">单源推定</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top:24px;font-weight:700;color:var(--ink-900)">3.1.3　关系研判</p>
+      <div class="tbl-scroll tbl-narrow">
+        <table>
+          <thead>
+            <tr><th>候选关系</th><th>支持证据</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>集团内<b>品牌/知识产权持有平台 ＋ 海外控股平台</b></td><td>①②③</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>母子公司（并入上市主体合并范围）</td><td>①</td><td><span class="tag tag-ok">交叉验证</span>（存在性）／<span class="tag tag-one">单源推定</span>（层级细节）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">本节只列候选关系与支持证据，不作断言、不作法律定性。股权层面的精确路径缺香港注册处文件，止步 🟡。</div>
+
+      <h3 class="ev-h" style="margin-top:32px">3.2　Fantasia Trading LLC（美国，AnkerDirect 运营主体）</h3>
+      <p style="margin-top:16px;font-weight:700;color:var(--ink-900)">3.2.1　基本信息</p>
+      <div class="tbl-scroll tbl-narrow">
+        <table>
+          <thead>
+            <tr><th>项目</th><th>内容</th><th>来源</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>公司全名</td><td>Fantasia Trading LLC（DBA: AnkerDirect）</td><td>D&amp;B <code>dnb.com</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>地址</td><td>5350 Ontario Mills Pkwy, Ste 100, Ontario, CA 91764</td><td>D&amp;B ＋ UNIS <code>unisco.com</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>角色</td><td>安克产品在美国的主要分销/销售实体，Amazon 店铺 AnkerDirect 运营方</td><td>UNIS 进口商档案</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>母公司</td><td>Anker Innovations Limited（HK）</td><td>多个企业档案库</td><td><span class="tag tag-one">单源推定</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top:24px;font-weight:700;color:var(--ink-900)">3.2.2　与上市主体的关联证据</p>
+      <div class="tbl-scroll tbl-narrow">
+        <table>
+          <thead>
+            <tr><th>#</th><th>证据类型</th><th>具体内容</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>①</td><td>店铺名 → 实体</td><td>Amazon US「AnkerDirect」的运营实体即 Fantasia Trading LLC</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>②</td><td>品牌一致</td><td>该实体在售产品品牌为 Anker/soundcore/eufy 等本案品牌</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>③</td><td>母公司披露</td><td>经香港实体归入上市公司合并范围</td><td><span class="tag tag-one">单源推定</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="note-t">一条否定性事实（同样写出来）</span>
+        Fantasia 的地址（美国加州 Ontario）与上市主体注册地（中国长沙）<b>无地址重合</b>——这是正常的跨境销售架构，不构成任何异常，特此如实标注。
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">3.3　Anker Technology (UK) Ltd.（英国）</h3>
+      <div class="tbl-scroll tbl-narrow">
+        <table>
+          <thead>
+            <tr><th>项目</th><th>内容</th><th>来源</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>公司全名</td><td>Anker Technology (UK) Ltd.</td><td>年报子公司披露 ＋ 维基百科</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>角色</td><td>安克在英国/欧洲的运营实体（承接当地销售与合规）</td><td>维基百科</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>英国公司注册处编号</td><td><b>本次未取号</b></td><td>Companies House <code>find-and-update.company-information.service.gov.uk</code></td><td><span class="tag tag-none">未证实</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">该实体确认存在（年报 ＋ 维基双源），但<b>英国 Companies House 的精确公司编号、注册地址、董事本次未逐项调取</b>，故编号标 ⚪。真实交付会在 Companies House 免费库中取号补齐。</div>
+
+      <h3 class="ev-h" style="margin-top:32px">3.4　Shenzhen Oceanwing Smart Innovations Technology Co., Ltd（深圳海翼）</h3>
+      <div class="tbl-scroll tbl-narrow">
+        <table>
+          <thead>
+            <tr><th>项目</th><th>内容</th><th>来源</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>公司全名（英文）</td><td>Shenzhen Oceanwing Smart Innovations Technology Co., Ltd</td><td>维基百科子公司列表</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>与上市主体关系</td><td>「Oceanwing / 海翼」为上市主体前身品牌，境内相关实体承接研发/运营职能</td><td>维基百科 ＋ 启信宝</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>中文全名 / USCC</td><td><b>本次未逐项取号</b></td><td>国家企业信用信息公示系统 <code>gsxt.gov.cn</code></td><td><span class="tag tag-none">未证实</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="note-t">诚实边界</span>
+        该实体在英文资料中出现，但其<b>中文工商全名与统一社会信用代码本次未在 gsxt 逐项核验</b>（gsxt 有查询限制）。故只确认「存在关联」（🟡），其精确工商身份进盲区。
+      </div>
+
+      <!-- 四、深度展开（不交付） -->
+      <div class="note note-amber" style="margin-top:32px">
+        <span class="note-t">四、关键关联企业深度展开 —— 本节属 L2 ¥7,800 档，本次不交付</span>
+        该档会从第三节抽出最重要的一家（本案为 <b>Anker Innovations Limited（HK）</b>），按第二节完整深度展开：香港注册处 NAR1 文件调取、各站点店铺与 ASIN 全量、商标全辖区逐号检索、股权穿透至企业主体层、关联证据逐条双源化。<br>
+        本节保留编号，是为了让你看清两档差别具体差在哪里，而不是用一句「更深入」带过。
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 五、辨析主体 ══════════ -->
+  <section class="sec">
+    <span class="anchor" id="excluded"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 05</p>
+      <h2 class="sec-title" style="margin-top:6px">五、已排查/需辨析的同名或近似主体</h2>
+      <p class="sec-lead">这一节让你判断我们排除得对不对，而不是只能相信我们没混入长得像的那几个。主体识别的风险从来不在「找到了谁」，而在「有没有把相似的错误并进来」。</p>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>#</th><th>名称</th><th>为什么需要辨析 / 处置（写事实，不写判断）</th><th>来源</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><b>深圳市欧瑞博电子科技有限公司</b>（法定代表人阮正平，注册资本 3,000 万元）</td><td>搜狐 F10 抓取时<b>串页污染</b>，被错挂到 300866 名下。经与巨潮年报核对，此三项与安克创新<b>均不符</b>，<b>已排除</b>，不采信被污染字段</td><td>搜狐证券 <code>q.stock.sohu.com</code> vs 巨潮年报</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>2</td><td>Nanjing Ange Pharmaceutical（南京某药企）</td><td>中文检索「安克」出现的同音/近名主体，属<b>医药行业</b>，与本案消费电子无任何主体、品牌、商标交集，<b>已排除</b></td><td>维基百科 <code>en.wikipedia.org</code></td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>3</td><td>「Anke Innovation Technology Co., Ltd」（百度百科英文条目拼写变体）</td><td>为安克主体的<b>英文拼写变体/二次编辑</b>，非独立主体，<b>并入本案主体理解，不单列</b></td><td>Baidu Baike EN <code>baike.baidu.com</code></td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>4</td><td>「Anker Technology Co., Limited」（部分商标/档案中出现的权利人写法）</td><td>与「Anker Innovations Limited」在个别第三方档案中并存，<b>存在权利人名称写法差异</b>，需在 USPTO 官方库逐号确认归属，<b>暂不并入结论</b>，移入盲区</td><td>furm.com 商标档案 <code>furm.com</code></td><td><span class="tag tag-none">未证实</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note note-amber">
+        <span class="note-t">⚠️ 请重点看第 1 行与第 4 行</span>
+        第 1 行是我们<b>主动承认并排除的一次数据污染</b>；第 4 行是我们<b>没有强行抹平的一处权利人名称差异</b>——它既没进结论，也没被删掉不提，它在盲区里等一次官方取号。如果你觉得任何一条辨析得不对，直接告诉我们，处置方式是整段重做，不是解释。
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 六、主体分层与识别路径特征 ══════════ -->
+  <section class="sec" style="background:#EEF2F5">
+    <span class="anchor" id="layer"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 06</p>
+      <h2 class="sec-title" style="margin-top:6px">六、主体分层与识别路径特征</h2>
+      <p class="sec-lead">本案标的为上市公司，透明度高，<b>不存在「反情报隐藏」</b>。但其跨境架构本身有可被客观描述的<b>主体分层特征</b>——只描述现象与观察方法，不推测动机、不作定性。</p>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>#</th><th>特征</th><th>观察到的具体现象</th><th>观察方法 / 来源</th><th>置信度</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>①</td><td><b>工商主体与品牌持有主体分离</b></td><td>上市/工商主体在中国大陆（长沙），ANKER/soundcore/eufy 美欧商标注册人为香港实体 Anker Innovations Limited</td><td>启信宝 ＋ USPTO</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+            <tr><td>②</td><td><b>销售主体按市场分设</b></td><td>美国销售由 Fantasia Trading LLC、英国由 Anker Technology (UK) Ltd. 承接，各自为独立当地实体</td><td>年报 ＋ D&amp;B</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>③</td><td><b>店铺名与法律实体不同名</b></td><td>Amazon 店铺显示「AnkerDirect」，其法律实体为 Fantasia Trading LLC——从店铺名单侧无法直接得到工商主体</td><td>Amazon 卖家页</td><td><span class="tag tag-one">单源推定</span></td></tr>
+            <tr><td>④</td><td><b>前身品牌与现名不一致</b></td><td>曾用名「湖南海翼电子商务 / Oceanwing」，现名安克创新——历史检索需覆盖旧名</td><td>维基百科</td><td><span class="tag tag-ok">交叉验证</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <span class="note-t">这些特征的实际意义，写给你自己判断</span>
+        上述四项叠加的效果是——<b>从任何单一公开入口（美国店铺名、中国工商、单一国商标）出发，都无法一步落到完整主体关系。</b> 对上市公司而言这些都是<b>依法披露、可交叉还原</b>的；对非上市卖家而言，同样的分层往往就是识别难点所在。这也是本报告为何要跨证券/工商/商标/平台四个体系。
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 七、调查结论 ══════════ -->
+  <section class="sec">
+    <span class="anchor" id="conclusion"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 07</p>
+      <h2 class="sec-title" style="margin-top:6px">七、调查结论</h2>
+      <p class="sec-lead">本节只放 🟢 与 🟡 两级结论。⚪ 级一律在第九节。本节不含任何法律定性、行动建议、结果预测。</p>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>#</th><th>问题</th><th>结论</th><th>支撑</th><th>置信度</th><th>赔付</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>「AnkerDirect / Anker」对应哪一家上市主体？</td><td><b>安克创新科技股份有限公司</b>，USCC 91430111587017150P，深交所创业板 <b>300866</b></td><td>§1.1、§1.4</td><td><span class="tag tag-ok">已交叉验证</span></td><td>✅</td></tr>
+            <tr><td>2</td><td>该主体的注册资本与总股本？</td><td>注册资本 <b>40,642.72 万元</b>，总股本 <b>531,410,776 股</b></td><td>§1.1</td><td><span class="tag tag-ok">已交叉验证</span></td><td>✅</td></tr>
+            <tr><td>3</td><td>该主体 2024 年经营规模？</td><td>营收 <b>247.10 亿元</b>、归母净利 <b>21.14 亿元</b>（经审计披露）</td><td>§1.2</td><td><span class="tag tag-ok">已交叉验证</span></td><td>✅</td></tr>
+            <tr><td>4</td><td>主品牌的美/欧商标注册人是谁？与工商主体是否一致？</td><td>注册人为 <b>Anker Innovations Limited（香港）</b>，与 A 股上市工商主体不是同一法律主体</td><td>§2.2、§3.1</td><td><span class="tag tag-ok">已交叉验证</span></td><td>✅</td></tr>
+            <tr><td>5</td><td>美国 Amazon 店铺 AnkerDirect 的运营法律实体？</td><td><b>Fantasia Trading LLC</b>（DBA AnkerDirect），地址在美国加州 Ontario</td><td>§2.3、§3.2</td><td><span class="tag tag-ok">已交叉验证</span></td><td>✅</td></tr>
+            <tr><td>6</td><td>存在哪些可确认的关联/子公司？</td><td>至少 4 家：Anker Innovations Limited（HK，品牌/商标持有）、Fantasia Trading LLC（US 销售）、Anker Technology (UK) Ltd.（UK 运营）、Shenzhen Oceanwing 相关境内实体</td><td>§3.1–§3.4</td><td><span class="tag tag-ok">交叉验证</span>（存在性）<br><span class="tag tag-one">单源推定</span>（层级细节）</td><td>✅（仅存在性）</td></tr>
+            <tr><td>7</td><td>主品牌矩阵有哪些？</td><td>Anker、Anker SOLIX、soundcore、eufy、eufyMake、Nebula（2025-08 并入 soundcore）、AnkerMake/AnkerWork</td><td>§2.1</td><td><span class="tag tag-ok">交叉验证</span>（品牌存在）<br><span class="tag tag-one">单源推定</span>（品类映射）</td><td>✅（仅品牌存在性）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sec-lead" style="margin-top:16px"><b>结论段与证据段一一对应，可逐条回溯，无跳跃推论。</b></p>
+      <div class="note">
+        <span class="note-t">赔付边界</span>
+        标 ✅ 的部分是我们承担赔付责任的关键主体识别结论；🟡 的「关系层级细节」「品类↔品牌映射」不在赔付范围。请按此边界使用本报告。
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 八、数据源台账 ══════════ -->
+  <section class="sec" style="background:#EEF2F5">
+    <span class="anchor" id="sources"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 08</p>
+      <h2 class="sec-title" style="margin-top:6px">八、数据源台账</h2>
+      <p class="sec-lead">每条来源均可点开。本样张链接为真实原始来源（区别于脱敏样张的掩码链接）。</p>
+
+      <div class="demo-note" style="margin-top:20px">
+        <p class="demo-note-head"><span class="demo-mark">!</span>样张链接说明</p>
+        <p>下表 URL 在本演示页均以 <code>纯文本</code> 呈现，<b>不是可点击链接</b>——本页不向站外发起任何请求。你收到的正式报告中，此处每一行都是可点开的原始来源与抓取存证。</p>
+      </div>
+
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>#</th><th>数据源</th><th>URL</th><th>用途（对应结论）</th><th>抓取</th><th>状态</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>巨潮/东财 2024 年年度报告全文</td><td><code>pdf.dfcfw.com/pdf/H2_AN202504291664109713_1.pdf</code></td><td>§1.1/§1.2/§3.x、结论 1/2/3/6</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>2</td><td>巨潮 2024 年报摘要</td><td><code>static.cninfo.com.cn/finalpage/2025-04-29/1223379868.PDF</code></td><td>§1.2</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>3</td><td>启信宝 企业档案（300866）</td><td><code>qixin.com/company/826600ea-5f31-489b-961e-681153b60c14</code></td><td>§1.1、结论 1</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>4</td><td>前瞻上市企业库（300866.SZ）</td><td><code>xs.qianzhan.com/hs/gongsixinxi_300866.SZ.html</code></td><td>§1.1</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>5</td><td>东方财富 F10 公司概况</td><td><code>emweb.eastmoney.com/PC_HSF10/CompanySurvey/Index?code=SZ300866</code></td><td>§1.1</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>6</td><td>搜狐证券 F10（含污染，见 §5）</td><td><code>q.stock.sohu.com/cn/300866/gsjj.shtml</code></td><td>§5 第 1 行（反例）</td><td>2026-07-20</td><td>⚠️ 部分字段污染，仅作反例</td></tr>
+            <tr><td>7</td><td>维基百科「Anker」</td><td><code>en.wikipedia.org/wiki/Anker</code></td><td>§1.1/§2.1/§3.x、结论 6/7</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>8</td><td>USPTO — ANKER（86393551）</td><td><code>uspto.report/TM/86393551</code></td><td>§2.2、结论 4</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>9</td><td>USPTO — ANKER（87428606）</td><td><code>uspto.report/TM/87428606</code></td><td>§2.2</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>10</td><td>USPTO/Justia — SOUNDCORE（86940555）</td><td><code>trademarks.justia.com/869/40/soundcore-86940555.html</code></td><td>§2.2</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>11</td><td>USPTO — EUFY（87470141）</td><td><code>uspto.report/TM/87470141</code></td><td>§2.2、结论 4</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>12</td><td>USPTO — ANKERMAKE（97237784）</td><td><code>uspto.report/TM/97237784</code></td><td>§2.1/§2.2</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>13</td><td>USPTO — SOUNDCORE FRAMES（90708522）</td><td><code>uspto.report/TM/90708522</code></td><td>§2.2</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>14</td><td>Trademarkia — 权利人 Anker Innovations Limited（约 268 件）</td><td><code>trademarkia.com/owners/anker-innovations-limited</code></td><td>§2.2、§3.1.2</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>15</td><td>EUIPO/TrademarkElite — SOUNDCORE（015223712）</td><td><code>trademarkelite.com/europe/trademark/trademark-detail/015223712/SOUNDCORE</code></td><td>§2.2</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>16</td><td>D&amp;B — Fantasia Trading LLC</td><td><code>dnb.com/business-directory/company-profiles.fantasia_trading_llc.html</code></td><td>§2.3/§3.2、结论 5</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>17</td><td>UNIS — Fantasia Trading（进口商档案）</td><td><code>unisco.com/importers/fantasia-trading-llc</code></td><td>§3.2</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>18</td><td>Amazon — Fantasia Trading / AnkerDirect 检索页</td><td><code>amazon.com/Fantasia-Trading-LLC/s?k=Fantasia+Trading+LLC</code></td><td>§2.3</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>19</td><td>香港公司名单数据集（Anker Innovations Limited 1982550）</td><td><code>hkg.databasesets.com/en/gongsimingdan/number/1982550</code></td><td>§3.1.1</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>20</td><td>LEI Lookup — Anker Innovations Limited</td><td><code>lei-lookup.com/record/300300IWP8K4MRDASZ71</code></td><td>§3.1.1</td><td>2026-07-20</td><td>✅</td></tr>
+            <tr><td>21</td><td>CNIPA 中国商标网（官方检索入口，待逐号取号）</td><td><code>sbj.cnipa.gov.cn/sbj/sbcx</code></td><td>§2.2、§9</td><td>2026-07-20</td><td>✅（入口有效）</td></tr>
+            <tr><td>22</td><td>英国 Companies House（官方入口，待取号）</td><td><code>find-and-update.company-information.service.gov.uk</code></td><td>§3.3、§9</td><td>2026-07-20</td><td>✅（入口有效）</td></tr>
+            <tr><td>23</td><td>国家企业信用信息公示系统（官方入口）</td><td><code>gsxt.gov.cn</code></td><td>§1.1/§3.4、§9</td><td>2026-07-20</td><td>✅（入口有效，明细需现场查询）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 九、盲区（深底强调） ══════════ -->
+  <section class="section-dark sec">
+    <span class="anchor" id="blind"></span>
+    <div class="wrap reveal">
+      <p class="nf-badge">这一节最值得读</p>
+      <h2 class="sec-title" style="margin-top:14px">九、盲区与未证实线索</h2>
+      <p class="sec-lead">这一节如果是空的，请怀疑整份报告。真实检索必然有查不到的部分。本节全部为 ⚪ 未证实，<b style="color:var(--dark-text)">不构成结论，不在赔付范围</b>。</p>
+
+      <h3 class="ev-h" style="margin-top:28px">9.1　查过但未查实的线索</h3>
+      <div class="nf-list">
+        <div class="nf">
+          <p class="nf-q">01　AnkerDirect 各站点精确卖家 ID（A 开头）</p>
+          <p class="nf-r"><b>已尝试</b>：Amazon 卖家检索页、第三方卖家档案站。本次为公开检索层，未启动逐站住宅代理抓取卖家页</p>
+          <p class="nf-m"><span>可继续核实</span>　逐站打开卖家页 INFORM 板块取 ID＋备案主体（真实 L2 标准动作）</p>
+        </div>
+        <div class="nf">
+          <p class="nf-q">02　各站点 1P/3P 逐站判读与 INFORM 备案主体</p>
+          <p class="nf-r"><b>已尝试</b>：第三方卖家档案。未现场抓取各站卖家页/商品页</p>
+          <p class="nf-m"><span>可继续核实</span>　US/UK/DE/FR/IT/ES/JP 逐站抓取 Buybox 与 INFORM</p>
+        </div>
+        <div class="nf">
+          <p class="nf-q">03　CNIPA 中国境内 安克/ANKER 商标注册号</p>
+          <p class="nf-r"><b>已尝试</b>：CNIPA 官方检索入口。未按权利人逐条取号</p>
+          <p class="nf-m"><span>可继续核实</span>　CNIPA 官方库按「安克创新科技股份有限公司」权利人逐号检索</p>
+        </div>
+        <div class="nf">
+          <p class="nf-q">04　Anker Innovations Limited（HK）董事/股东</p>
+          <p class="nf-r"><b>已尝试</b>：第三方香港企业库。香港公司注册处按次收费文件未购买；第三方库公司编号/成立日口径有差异</p>
+          <p class="nf-m"><span>可继续核实</span>　香港注册处 NAR1 文件；或 icris 按次查册</p>
+        </div>
+        <div class="nf">
+          <p class="nf-q">05　Anker Technology (UK) Ltd. 精确公司编号/注册地址</p>
+          <p class="nf-r"><b>已尝试</b>：年报、维基。未在 Companies House 逐项取号</p>
+          <p class="nf-m"><span>可继续核实</span>　英国 Companies House 免费库检索</p>
+        </div>
+        <div class="nf">
+          <p class="nf-q">06　Shenzhen Oceanwing 相关境内实体的中文全名/USCC</p>
+          <p class="nf-r"><b>已尝试</b>：维基、启信宝入口。gsxt/工商明细需现场查询，未逐项核验</p>
+          <p class="nf-m"><span>可继续核实</span>　gsxt 或付费工商库按集团逐个核验</p>
+        </div>
+        <div class="nf">
+          <p class="nf-q">07　商标权利人名称写法差异</p>
+          <p class="nf-r"><b>已尝试</b>：USPTO 二次镜像站。个别档案权利人写法不一致（Anker Innovations Limited vs Anker Technology Co., Limited），未在 USPTO 官方库逐号确认</p>
+          <p class="nf-m"><span>可继续核实</span>　USPTO TSDR 官方逐号核验注册人字段</p>
+        </div>
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">9.2　数据源限制说明</h3>
+      <div class="tbl-scroll tbl-narrow">
+        <table>
+          <thead><tr><th>限制类型</th><th>具体影响</th></tr></thead>
+          <tbody>
+            <tr><td><b>本次为公开检索层（非现场抓取）</b></td><td>未启动逐站 Amazon 住宅代理抓取，故卖家 ID、逐站 INFORM、1P/3P 判读均未落地（§9.1-1/2）</td></tr>
+            <tr><td><b>中国工商/商标明细需现场或付费</b></td><td>gsxt 有查询限制、CNIPA 需逐号检索，境内子公司 USCC 与中国商标注册号未取号</td></tr>
+            <tr><td><b>香港/英国注册处按次收费或需检索</b></td><td>HK 董事股东、UK 公司编号未调取</td></tr>
+            <tr><td><b>第三方镜像/聚合站非一手</b></td><td>uspto.report/Justia/Trademarkia/D&amp;B 等为二次分发，涉及归属细节时按「合并计一源」保守处理</td></tr>
+            <tr><td><b>数据抓取时间窗</b></td><td>2026-07-20 单日公开检索。工商、店铺、商标状态均可能随时变动</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ev-h" style="margin-top:32px">9.3　未核查的范围（明确边界）</h3>
+      <ul class="feat">
+        <li>未做逐站 Amazon 现场抓取（本样张止步公开检索层）</li>
+        <li>未做股权穿透至自然人层（仅到企业主体层，符合本报告边界）</li>
+        <li>未做境内子公司全量工商取号</li>
+        <li>未做已注销/迁移主体全量梳理（属 ¥7,800 档）</li>
+        <li>未做任何司法/涉诉/行政处罚记录检索（本报告不涉及此类内容，亦不作任何法律判断）</li>
+      </ul>
+
+      <h3 class="ev-h" style="margin-top:32px">9.4　本报告不涉及的内容</h3>
+      <ul class="feat">
+        <li>不涉及任何自然人的个人信息（法定代表人姓名为上市公司依法披露 ＋ 工商公示字段，除此未作任何延伸）</li>
+        <li>不涉及任何法律层面的定性与后果判断</li>
+        <li>不涉及对被调查主体商业行为的评价</li>
+        <li>不涉及任何接触式调查（未联系、未试探被调查对象及其员工）</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════ 十、复核指引 ══════════ -->
+  <section class="sec">
+    <span class="anchor" id="review"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 10</p>
+      <h2 class="sec-title" style="margin-top:6px">十、复核指引（给你自己走一遍，约 15 分钟）</h2>
+      <ol class="steps">
+        <li><b>随机抽 3 条 🟢 结论</b>，从第八节台账找到对应 URL 自行点开核对。建议优先抽结论 1、结论 4、结论 5——这三条是「店铺/品牌 → 主体」的核心识别。</li>
+        <li><b>重点看第五节</b>。第 1 行（欧瑞博串页污染）与第 4 行（商标权利人写法差异）是最能看出我们处置纪律的地方。若你认为任一条辨析有误，直接告知，整段重做。</li>
+        <li><b>重点看第九节盲区</b>。本样张诚实止步于「公开检索层」，把「卖家 ID、逐站 INFORM、中国商标号、HK 董事股东」等都放进了盲区而非编造。如果这一节很短，请怀疑这份报告。</li>
+        <li><b>对照置信度标签读第七节</b>。只有 🟢 项在赔付范围内。</li>
+      </ol>
+      <div class="note">
+        <b>发现任一条对不上，请直接告知。处置方式是整段重做，不是解释。</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 附录 C：协作留痕（核心卖点 · 醒目） ══════════ -->
+  <section class="section-dark sec">
+    <span class="anchor" id="collab"></span>
+    <div class="wrap reveal">
+      <p class="nf-badge">这份报告是一支队伍协同产出的</p>
+      <h2 class="sec-title" style="margin-top:14px">协作留痕：四个专长环节接力</h2>
+      <p class="sec-lead">这份样张不是一口气写完的，而是<b style="color:var(--dark-text)">四个专长环节接力</b>——每一棒干一件别人干不了的活，并把结构化结果交给下一棒。下面就是这条接力的完整留痕。</p>
+
+      <div class="relay-list nf-list">
+        <div class="nf">
+          <p><span class="relay-no">棒 1</span></p>
+          <p class="nf-q" style="margin-top:8px">主体锚定</p>
+          <p class="nf-r">把「300866 / AnkerDirect」锚到工商＋证券双体系，抓出注册资本/总股本/USCC，并<b>当场识破搜狐串页污染</b></p>
+          <p class="nf-hand"><span>交给下一棒</span>　主体锚点（§1）＋ 1 条已排除污染项</p>
+        </div>
+        <div class="nf">
+          <p><span class="relay-no">棒 2</span></p>
+          <p class="nf-q" style="margin-top:8px">品牌·商标反查</p>
+          <p class="nf-r">三库（USPTO/EUIPO/CNIPA）反查，得出<b>「美/欧商标注册人＝香港实体，与上市工商主体不是同一法律主体」</b>这一关键分层结论</p>
+          <p class="nf-hand"><span>交给下一棒</span>　商标注册人清单（§2.2）＋ 分层线索</p>
+        </div>
+        <div class="nf">
+          <p><span class="relay-no">棒 3</span></p>
+          <p class="nf-q" style="margin-top:8px">关联主体穿透</p>
+          <p class="nf-r">沿「香港持有平台 → 各国销售实体」逐家成节，标清每家的置信度与盲区边界</p>
+          <p class="nf-hand"><span>交给下一棒</span>　关联企业网络（§3）＋ 盲区清单</p>
+        </div>
+        <div class="nf">
+          <p><span class="relay-no">棒 4</span></p>
+          <p class="nf-q" style="margin-top:8px">报告合成（本棒）</p>
+          <p class="nf-r">把三棒产物按 L2 十一节结构合成，统一置信度口径、去重来源、补齐赔付边界与复核指引，并<b>把所有查不到的诚实压进第九节</b></p>
+          <p class="nf-hand"><span>交付</span>　本报告</p>
+        </div>
+      </div>
+
+      <p class="gate-title">质检门禁（可打回）—— 合成阶段执行三道门禁</p>
+      <div class="nf-close">
+        <b>① 单源污染必须交叉</b>：触发一次，排除欧瑞博（§5 第 1 行）。<br>
+        <b>② 禁用法律措辞全文扫描</b>：通过——全文不含侵权/违法/应起诉一类的定性措辞。<br>
+        <b>③ 盲区非空校验</b>：7 条盲区，含卖家 ID、中国商标号、HK 董事股东等。<br>
+        任一门禁不过，本棒有权把对应内容打回上一棒重做。
+      </div>
+
+      <!-- 附录 B：出门前跑过的检查 -->
+      <p class="gate-title">附录 B：本报告出门前跑过的检查</p>
+      <div class="tbl-scroll" style="margin-top:12px">
+        <table>
+          <thead><tr><th>检查项</th><th>动作</th><th>结果</th></tr></thead>
+          <tbody>
+            <tr><td>逐条回源</td><td>全部结论均附可点开原始链接</td><td>23 组来源，结论段链接均有效</td></tr>
+            <tr><td>单源污染排查</td><td>交叉比对搜狐 F10 与巨潮年报</td><td>发现并排除 1 处串页污染（§5 第 1 行），未留在结论段</td></tr>
+            <tr><td>权利人差异保留</td><td>对比 USPTO 二次镜像的权利人写法</td><td>1 处差异降级入盲区（§9.1-7），未强行抹平</td></tr>
+            <tr><td>禁用措辞扫描</td><td>全文不含侵权/违法/应起诉一类的定性措辞</td><td>通过</td></tr>
+            <tr><td>盲区完整性</td><td>确认「查不到」的都进了第九节而非被编造</td><td>7 条盲区，含卖家 ID、中国商标号、HK 董事股东等</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 附录 A：商务信息 -->
+      <p class="gate-title">附录 A：本次交付的商务信息（对标 L2）</p>
+      <div class="tbl-scroll tbl-narrow" style="margin-top:12px">
+        <table>
+          <thead><tr><th>项目</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><td><b>产品</b></td><td>L2 单主体深度穿透（¥3,800 档）— 本篇为其结构与证据链演示样张</td></tr>
+            <tr><td><b>工期</b></td><td>5 个工作日（真实交付）；本样张为单日公开检索演示</td></tr>
+            <tr><td><b>含改稿</b></td><td>2 轮；第 3 轮起 ¥1,500/轮</td></tr>
+            <tr><td><b>付款方式</b></td><td>微信转账（本人实名账户）；目前不能开具发票，下单前如实告知</td></tr>
+            <tr><td><b>开工条件</b></td><td>不收款不开工；开工前完成《调查用途声明》与委托方反向筛查</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 十一、免责、赔付与用途限制 ══════════ -->
+  <section class="sec">
+    <span class="anchor" id="disclaimer"></span>
+    <div class="wrap reveal">
+      <p class="sec-kicker">SECTION 11</p>
+      <h2 class="sec-title" style="margin-top:6px">十一、免责、赔付与用途限制</h2>
+
+      <div class="card" style="margin-top:20px">
+        <p class="note-t">11.1　性质</p>
+        <p class="std-body" style="margin-top:6px">本报告为公开记录的检索、整理与主体映射分析，属信息服务产品。全部数据来自公开可访问渠道（上市公司依法披露、官方商标库、企业档案库等），未使用任何需突破登录墙、爬库或内部渠道取得的信息，未进行任何接触式调查。</p>
+      </div>
+      <div class="card">
+        <p class="note-t">11.2　本报告不是什么</p>
+        <ul class="feat" style="margin-top:8px">
+          <li><b>不构成法律意见。</b>签发方不具备法律执业资质；本报告不含也不应被解读为任何法律定性、侵权判断或诉讼意见。法律问题请交执业律师。</li>
+          <li><b>不构成投资建议。</b>本报告不含对 300866 证券的任何买卖/持有建议；文中财务数字仅为对已披露信息的转述。任何投资决策由你自行承担后果。</li>
+          <li><b>不得作为诉讼证据独立使用。</b></li>
+          <li><b>不含自然人的个人信息。</b>仅涉及企业主体层公开信息。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="note-t">11.3　时效性</p>
+        <p class="std-body" style="margin-top:6px">本报告基于 2026 年 7 月 20 日单日公开检索。工商登记、店铺状态、商标状态、子公司范围均可能随时变动。本报告不含任何持续更新或监测服务。</p>
+      </div>
+
+      <div class="note" style="margin-top:16px">
+        <span class="note-t">11.4　赔付条款（对标 L2 产品）</span>
+        若本报告中标注 🟢「已交叉验证」的关键主体识别结论出现错误，我们全额退款并额外赔付合同金额 1 倍，上限 ¥40,000。
+      </div>
+      <div class="tbl-scroll tbl-narrow">
+        <table>
+          <thead><tr><th>项</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><td><b>适用范围</b></td><td>仅第七节结论 1、2、3、4、5、6（存在性），即「某店铺/品牌/证券代码对应哪一家企业主体」及其依法披露的核心工商/证券字段</td></tr>
+            <tr><td><b>不适用</b></td><td>🟡 单源推定 · ⚪ 未证实 · 第九节全部 · 关系层级细节 · 品类↔品牌映射 · 你基于本报告作出的商业决策本身</td></tr>
+            <tr><td><b>「错误」判定</b></td><td>以公开记录为准：若能出示公开可查记录证明我们指认的主体与实际登记/披露主体不一致，即认定为错误</td></tr>
+            <tr><td><b>主张期限</b></td><td>交付起 90 天</td></tr>
+            <tr><td><b>上限</b></td><td>¥40,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <p class="note-t">11.5　用途限制</p>
+        <p class="std-body" style="margin-top:6px">本报告仅供委托方内部使用。不得转售、批量分发、公开发布；不得用于向被调查对象施压或骚扰；不得用于针对自然人的调查；不得用于任何违反适用法律法规的用途。正当用途限于：核实交易对手/合作方/供应商/<b>竞争对手</b>的真实企业主体、为律师/尽调团队提供检索线索与来源索引、了解自身或竞品在公开渠道的主体暴露情况。</p>
+      </div>
+      <div class="card">
+        <p class="note-t">11.6　关于本样张标的的说明</p>
+        <p class="std-body" style="margin-top:6px">本样张选取的是依法公开披露的上市公司，选取理由与合规边界见文首声明。我们对外发布/演示的调查内容，标的一律为自选的公开对象，从不来自客户委托。签发方在真实委托中执行《单方保密承诺书》：不复用客户委托内容、不以任何形式引用于对外内容、交付后 30 天销毁工作底稿。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ 终 CTA + 页脚 ══════════ -->
+  <div class="section-dark">
+    <section class="sec cta">
+      <div class="wrap reveal">
+        <h2 class="sec-title">想看你自己的那一份？</h2>
+        <p class="cta-lead">同样的格式、同样的置信度分级、同样把「没查到」写出来。两条路，你都可以走：</p>
+
+        <ul class="feat">
+          <li><b>查你自己的暴露面</b>——免费档 L0《主体暴露面报告》，发一句「自查」+ 你的店铺名，24 小时内出件</li>
+          <li><b>查你的竞品</b>——付费深度穿透（L2），像本篇一样跨证券/工商/商标/平台四体系落到企业主体层</li>
+          <li>只到企业主体层，不涉及任何自然人个人信息；不用填表、不用注册账号</li>
+        </ul>
+
+        <div class="cta-actions">
+          <div class="wx-box" id="wxBox" role="button" tabindex="0" aria-label="复制微信号">
+            <p class="wx-label">微信：<span class="wx-num" id="wxNum">S_6999_S</span></p>
+            <span class="wx-hint" id="wxHint">（长按或点击复制）</span>
+          </div>
+
+          <a class="btn btn-b btn-xl" href="/#check">回主页提交免费自查 →</a>
+          <a class="btn btn-c" href="/" style="margin-top:12px;color:var(--dark-text);border-color:rgba(255,255,255,0.35)">← 返回 SWAGENT 主页</a>
+          <p class="cta-aux">L0 是免费档；付费深度穿透（L2）的责任条款见第十一节。</p>
+        </div>
+
+        <div class="demo-note demo-note-dark" style="margin-top:28px">
+          <p class="demo-note-head"><span class="demo-mark">!</span>再次提示</p>
+          <p>本页为<b>演示样张</b>。标的为依法公开披露的上市公司安克创新（<span class="mono">300866</span>），全部数据取自公开渠道、可逐条点开自核；仅到企业主体层，<b>不涉及任何自然人个人信息，不含任何法律意见</b>。</p>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div class="wrap">
+          <p><span class="mono">SWAGENT</span> ｜ 跨境实体层情报 ｜ 微信：<span class="mono">S_6999_S</span></p>
+          <p>主体穿透 · INFORM 交叉验证 · 商标反查 · 关联企业网络 · 数字资产交付</p>
+          <p>本样张标的：安克创新科技股份有限公司（深交所创业板 300866）｜ 检索日期：2026 年 7 月 20 日</p>
+          <p>本站及所有交付物的结论均来自公开记录，不构成法律意见，不可作为诉讼证据独立使用。</p>
+          <p><a href="/">← 返回主页</a></p>
+        </div>
+      </footer>
+    </section>
+  </div>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var d = document;
+
+  /* ── 微信号点击复制 ── */
+  var WX = 'S_6999_S';
+  var box = d.getElementById('wxBox');
+  var hint = d.getElementById('wxHint');
+  var timer = null;
+
+  function flash() {
+    hint.textContent = '已复制，去微信添加';
+    hint.className = 'wx-hint ok';
+    if (timer) { clearTimeout(timer); }
+    timer = setTimeout(function () {
+      hint.textContent = '（长按或点击复制）';
+      hint.className = 'wx-hint';
+    }, 2000);
+  }
+
+  function copy() {
+    var done = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(WX).then(flash, fallback);
+        return;
+      }
+    } catch (e) { /* 落到 fallback */ }
+    fallback();
+
+    function fallback() {
+      if (done) { return; }
+      done = true;
+      try {
+        var ta = d.createElement('textarea');
+        ta.value = WX;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        d.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, WX.length);
+        d.execCommand('copy');
+        d.body.removeChild(ta);
+        flash();
+      } catch (e2) {
+        hint.textContent = '请长按上方微信号手动复制';
+      }
+    }
+  }
+
+  if (box) {
+    box.addEventListener('click', copy);
+    box.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copy(); }
+    });
+  }
+
+  /* ── 区块入场 fade-up ── */
+  var reveals = d.querySelectorAll('.reveal');
+  var i;
+  if ('IntersectionObserver' in window) {
+    var ro = new IntersectionObserver(function (entries) {
+      for (var j = 0; j < entries.length; j++) {
+        if (entries[j].isIntersecting) {
+          entries[j].target.classList.add('is-visible');
+          ro.unobserve(entries[j].target);
+        }
+      }
+    }, { threshold: 0.08 });
+    for (i = 0; i < reveals.length; i++) { ro.observe(reveals[i]); }
+  } else {
+    for (i = 0; i < reveals.length; i++) { reveals[i].classList.add('is-visible'); }
+  }
+})();
+</script>
+
+</body>
+</html>
