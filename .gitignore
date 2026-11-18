@@ -1,0 +1,16 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.log
+
+# Local tooling and generated artifacts
+node_modules/
+.DS_Store
+Thumbs.db
+.cache/
+dist/
